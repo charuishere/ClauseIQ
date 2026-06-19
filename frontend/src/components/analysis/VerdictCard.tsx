@@ -1,0 +1,60 @@
+import { CheckCircle2, AlertTriangle, AlertOctagon } from 'lucide-react'
+import {type Verdict } from '../../types'
+
+interface VerdictCardProps {
+  verdict: Verdict
+  overallRisk: 'low' | 'medium' | 'high'
+}
+
+export default function VerdictCard({ verdict, overallRisk }: VerdictCardProps) {
+  const getVerdictStyles = () => {
+    switch (verdict.decision) {
+      case 'Sign':
+        return {
+          bg: 'bg-green-500/10 border-green-500/20 text-green-400',
+          icon: <CheckCircle2 className="w-6 h-6 text-green-400" />
+        }
+      case 'Proceed with Caution':
+        return {
+          bg: 'bg-yellow-500/10 border-yellow-500/20 text-yellow-400',
+          icon: <AlertTriangle className="w-6 h-6 text-yellow-400" />
+        }
+      case 'High Risk':
+      default:
+        return {
+          bg: 'bg-red-500/10 border-red-500/20 text-red-400',
+          icon: <AlertOctagon className="w-6 h-6 text-red-400" />
+        }
+    }
+  }
+
+  const getRiskBadge = () => {
+    switch (overallRisk) {
+      case 'low':
+        return <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs uppercase font-bold">Low Risk</span>
+      case 'medium':
+        return <span className="bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded text-xs uppercase font-bold">Medium Risk</span>
+      case 'high':
+        return <span className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs uppercase font-bold">High Risk</span>
+      default:
+        return null
+    }
+  }
+
+  const styles = getVerdictStyles()
+
+  return (
+    <div className={`p-4 rounded-xl border ${styles.bg} mb-6`}>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          {styles.icon}
+          <h2 className="text-xl font-bold">{verdict.decision}</h2>
+        </div>
+        {getRiskBadge()}
+      </div>
+      <p className="text-sm opacity-90 leading-relaxed">
+        {verdict.reason}
+      </p>
+    </div>
+  )
+}

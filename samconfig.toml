@@ -1,0 +1,21 @@
+version = 0.1
+
+[default.global.parameters]
+stack_name = "clauseiq"
+region = "ap-south-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_NAMED_IAM"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.deploy.parameters]
+s3_bucket = "clauseiq-sam-artifacts"
+s3_prefix = "clauseiq"
+resolve_s3 = false
+
+[prod.deploy.parameters]
+stack_name = "clauseiq-prod"
+s3_prefix = "clauseiq-prod"
+parameter_overrides = "Environment=prod"

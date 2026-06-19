@@ -1,0 +1,11 @@
+fastapi
+mangum
+python-jose[cryptography]
+boto3
+PyMuPDF
+python-docx
+tiktoken
+requests
+python-multipart
+pinecone  
+ 

@@ -1,0 +1,18 @@
+# SAM Build folders
+.aws-sam/
+packaged.yaml
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+
+# Environment variables
+.env
+.env.local
+frontend/.env.local
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
