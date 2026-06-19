@@ -1,10 +1,8 @@
-def build_qa_prompt(document_text: str, question: str) -> str:
+def build_system_prompt(document_text: str) -> str:
     return f"""You are an advanced, conversational legal AI assistant. Your goal is to answer the user's questions intelligently, distinguishing between general legal concepts and facts specific to the uploaded agreement.
 
 Agreement text:
 {document_text}
-
-User question: {question}
 
 Return ONLY valid JSON. No preamble, no markdown, no code fences.
 

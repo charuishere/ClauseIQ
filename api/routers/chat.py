@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from auth import get_current_user
 from utils.dynamo import get_table
-from utils.qa_prompt import build_qa_prompt
+from utils.qa_prompt import build_system_prompt, build_user_prompt
 from utils.rag import query_pinecone
 
 router = APIRouter()
@@ -56,12 +56,16 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Failed to read document from S3: {str(e)}")
 
-    # 3. Build prompt and call Nova
-    prompt = build_qa_prompt(document_text, request.question)
+    # 3. Build prompt and call Nova with Context Caching
+    system_text = build_system_prompt(document_text)
+    user_text = build_user_prompt(request.question)
     
     body = json.dumps({
-        "messages": [{"role": "user", "content": [{"text": prompt}]}],
-        "system": [{"text": "You are a strict JSON-only API. Never return markdown."}],
+        "system": [
+            {"text": system_text},
+            {"cachePoint": {"type": "default"}}
+        ],
+        "messages": [{"role": "user", "content": [{"text": user_text}]}],
         "inferenceConfig": {"temperature": 0.0, "max_new_tokens": 1000}
     })
 
