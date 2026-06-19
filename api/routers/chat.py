@@ -38,7 +38,7 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
 
     # 2. Fetch full document text from S3 OR chunks from Pinecone
     # Check if the document was indexed using Custom RAG
-    is_custom_rag = agreement.get("has_rag", False) or agreement.get("bedrock_kb_id") == "CUSTOM_RAG" or agreement.get("token_count", 0) > 10
+    is_custom_rag = agreement.get("has_rag", False) or agreement.get("bedrock_kb_id") == "CUSTOM_RAG" or agreement.get("token_count", 0) > 200000
     
     if is_custom_rag:
         try:

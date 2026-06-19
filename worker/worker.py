@@ -49,9 +49,9 @@ def handler(event, _context):
             s3_obj = s3.get_object(Bucket=BUCKET_NAME, Key=s3_key)
             document_text = s3_obj["Body"].read().decode("utf-8")
 
-            # 4. Check if document is too large (Using 10 tokens temporarily for RAG testing)
-            if token_count > 10:
-                logger.info(f"Document {agreement_id} is >10 tokens. Triggering RAG pipeline.")
+            # 4. Check if document is too large (Nova Lite easily handles 200,000 tokens)
+            if token_count > 200000:
+                logger.info(f"Document {agreement_id} is >200k tokens. Triggering RAG pipeline.")
                 
                 # 4a. Index document into Pinecone using our Custom RAG script
                 index_document(agreement_id, document_text)
