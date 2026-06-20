@@ -22,23 +22,31 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
     user_id = user["userId"]
     table = get_table()
     
-    # 0. Rate Limiting (Cooldown of 5 seconds per user)
+    # 0. Rate Limiting (Cooldown of 5 seconds per user) - Concurrency Safe
     now = datetime.now(timezone.utc).timestamp()
-    rate_limit_key = {"PK": f"USER#{user_id}", "SK": "RATELIMIT#CHAT"}
     
-    rl_resp = table.get_item(Key=rate_limit_key)
-    if "Item" in rl_resp:
-        last_request = rl_resp["Item"].get("last_request_time", 0)
-        if now - last_request < 5.0:
+    try:
+        # Atomic Conditional Put: Fails instantly if a concurrent request already updated it
+        table.put_item(
+            Item={
+                "PK": f"USER#{user_id}", 
+                "SK": "RATELIMIT#CHAT",
+                "last_request_time": now,
+                "ttl": int(now) + 3600
+            },
+            ConditionExpression="attribute_not_exists(PK) OR last_request_time <= :limit",
+            ExpressionAttributeValues={
+                ":limit": now - 5.0
+            }
+        )
+    except boto3.client("dynamodb").exceptions.ConditionalCheckFailedException:
+        raise HTTPException(status_code=429, detail="Rate limit exceeded. Please wait 5 seconds between messages.")
+    except Exception as e:
+        # If it's the generic ClientError for conditional check failed
+        if e.__class__.__name__ == 'ClientError' and e.response['Error']['Code'] == 'ConditionalCheckFailedException':
             raise HTTPException(status_code=429, detail="Rate limit exceeded. Please wait 5 seconds between messages.")
-            
-    # Update rate limit
-    table.put_item(Item={
-        "PK": f"USER#{user_id}", 
-        "SK": "RATELIMIT#CHAT",
-        "last_request_time": now,
-        "ttl": int(now) + 3600 # Auto-delete record after 1 hour
-    })
+        # Otherwise log and continue so we don't break the chat if rate limiting fails
+        pass
     
     # 1. Verify ownership and status
     agreement_resp = table.get_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{agreement_id}"})
