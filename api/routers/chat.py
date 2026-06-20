@@ -22,6 +22,24 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
     user_id = user["userId"]
     table = get_table()
     
+    # 0. Rate Limiting (Cooldown of 5 seconds per user)
+    now = datetime.now(timezone.utc).timestamp()
+    rate_limit_key = {"PK": f"USER#{user_id}", "SK": "RATELIMIT#CHAT"}
+    
+    rl_resp = table.get_item(Key=rate_limit_key)
+    if "Item" in rl_resp:
+        last_request = rl_resp["Item"].get("last_request_time", 0)
+        if now - last_request < 5.0:
+            raise HTTPException(status_code=429, detail="Rate limit exceeded. Please wait 5 seconds between messages.")
+            
+    # Update rate limit
+    table.put_item(Item={
+        "PK": f"USER#{user_id}", 
+        "SK": "RATELIMIT#CHAT",
+        "last_request_time": now,
+        "ttl": int(now) + 3600 # Auto-delete record after 1 hour
+    })
+    
     # 1. Verify ownership and status
     agreement_resp = table.get_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{agreement_id}"})
     agreement = agreement_resp.get("Item")
