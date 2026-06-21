@@ -112,3 +112,22 @@ When asked how to scale a project for millions of users, ClauseIQ natively solve
 
 **Example System Design Interview Answer:**
 > *"To support massive concurrent traffic, I architected my backend completely serverless. I placed stateless AWS Lambda functions behind an API Gateway to handle instant horizontal scaling and rate limiting. To prevent AI latency from blocking the main thread, I decoupled the heavy processing into an event-driven architecture using an SQS message queue and background workers. For the data layer, I used DynamoDB with a Single-Table Design, which auto-shards and eliminates the N+1 query problem, providing sub-10ms reads. Finally, I optimized the LLM costs by implementing Native Context Caching, and deployed the frontend to a global CDN."*
+
+## 30. CORS (Cross-Origin Resource Sharing)
+**What it is:** CORS is a security mechanism built into all modern web browsers that determines whether a frontend application is allowed to communicate with a backend API hosted on a different domain name.
+
+**The Problem (Same-Origin Policy):** 
+By default, web browsers enforce a strict security rule called the **Same-Origin Policy**. This means JavaScript running on `http://localhost:5173` is strictly forbidden from reading data from an API at `https://cnyls7k9yj.execute-api.amazonaws.com`. If the Same-Origin Policy didn't exist, a malicious website you visit could silently make JavaScript API requests to your bank's website using your saved cookies to steal your money. 
+
+**The Solution (CORS):**
+To safely bypass the Same-Origin Policy for legitimate applications (like ClauseIQ), we use CORS. The backend API must be explicitly configured to send a specific HTTP header back to the browser: 
+`Access-Control-Allow-Origin: http://localhost:5173`
+When the browser receives this exact header, it knows the backend officially trusts the frontend, and it allows the JavaScript to read the response.
+
+**The Preflight Request (`OPTIONS`):**
+For complex requests (like a `POST` request, or sending a JWT Authorization header), the browser doesn't send the real data immediately. First, it sends an empty, hidden request using the HTTP `OPTIONS` method. This is called a **Preflight Request**.
+The browser is asking the backend: *"Are you configured to accept a POST request with an Authorization header from my domain?"*
+The backend must respond with an HTTP 200 OK status and headers like:
+- `Access-Control-Allow-Methods: GET, POST, OPTIONS`
+- `Access-Control-Allow-Headers: Authorization, Content-Type`
+Only if this preflight succeeds will the browser send the actual user data. If the backend crashes during this preflight (returning a 500 Error instead of a 200 OK), the browser immediately throws a CORS error and blocks the connection.
