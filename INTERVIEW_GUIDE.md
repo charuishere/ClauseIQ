@@ -1,71 +1,105 @@
-# ClauseIQ: System Design Interview Guide
+# ClauseIQ: Technical System Design Interview Guide
 
-This document maps the top 20 most common System Design interview questions directly to the architecture of ClauseIQ. Studying this guide will prove to interviewers that you understand how to build and scale production-ready applications.
+This guide provides deep, technical explanations for the 20 most common System Design interview topics. It explains exactly how ClauseIQ implements each concept using concrete examples from our codebase.
 
-### 1. Database Design (Why DynamoDB?)
-*   **Question:** Why NoSQL over SQL?
-*   **Answer:** "I chose **DynamoDB** because ClauseIQ requires high-concurrency document reads with low latency. Instead of complex SQL joins, I used a **Single-Table Design**. By storing Agreements, Risks, and Clauses under a single Partition Key (`PK=USER#123`), I can fetch an entire dashboard of data in a single sub-10ms network request. DynamoDB inherently auto-shards across partitions, ensuring infinite scalability."
+---
 
-### 2. Caching (Why not Redis?)
-*   **Question:** Your app gets 50k requests/min. What do you cache?
-*   **Answer:** "For the data layer, DynamoDB already responds in single-digit milliseconds, making Redis overkill and an unnecessary source of cache-invalidation bugs. Instead, I focused caching on the most expensive bottleneck: the AI. I implemented **LLM Native Context Caching** in AWS Bedrock, freezing the 1,000-page document in AWS RAM. This reduced AI latency by 80% and costs by 90% without needing a separate Redis cluster."
+### 1. Database Design (DynamoDB Single-Table Design)
+**The Concept:** SQL databases use multiple tables and foreign keys, requiring heavy compute for `JOIN` operations. NoSQL databases (like DynamoDB) optimize for high-speed reads by pre-joining data.
+**ClauseIQ Implementation:** We use DynamoDB with a "Single-Table Design". 
+**Concrete Example:** Instead of querying an `Agreements` table and a `Clauses` table separately, we store them in one table under the same Partition Key.
+```python
+# Fetches the agreement, analysis, and all 50 clauses in one 5ms request
+table.query(
+    KeyConditionExpression=Key("PK").eq(f"USER#{user_id}") & Key("SK").begins_with("AGREEMENT#")
+)
+```
 
-### 3. Asynchronous Processing
-*   **Question:** What if a task takes 60 seconds?
-*   **Answer:** "To prevent API Gateway timeouts (29s limit), I built an **event-driven architecture**. When a user uploads a PDF, the API instantly returns a success message and drops a task into an **Amazon SQS Queue**. A background Lambda Worker independently pulls from the queue, processes the AI analysis, and updates the database, ensuring the main thread is never blocked."
+### 2. Caching (Native LLM Context Caching)
+**The Concept:** Caching prevents the system from doing the same expensive work twice. 
+**ClauseIQ Implementation:** DynamoDB reads are already single-digit milliseconds, so adding Redis is an anti-pattern. Instead, our most expensive bottleneck is the AI (reading 1,000 pages takes 10 seconds). We implemented **Prompt Caching** in AWS Bedrock.
+**Concrete Example:** In `api/routers/chat.py`, we separate the document into a system prompt and append a `cachePoint`. AWS freezes the document in RAM for 5 minutes. Subsequent questions skip the 10-second reading phase, reducing latency and cutting input token costs by 90%.
+```python
+"system": [
+    {"text": document_text},
+    {"cachePoint": {"type": "default"}}
+]
+```
 
-### 4. Consistency & Race Conditions
-*   **Question:** How do you prevent overselling or race conditions?
-*   **Answer:** "I use **Optimistic Locking** via DynamoDB's `ConditionExpression`. For example, in my Rate Limiter, if a user's bot sends 10 concurrent messages at the exact same millisecond, DynamoDB locks the row at the hardware level and only allows the first update to succeed, throwing a `ConditionalCheckFailedException` for the others. This guarantees atomic thread safety."
+### 3. Asynchronous Processing (SQS + Lambda)
+**The Concept:** APIs should never block the main thread waiting for a slow task (like AI processing or sending an email) to finish.
+**ClauseIQ Implementation:** We decouple the upload API from the AI engine using an Amazon SQS message queue.
+**Concrete Example:** When a user uploads a PDF, the API uploads it to S3, sends a JSON message `{"agreement_id": "123", "s3_key": "path/file.pdf"}` to SQS, and immediately returns a `200 OK`. A background Lambda Worker triggers off the SQS queue, runs the 60-second AI analysis, and saves the result to DynamoDB without blocking the user's browser.
 
-### 5. High Availability & Fault Tolerance
-*   **Question:** What if a server crashes?
-*   **Answer:** "My entire backend is **Serverless**. AWS Lambda and DynamoDB inherently run across multiple Availability Zones (data centers). If a physical server dies, AWS reroutes the container instantly. If the AI provider (Bedrock) goes down, my SQS Queue safely holds the messages and automatically retries them later, ensuring zero data loss."
+### 4. Consistency & Concurrency (Optimistic Locking)
+**The Concept:** If multiple threads modify the same data simultaneously, race conditions occur (e.g., double-spending money).
+**ClauseIQ Implementation:** We use DynamoDB's `ConditionExpression` to enforce atomic, hardware-level locks during write operations.
+**Concrete Example:** In our Rate Limiter (`chat.py`), if a bot sends 10 concurrent requests, DynamoDB executes a Conditional Put. It only allows the write if `last_request_time <= now - 5.0`. The 9 losing threads receive a `ConditionalCheckFailedException`, blocking the spam instantly.
 
-### 6. Load Balancing
-*   **Question:** How is traffic distributed?
-*   **Answer:** "I use **AWS API Gateway** as a fully managed load balancer. It acts as the front door, intelligently routing traffic to thousands of parallel Lambda containers while automatically dropping idle connections."
+### 5. High Availability & Stateless Servers
+**The Concept:** A system must remain online even if a server crashes.
+**ClauseIQ Implementation:** We do not use persistent EC2 servers. Our backend consists of stateless AWS Lambda functions. 
+**Concrete Example:** Because Lambdas store zero state in memory, AWS can instantly terminate a frozen container and spin up a new one in a different Availability Zone. The system is inherently multi-AZ and highly available by default.
 
-### 7. API Design
-*   **Question:** How did you design your API?
-*   **Answer:** "I built a standard **REST API** using FastAPI. I strictly used `POST` for mutations (uploading, chatting) and `GET` for fetching data. I ensured standard HTTP status codes (e.g., `429` for rate limits, `409` for conflict if the analysis isn't finished yet)."
+### 6. Load Balancing & Rate Limiting
+**The Concept:** Distributing incoming traffic safely across backend resources.
+**ClauseIQ Implementation:** AWS API Gateway acts as our load balancer and ingress controller.
+**Concrete Example:** Before a request reaches our Python code, API Gateway handles SSL termination, CORS validation, and drops idle connections. It also enforces API-wide rate limits (e.g., 10,000 requests/second) to protect the backend from DDoS attacks.
 
-### 8. Authentication & Authorization
-*   **Question:** How do you secure user data?
-*   **Answer:** "For authentication, I use **AWS Cognito** which issues secure JWT tokens. The React frontend handles **Refresh Tokens** automatically in the background so users are never unexpectedly logged out. For authorization, I strictly scope all DynamoDB queries using the user's cryptographically verified ID (`PK=USER#<id>`). This prevents **BOLA** (Broken Object Level Authorization), guaranteeing that User A can never access User B's documents."
+### 7. API Design (RESTful)
+**The Concept:** Standardized communication between frontend and backend.
+**ClauseIQ Implementation:** We built a REST API using Python FastAPI.
+**Concrete Example:** 
+- `POST /agreements` (Mutates state: Uploads a document)
+- `GET /agreements/{id}` (Idempotent: Fetches a document)
+- We strictly return HTTP 429 for Rate Limit errors and HTTP 404 for Not Found.
 
-### 9. Security
-*   **Question:** How do you handle file security?
-*   **Answer:** "I never expose public S3 URLs. Instead, my API generates cryptographic **S3 Pre-signed URLs** that are strictly scoped to the exact document file path and automatically expire after 1 hour (`ExpiresIn=3600`). I also implemented a DynamoDB-backed **Rate Limiter** to prevent DDoS-style spam on the AI endpoints."
+### 8. Authentication (JWT & AWS Cognito)
+**The Concept:** Verifying *who* the user is securely without managing passwords in our own database.
+**ClauseIQ Implementation:** We use AWS Cognito to handle passwords and issue JSON Web Tokens (JWTs).
+**Concrete Example:** In `api/auth.py`, we intercept the JWT header and mathematically verify its RSA signature against Amazon's public JWKS keys. The React frontend uses AWS Amplify to automatically refresh the token in the background before it expires.
 
-### 10. CDN (Content Delivery Network)
-*   **Question:** What if users worldwide access your app?
-*   **Answer:** "My React frontend is compiled into static assets and deployed to **AWS CloudFront** (Amazon's global CDN). A user in London downloads the UI from a server in London, ensuring instant page loads globally."
+### 9. Authorization (Tenant Isolation)
+**The Concept:** Verifying *what* the authenticated user is allowed to access (preventing Broken Object Level Authorization).
+**ClauseIQ Implementation:** Every database query strictly includes the authenticated user's ID.
+**Concrete Example:** If User A tries to guess User B's agreement ID, the query `table.get_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{guessed_id}"})` will return null, because the `PK` enforces strict tenant isolation at the database level.
 
-### 11. Search
-*   **Question:** How do you search through massive documents?
-*   **Answer:** "Standard SQL `LIKE '%abc%'` is useless for finding legal nuances. I implemented **Vector Search** using Pinecone. By turning the text into mathematical embeddings, the system understands the *semantic meaning* of the query, allowing it to find relevant clauses even if the exact keywords don't match."
+### 10. Security (S3 Pre-signed URLs)
+**The Concept:** Protecting private files from public internet access.
+**ClauseIQ Implementation:** The S3 bucket containing the PDFs is entirely private. 
+**Concrete Example:** When the React UI needs to display the PDF, our API generates a cryptographic Pre-signed URL. This URL grants temporary read access exactly to that specific file, and expires precisely 3600 seconds (1 hour) after creation.
 
-### 12. Storage
-*   **Question:** Where do images/PDFs go?
-*   **Answer:** "I strictly separate concerns: raw PDF files are stored in **Amazon S3**, and only the metadata and extracted text strings are stored in **DynamoDB**. Storing binary files in a database is an expensive anti-pattern."
+### 11. Search (Semantic Vector Search)
+**The Concept:** SQL `LIKE '%keyword%'` fails if the user searches for "termination" but the document says "cancellation".
+**ClauseIQ Implementation:** For documents over 200k tokens, we use Vector Databases (Pinecone) and Retrieval-Augmented Generation (RAG).
+**Concrete Example:** The document is chunked and converted into mathematical vectors (embeddings). When the user asks a question, we convert the question into a vector and use cosine similarity to find the most semantically relevant chunks, regardless of exact keyword matches.
 
-### 13. Monitoring
-*   **Question:** How do you detect problems?
-*   **Answer:** "Because I use AWS Serverless, all Lambda execution logs, cold start metrics, and API Gateway error rates (like 500s or 429s) are automatically ingested into **AWS CloudWatch**."
+### 12. Storage (Object Storage vs Database)
+**The Concept:** Databases are designed for structured text, not large binary files.
+**ClauseIQ Implementation:** Separation of concerns.
+**Concrete Example:** The raw 50MB PDF file is saved directly to Amazon S3 (Object Storage). The database (DynamoDB) only stores a string reference to the file's location (`s3_key: "documents/123/file.pdf"`) and the extracted JSON metadata.
 
-### 14. Deployment
-*   **Question:** How is your project deployed?
-*   **Answer:** "I implemented a full **CI/CD pipeline using GitHub Actions**. Whenever I push to the `main` branch, the workflow automatically provisions an Ubuntu runner, configures AWS credentials via Secrets, runs `sam build`, and deploys the infrastructure as code (IaC) to AWS using the SAM CLI."
+### 13. Monitoring & Observability
+**The Concept:** Detecting failures in a distributed system.
+**ClauseIQ Implementation:** Native integration with AWS CloudWatch.
+**Concrete Example:** Because we use AWS Lambda, every `print()` statement in Python, every stack trace, and every memory consumption metric is automatically streamed to CloudWatch Logs and Dashboards without configuring external agents like Prometheus.
 
-### 15. Performance
-*   **Question:** How do you reduce response time?
-*   **Answer:** "On the backend, I eliminate the N+1 database problem using DynamoDB Single-Table Design. On the frontend, I use **React Query Optimistic Updates**. When a user deletes a file, the UI updates instantly (0ms latency), assuming the server request will succeed, masking any network latency."
+### 14. Deployment (CI/CD)
+**The Concept:** Automating code deployments to prevent human error.
+**ClauseIQ Implementation:** We use GitHub Actions and AWS SAM (Serverless Application Model).
+**Concrete Example:** Pushing code to the `main` branch triggers a workflow that provisions a sterile Ubuntu environment, builds the Python dependencies, translates our `template.yaml` into CloudFormation, and safely updates the live AWS infrastructure.
+
+### 15. Performance (Optimistic Updates)
+**The Concept:** Eliminating perceived network latency on the frontend.
+**ClauseIQ Implementation:** React Query `onMutate` callbacks.
+**Concrete Example:** When a user clicks "Delete Agreement", we instantly remove the agreement from the React DOM before the API request finishes. If the API request fails, we roll back the UI cache. To the user, the app feels like it has 0ms latency.
 
 ### 16. Cost Optimization
-*   **Question:** How do you keep AWS bills low?
-*   **Answer:** "My architecture scales to zero. I only pay for the exact milliseconds my Lambda functions run. I also optimized the most expensive part (LLM tokens) by implementing **Native Context Caching**, which cuts AI costs by 90% during multi-turn chats."
+**The Concept:** Architecting systems to minimize cloud bills.
+**ClauseIQ Implementation:** A 100% Serverless architecture.
+**Concrete Example:** If the application receives zero traffic at 3:00 AM, the AWS bill is exactly $0.00 because Lambda and API Gateway scale to zero. We also save 90% on AI costs using Context Caching during chat sessions.
 
-### 17. Trade-offs (The Senior Level Question)
-*   **Question:** What architectural trade-offs did you make?
-*   **Answer:** "The biggest trade-off was choosing **Long-Context LLMs over standard RAG**. RAG is cheaper, but it often misses information spread across multiple pages. By passing the full document into a Long-Context model (like Nova Lite), I maximized accuracy. To offset the high latency and cost of this trade-off, I implemented **AWS Prompt Caching**. I traded slightly more complex prompt engineering for massively superior semantic accuracy."
+### 17. System Design Trade-offs
+**The Concept:** Engineering is about choosing the right compromise.
+**ClauseIQ Implementation:** Long-Context LLMs vs RAG.
+**Concrete Example:** RAG is significantly cheaper because it only sends 5 paragraphs to the AI. However, RAG fails to answer questions requiring synthesis across 50 different pages. We traded cost for accuracy by passing the entire document to a Long-Context LLM (Amazon Nova). We then mitigated the cost penalty by implementing AWS Prompt Caching.
