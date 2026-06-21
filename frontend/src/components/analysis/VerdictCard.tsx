@@ -11,19 +11,19 @@ export default function VerdictCard({ verdict, overallRisk }: VerdictCardProps) 
     switch (verdict.decision) {
       case 'Sign':
         return {
-          bg: 'bg-green-500/10 border-green-500/20 text-green-400',
-          icon: <CheckCircle2 className="w-6 h-6 text-green-400" />
+          bg: 'bg-[var(--color-bg-panel)] border-[var(--color-border-subtle)]',
+          icon: <CheckCircle2 className="w-6 h-6 text-green-600/80" />
         }
       case 'Proceed with Caution':
         return {
-          bg: 'bg-yellow-500/10 border-yellow-500/20 text-yellow-400',
-          icon: <AlertTriangle className="w-6 h-6 text-yellow-400" />
+          bg: 'bg-[var(--color-bg-panel)] border-[var(--color-border-subtle)]',
+          icon: <AlertTriangle className="w-6 h-6 text-[var(--color-accent)]" />
         }
       case 'High Risk':
       default:
         return {
-          bg: 'bg-red-500/10 border-red-500/20 text-red-400',
-          icon: <AlertOctagon className="w-6 h-6 text-red-400" />
+          bg: 'bg-[var(--color-bg-panel)] border-[var(--color-border-subtle)]',
+          icon: <AlertOctagon className="w-6 h-6 text-red-600/80" />
         }
     }
   }
@@ -31,11 +31,11 @@ export default function VerdictCard({ verdict, overallRisk }: VerdictCardProps) 
   const getRiskBadge = () => {
     switch (overallRisk) {
       case 'low':
-        return <span className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-xs uppercase font-bold">Low Risk</span>
+        return <span className="text-green-600/80 bg-green-500/10 px-2 py-0.5 rounded-md text-xs font-semibold">Low Risk</span>
       case 'medium':
-        return <span className="bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded text-xs uppercase font-bold">Medium Risk</span>
+        return <span className="text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-2 py-0.5 rounded-md text-xs font-semibold">Medium Risk</span>
       case 'high':
-        return <span className="bg-red-500/20 text-red-400 px-2 py-0.5 rounded text-xs uppercase font-bold">High Risk</span>
+        return <span className="text-red-600/80 bg-red-500/10 px-2 py-0.5 rounded-md text-xs font-semibold">High Risk</span>
       default:
         return null
     }
@@ -48,7 +48,7 @@ export default function VerdictCard({ verdict, overallRisk }: VerdictCardProps) 
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           {styles.icon}
-          <h2 className="text-xl font-bold">{verdict.decision}</h2>
+          <h2 className="text-2xl font-serif text-[var(--color-text-primary)]">{verdict.decision}</h2>
         </div>
         {getRiskBadge()}
       </div>

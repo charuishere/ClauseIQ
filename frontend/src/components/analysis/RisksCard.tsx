@@ -9,9 +9,9 @@ export default function RisksCard({ risks }: RisksCardProps) {
   if (!risks || risks.length === 0) {
     return (
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Identified Risks</h3>
-        <div className="p-4 bg-[var(--color-bg-base)] border border-green-500/20 rounded-lg text-green-400 text-sm flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4" />
+        <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Identified Risks</h3>
+        <div className="p-4 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl text-[var(--color-text-muted)] text-sm flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-green-600/70" />
           No significant risks identified
         </div>
       </div>
@@ -25,33 +25,33 @@ export default function RisksCard({ risks }: RisksCardProps) {
   })
 
   return (
-    <div className="mb-6">
-      <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Identified Risks ({risks.length})</h3>
+    <div className="mb-8">
+      <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Identified Risks ({risks.length})</h3>
       
-      <div className="space-y-3">
+      <div className="space-y-4">
         {sortedRisks.map((risk) => {
           let badgeColor = ''
           let Icon = AlertCircle
           
           if (risk.severity === 'High') {
-            badgeColor = 'bg-red-500/20 text-red-400'
+            badgeColor = 'bg-red-500/10 text-red-600/80'
             Icon = ShieldAlert
           } else if (risk.severity === 'Medium') {
-            badgeColor = 'bg-yellow-500/20 text-yellow-400'
+            badgeColor = 'bg-[var(--color-accent)]/10 text-[var(--color-accent)]'
             Icon = AlertTriangle
           } else {
-            badgeColor = 'bg-blue-500/20 text-blue-400'
+            badgeColor = 'bg-blue-500/10 text-blue-600/80'
             Icon = AlertCircle
           }
 
           return (
-            <div key={risk.riskId} className="p-4 bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] rounded-lg">
-              <div className="flex items-start justify-between mb-2">
+            <div key={risk.riskId} className="p-5 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl">
+              <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <Icon className={`w-4 h-4 ${badgeColor.replace('bg-', 'text-').split(' ')[1]}`} />
-                  <h4 className="font-semibold text-sm">{risk.title}</h4>
+                  <Icon className={`w-4 h-4 ${badgeColor.split(' ')[1]}`} />
+                  <h4 className="font-semibold text-[var(--color-text-primary)] text-sm">{risk.title}</h4>
                 </div>
-                <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded ${badgeColor}`}>
+                <span className={`text-xs font-semibold px-2 py-0.5 rounded-md ${badgeColor}`}>
                   {risk.severity}
                 </span>
               </div>

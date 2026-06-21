@@ -9,9 +9,9 @@ interface AmbiguousCardProps {
 export default function AmbiguousCard({ clauses }: AmbiguousCardProps) {
   if (!clauses || clauses.length === 0) {
     return (
-      <div className="mb-6">
-        <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Ambiguous Clauses</h3>
-        <div className="p-4 bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] rounded-lg text-[var(--color-text-muted)] text-sm">
+      <div className="mb-8">
+        <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Ambiguous Clauses</h3>
+        <div className="p-5 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl text-[var(--color-text-muted)] text-sm">
           No ambiguous clauses detected.
         </div>
       </div>
@@ -19,8 +19,8 @@ export default function AmbiguousCard({ clauses }: AmbiguousCardProps) {
   }
 
   return (
-    <div className="mb-6">
-      <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Ambiguous Clauses ({clauses.length})</h3>
+    <div className="mb-8">
+      <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Ambiguous Clauses ({clauses.length})</h3>
       
       <div className="space-y-4">
         {clauses.map((clause) => (
@@ -35,11 +35,11 @@ function AmbiguousItem({ clause }: { clause: AmbiguousClauseItem }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="p-4 bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] rounded-lg">
-      <div className="flex items-start gap-2 mb-3">
-        <HelpCircle className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+    <div className="p-5 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl">
+      <div className="flex items-start gap-2 mb-4">
+        <HelpCircle className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" />
         <div>
-          <blockquote className="border-l-2 border-purple-500/50 pl-3 py-1 text-sm italic text-[var(--color-text-muted)] bg-purple-500/5 rounded-r-md">
+          <blockquote className="border-l-2 border-[var(--color-accent)]/30 pl-3 py-1 text-sm italic text-[var(--color-text-muted)]">
             "{clause.clause_text}"
           </blockquote>
         </div>

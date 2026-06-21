@@ -17,8 +17,8 @@ export default function ClausesCard({ discovered_clauses, normalized_checklist }
     <div className="space-y-6 mb-6">
       {discovered_clauses?.length > 0 && (
         <div>
-          <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Discovered Clauses</h3>
-          <div className="p-4 bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] rounded-lg space-y-4">
+          <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Discovered Clauses</h3>
+          <div className="p-5 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl space-y-4">
             {discovered_clauses.map((clause, idx) => (
               <div key={idx} className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
@@ -39,8 +39,8 @@ export default function ClausesCard({ discovered_clauses, normalized_checklist }
 
       {normalized_checklist?.length > 0 && (
         <div>
-          <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Standard Checklist</h3>
-          <div className="p-4 bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] rounded-lg">
+          <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Standard Checklist</h3>
+          <div className="p-5 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl">
             
             {/* Found Clauses Section */}
             {foundClauses.length > 0 && (
