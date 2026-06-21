@@ -1,17 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
   
-  --color-bg-base: #111111;
-  --color-bg-panel: #1A1A1A;
-  --color-border-subtle: #2A2A2A;
+  /* Claude-style Warm Minimalism (Light Mode Default) */
+  --color-bg-base: #F9F8F6;
+  --color-bg-panel: #FFFFFF;
+  --color-border-subtle: #E5E3DB;
   
-  --color-text-primary: #FFFFFF;
-  --color-text-muted: #888888;
+  --color-text-primary: #1A1918;
+  --color-text-muted: #73716D;
   
-  --color-accent: #6366F1;
+  /* Muted Terracotta for primary actions */
+  --color-accent: #D47753; 
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-bg-base: #252423;
+    --color-bg-panel: #2C2B2A;
+    --color-border-subtle: #3D3B3A;
+    
+    --color-text-primary: #EBEBEB;
+    --color-text-muted: #9E9C99;
+    
+    --color-accent: #E08963;
+  }
 }
 
 body {
@@ -19,6 +36,10 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   margin: 0;
+}
+
+h1, h2, h3, .serif-font {
+  font-family: var(--font-serif);
 }
 
 /* Custom Scrollbar for Dark Theme */
