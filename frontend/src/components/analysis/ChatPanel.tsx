@@ -52,15 +52,15 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
             <div key={msg.messageId} className="flex flex-col gap-4">
               {/* User Question */}
               <div className="flex justify-end">
-                <div className="bg-[var(--color-accent)] text-[var(--color-text-inverse)] px-4 py-2 rounded-2xl max-w-[85%] rounded-tr-sm">
+                <div className="bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] px-5 py-3 rounded-2xl max-w-[85%]">
                   {msg.question}
                 </div>
               </div>
               
               {/* AI Answer */}
-              <div className="flex justify-start">
-                <div className="bg-[var(--color-bg-elevated)] text-[var(--color-text-primary)] px-4 py-3 rounded-2xl max-w-[85%] rounded-tl-sm border border-[var(--color-border-subtle)] space-y-2">
-                  <p className="whitespace-pre-wrap leading-relaxed text-sm">{msg.answer}</p>
+              <div className="flex justify-start px-2 mt-2">
+                <div className="max-w-[95%] space-y-3">
+                  <p className="whitespace-pre-wrap leading-relaxed text-base font-serif text-[var(--color-text-primary)]">{msg.answer}</p>
                   
                   {/* Render Citations if the AI used the document to answer */}
                   {msg.found_in_document && msg.citations && msg.citations.length > 0 && (
@@ -87,7 +87,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
         {/* Optimistic User Question (shows immediately while waiting) */}
         {optimisticQuestion && (
           <div className="flex justify-end">
-            <div className="bg-[var(--color-accent)] text-[var(--color-text-inverse)] px-4 py-2 rounded-2xl max-w-[85%] rounded-tr-sm opacity-70">
+            <div className="bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] px-5 py-3 rounded-2xl max-w-[85%] opacity-70">
               {optimisticQuestion}
             </div>
           </div>
@@ -95,33 +95,34 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
 
         {/* Loading indicator while waiting for the AI */}
         {isPending && (
-          <div className="flex justify-start">
-            <div className="bg-[var(--color-bg-elevated)] px-4 py-3 rounded-2xl rounded-tl-sm border border-[var(--color-border-subtle)]">
-              <Loader2 className="animate-spin text-[var(--color-accent)]" size={16} />
+          <div className="flex justify-start px-2 mt-2">
+            <div className="flex items-center gap-2">
+              <Loader2 className="animate-spin text-[var(--color-accent)]" size={20} />
+              <span className="font-serif text-[var(--color-text-muted)] text-sm italic">Claude is thinking...</span>
             </div>
           </div>
         )}
       </div>
 
-      {/* Input Area */}
-      <div className="p-4 border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-base)] shrink-0">
-        <div className="relative flex items-center">
+      {/* Floating Input Area */}
+      <div className="p-4 shrink-0 bg-gradient-to-t from-[var(--color-bg-base)] to-transparent">
+        <div className="relative flex items-center max-w-3xl mx-auto bg-[#2C2B2A] rounded-2xl shadow-lg border border-[var(--color-border-subtle)]">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="Ask a question..."
+            placeholder="Write a message..."
             disabled={isPending}
-            className="w-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-full pl-4 pr-12 py-3 text-sm focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] disabled:opacity-50 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] transition-all"
+            className="w-full bg-transparent pl-4 pr-12 py-4 text-sm focus:outline-none disabled:opacity-50 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] transition-all"
           />
           <button
             onClick={handleSend}
             disabled={!input.trim() || isPending}
-            className="absolute right-2 p-2 bg-[var(--color-accent)] text-[var(--color-text-inverse)] rounded-full hover:opacity-90 disabled:opacity-50 disabled:hover:opacity-50 transition-all flex items-center justify-center"
+            className="absolute right-3 p-1.5 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] rounded-md disabled:opacity-50 transition-all flex items-center justify-center"
           >
-            <Send size={16} className={isPending ? "opacity-0" : "opacity-100"} />
-            {isPending && <Loader2 size={16} className="animate-spin absolute" />}
+            <Send size={18} className={isPending ? "opacity-0" : "opacity-100"} />
+            {isPending && <Loader2 size={18} className="animate-spin absolute text-[var(--color-accent)]" />}
           </button>
         </div>
       </div>

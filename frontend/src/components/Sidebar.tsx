@@ -41,13 +41,14 @@ export default function Sidebar({ currentAgreementId, onNewAgreement }: SidebarP
   return (
     <div className="w-64 h-screen bg-[var(--color-bg-panel)] border-r border-[var(--color-border-subtle)] flex flex-col">
       {/* Top Section: Logo & New Agreement Button */}
-      <div className="p-4 flex flex-col gap-4 border-b border-[var(--color-border-subtle)]">
-        <h1 className="text-xl font-bold text-[var(--color-accent)] font-serif">ClauseIQ</h1>
+      <div className="p-4 flex flex-col gap-4">
+        <h1 className="text-xl font-bold text-[var(--color-text-primary)] font-serif pl-2">ClauseIQ</h1>
         <button 
           onClick={onNewAgreement}
-          className="w-full flex items-center justify-center gap-2 bg-[var(--color-accent)] text-white py-2 rounded-md hover:bg-opacity-90 transition-all font-medium text-sm shadow-md"
+          className="w-full flex items-center gap-3 px-3 py-2 text-[var(--color-text-primary)] rounded-md hover:bg-[var(--color-bg-base)] transition-colors text-sm"
         >
-          <Plus size={16} /> New Agreement
+          <Plus size={16} className="text-[var(--color-text-muted)]" />
+          <span>New chat</span>
         </button>
       </div>
 

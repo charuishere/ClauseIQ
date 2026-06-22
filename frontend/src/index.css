@@ -20,14 +20,15 @@
 /* Dark Mode Overrides */
 @media (prefers-color-scheme: dark) {
   @theme {
-    --color-bg-base: #252423;
-    --color-bg-panel: #2C2B2A;
-    --color-border-subtle: #3D3B3A;
+    /* Claude exact dark mode palette */
+    --color-bg-base: #232220;
+    --color-bg-panel: #1D1C1A;
+    --color-border-subtle: #333130;
     
-    --color-text-primary: #EBEBEB;
+    --color-text-primary: #EAE8E3;
     --color-text-muted: #9E9C99;
     
-    --color-accent: #E08963;
+    --color-accent: #D97757;
   }
 }
 
