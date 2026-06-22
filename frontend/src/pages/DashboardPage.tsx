@@ -77,10 +77,10 @@ export default function DashboardPage() {
         <>
           {/* 2. Center Panel (Document / Chat) */}
           <div className="flex-1 flex flex-col bg-[var(--color-bg-panel)] overflow-hidden">
-            <div className="p-4 border-b border-[var(--color-border-subtle)] font-semibold flex items-center justify-between">
+            <div className="p-4 border-b border-[var(--color-border-subtle)] flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <span>{agreement?.title || 'AI Document Viewer'}</span>
-                {isProcessing && <span className="text-xs bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded-full animate-pulse">AI is analyzing...</span>}
+                <h1 className="font-serif text-xl text-[var(--color-text-primary)] truncate max-w-md">{agreement?.title || 'AI Document Viewer'}</h1>
+                {isProcessing && <span className="text-xs bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-1 rounded-full animate-pulse font-semibold">AI is analyzing...</span>}
               </div>
               
               <div className="flex items-center">
@@ -156,8 +156,8 @@ export default function DashboardPage() {
               />
               
               {/* Header */}
-              <div className="p-4 border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-base)] z-10 sticky top-0 shrink-0 font-semibold text-[var(--color-text-primary)]">
-                AI Analysis
+              <div className="p-4 border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-base)] z-10 sticky top-0 shrink-0">
+                <h2 className="font-serif text-xl text-[var(--color-text-primary)]">AI Analysis</h2>
               </div>
 
               <div className="flex-1 overflow-y-auto">
