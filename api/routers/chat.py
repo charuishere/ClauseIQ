@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from auth import get_current_user
 from utils.dynamo import get_table
-from utils.qa_prompt import build_system_prompt
+from utils.qa_prompt import build_system_prompt, build_user_prompt
 from utils.rag import query_pinecone
 
 router = APIRouter()
