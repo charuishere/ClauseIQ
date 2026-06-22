@@ -38,7 +38,10 @@ Rules:
    - If information is spread across multiple files, combine it into one cohesive answer and cite every relevant file.
    - Populate file_name from the nearest preceding [FILE: filename] marker.
 
-5. Factual Guardrails: Never guess or infer legal obligations beyond what the document explicitly states. If the document is completely silent on the topic, state that the agreement does not specify it.
+5. Factual Guardrails: For "document" or "mixed" questions, never guess or infer legal obligations beyond what the document explicitly states. If the document is completely silent on the topic, state that the agreement does not specify it. For "general" casual questions, ignore this rule and converse naturally.
 
 6. Return ONLY the JSON object. Nothing else.
 """
+
+def build_user_prompt(question: str) -> str:
+    return question

@@ -82,16 +82,38 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Failed to read document from S3: {str(e)}")
 
-    # 3. Build prompt and call Nova with Context Caching
+    # 3. Fetch past conversation history
+    history_resp = table.query(
+        KeyConditionExpression="PK = :pk AND begins_with(SK, :sk_prefix)",
+        ExpressionAttributeValues={
+            ":pk": f"AGREEMENT#{agreement_id}",
+            ":sk_prefix": "CHAT#"
+        },
+        ScanIndexForward=True # chronological order
+    )
+    past_messages = history_resp.get("Items", [])[-10:] # Keep last 10 messages for context window
+    
+    # 4. Build prompt and call Nova with Context Caching
     system_text = build_system_prompt(document_text)
     user_text = build_user_prompt(request.question)
+    
+    # Construct the Bedrock messages array
+    messages = []
+    for msg in past_messages:
+        # Add past user question
+        messages.append({"role": "user", "content": [{"text": msg.get("question", "")}]})
+        # Add past AI response (just the plain text answer to save context)
+        messages.append({"role": "assistant", "content": [{"text": msg.get("answer", "")}]})
+        
+    # Finally, append the new user question
+    messages.append({"role": "user", "content": [{"text": user_text}]})
     
     body = json.dumps({
         "system": [
             {"text": system_text},
             {"cachePoint": {"type": "default"}}
         ],
-        "messages": [{"role": "user", "content": [{"text": user_text}]}],
+        "messages": messages,
         "inferenceConfig": {"temperature": 0.0, "max_new_tokens": 1000}
     })
 
@@ -111,11 +133,11 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
         print(f"Nova Error: {e}")
         raise HTTPException(status_code=500, detail="Failed to get valid response from AI")
 
-    # 4. Generate timestamp and ID
+    # 5. Generate timestamp and ID
     epoch_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
     message_id = f"chat-{epoch_ms}"
     
-    # 5. Save to DynamoDB
+    # 6. Save to DynamoDB
     chat_item = {
         "PK": f"AGREEMENT#{agreement_id}",
         "SK": f"CHAT#{epoch_ms}",
