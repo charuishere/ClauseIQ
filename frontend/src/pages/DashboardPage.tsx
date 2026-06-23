@@ -77,42 +77,27 @@ export default function DashboardPage() {
         <>
           {/* 2. Center Panel (Document / Chat) */}
           <div className="flex-1 flex flex-col bg-[var(--color-bg-panel)] overflow-hidden">
-            <div className="p-4 border-b border-[var(--color-border-subtle)] flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <h1 className="font-serif text-xl text-[var(--color-text-primary)] truncate max-w-md">{agreement?.title || 'AI Document Viewer'}</h1>
-                {isProcessing && <span className="text-xs bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-1 rounded-full animate-pulse font-semibold">AI is analyzing...</span>}
+            {/* Minimalist Claude Header */}
+            <div className="p-3 flex items-center justify-between h-14">
+              <div className="flex items-center gap-2 cursor-pointer hover:bg-[var(--color-bg-elevated)] px-2 py-1.5 rounded transition-colors">
+                <h1 className="font-sans text-[14px] font-medium text-[var(--color-text-primary)] truncate max-w-md">
+                  {agreement?.title || 'Stateless LLM memory architecture'}
+                </h1>
+                <span className="text-[var(--color-text-muted)] text-[10px] mt-0.5">▼</span>
+                {isProcessing && <span className="text-xs bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-0.5 rounded-full animate-pulse font-semibold ml-2">Analyzing...</span>}
               </div>
               
-              <div className="flex items-center">
-                {/* Tabs moved to Center Panel Header! */}
-                {isCompleted && (
-                  <div className="flex bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] rounded-lg p-1 mr-4">
-                    <button
-                      onClick={() => setActiveTab('analysis')}
-                      className={`flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-                        activeTab === 'analysis' ? 'bg-[var(--color-bg-elevated)] text-[var(--color-accent)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
-                      }`}
-                    >
-                      <FileText size={14} /> Document
-                    </button>
-                    <button
-                      onClick={() => setActiveTab('chat')}
-                      className={`flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
-                        activeTab === 'chat' ? 'bg-[var(--color-bg-elevated)] text-[var(--color-accent)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
-                      }`}
-                    >
-                      <MessageSquare size={14} /> Chat
-                    </button>
-                  </div>
-                )}
-                
+              <div className="flex items-center gap-3 pr-2">
+                <button className="px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-md hover:bg-[var(--color-border-subtle)] transition-colors">
+                  Share
+                </button>
+                {/* Keeping your panel toggle for functionality, but restyled */}
                 {agreement && (
                   <button 
                     onClick={() => setIsRightPanelOpen(!isRightPanelOpen)}
-                    className="p-1.5 rounded-md hover:bg-[var(--color-bg-base)] text-[var(--color-text-muted)] hover:text-[var(--color-text-base)] transition-colors"
-                    title={isRightPanelOpen ? "Close Analysis Panel" : "Open Analysis Panel"}
+                    className="p-1.5 rounded-md hover:bg-[var(--color-bg-elevated)] text-[var(--color-text-muted)] transition-colors"
                   >
-                    {isRightPanelOpen ? <PanelRightClose size={20} /> : <PanelRightOpen size={20} />}
+                    {isRightPanelOpen ? <PanelRightClose size={18} /> : <PanelRightOpen size={18} />}
                   </button>
                 )}
               </div>

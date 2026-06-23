@@ -27,5 +27,3 @@ app.include_router(agreements.router)
 app.include_router(chat.router)
 
 handler = Mangum(app)
-
-

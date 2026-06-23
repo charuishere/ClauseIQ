@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
-import { Send, Loader2, Info } from 'lucide-react'
+import { Send, Loader2, Info, Plus, Mic } from 'lucide-react'
 import { useChatHistory, useSendMessage } from '../../hooks/useChat'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export default function ChatPanel({ agreementId }: { agreementId: string }) {
   const [input, setInput] = useState('')
@@ -52,15 +54,20 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
             <div key={msg.messageId} className="flex flex-col gap-4">
               {/* User Question */}
               <div className="flex justify-end">
-                <div className="bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] px-5 py-3 rounded-2xl max-w-[85%]">
+                <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] px-4 py-3 rounded-2xl rounded-tr-sm max-w-[85%] text-[15px]">
                   {msg.question}
                 </div>
               </div>
               
               {/* AI Answer */}
               <div className="flex justify-start px-2 mt-2">
-                <div className="max-w-[95%] space-y-3">
-                  <p className="whitespace-pre-wrap leading-relaxed text-base font-serif text-[var(--color-text-primary)]">{msg.answer}</p>
+                <div className="max-w-[95%] space-y-3 prose prose-invert prose-p:leading-relaxed max-w-none prose-pre:bg-[var(--color-bg-elevated)] prose-pre:border prose-pre:border-[var(--color-border-subtle)] prose-td:border prose-td:border-[var(--color-border-subtle)] prose-th:border prose-th:border-[var(--color-border-subtle)] prose-table:border-collapse">
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]}
+                    className="font-serif text-base text-[var(--color-text-primary)] leading-relaxed"
+                  >
+                    {msg.answer}
+                  </ReactMarkdown>
                   
                   {/* Render Citations if the AI used the document to answer */}
                   {msg.found_in_document && msg.citations && msg.citations.length > 0 && (
@@ -87,7 +94,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
         {/* Optimistic User Question (shows immediately while waiting) */}
         {optimisticQuestion && (
           <div className="flex justify-end">
-            <div className="bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] px-5 py-3 rounded-2xl max-w-[85%] opacity-70">
+            <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] px-4 py-3 rounded-2xl rounded-tr-sm max-w-[85%] text-[15px] opacity-70">
               {optimisticQuestion}
             </div>
           </div>
@@ -106,7 +113,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
 
       {/* Floating Input Area */}
       <div className="p-4 shrink-0 bg-gradient-to-t from-[var(--color-bg-base)] to-transparent">
-        <div className="relative flex items-center max-w-3xl mx-auto bg-[#2C2B2A] rounded-2xl shadow-lg border border-[var(--color-border-subtle)]">
+        <div className="relative flex flex-col max-w-3xl mx-auto bg-[var(--color-bg-elevated)] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] focus-within:border-[var(--color-text-muted)] transition-colors">
           <input
             type="text"
             value={input}
@@ -114,16 +121,42 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Write a message..."
             disabled={isPending}
-            className="w-full bg-transparent pl-4 pr-12 py-4 text-sm focus:outline-none disabled:opacity-50 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] transition-all"
+            className="w-full bg-transparent px-4 pt-4 pb-2 text-[15px] focus:outline-none disabled:opacity-50 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] transition-all"
           />
-          <button
-            onClick={handleSend}
-            disabled={!input.trim() || isPending}
-            className="absolute right-3 p-1.5 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] rounded-md disabled:opacity-50 transition-all flex items-center justify-center"
-          >
-            <Send size={18} className={isPending ? "opacity-0" : "opacity-100"} />
-            {isPending && <Loader2 size={18} className="animate-spin absolute text-[var(--color-accent)]" />}
-          </button>
+          
+          {/* Bottom Tool Row */}
+          <div className="flex items-center justify-between px-2 pb-2">
+            <div className="flex items-center gap-1">
+              <button 
+                disabled={isPending}
+                className="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-base)] rounded-lg transition-colors disabled:opacity-50"
+              >
+                <Plus size={18} />
+              </button>
+            </div>
+            
+            <div className="flex items-center gap-1">
+              <div className="px-2 py-1 mr-1 text-[12px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] cursor-pointer flex items-center gap-1.5 transition-colors">
+                Nova Lite <span className="text-[9px] mt-0.5">▼</span>
+              </div>
+              
+              <button 
+                disabled={isPending}
+                className="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-base)] rounded-lg transition-colors disabled:opacity-50"
+              >
+                <Mic size={18} />
+              </button>
+              
+              <button
+                onClick={handleSend}
+                disabled={!input.trim() || isPending}
+                className="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-base)] rounded-lg disabled:opacity-30 transition-colors flex items-center justify-center relative"
+              >
+                <Send size={18} className={isPending ? "opacity-0" : "opacity-100"} />
+                {isPending && <Loader2 size={18} className="animate-spin absolute text-[var(--color-accent)]" />}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

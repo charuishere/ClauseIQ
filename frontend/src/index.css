@@ -1,35 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Tiempos+Text:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-serif: "Playfair Display", serif;
   
-  /* Claude-style Warm Minimalism (Light Mode Default) */
-  --color-bg-base: #F9F8F6;
-  --color-bg-panel: #FFFFFF;
-  --color-border-subtle: #E5E3DB;
+  /* Claude-style Dark Mode Palette (Forcing Dark Mode) */
+  --color-bg-base: #21201C;
+  --color-bg-panel: #1A1915;
+  --color-bg-elevated: #2E2D2A;
   
-  --color-text-primary: #1A1918;
-  --color-text-muted: #73716D;
+  --color-border-subtle: #3F3E3A;
   
-  /* Muted Terracotta for primary actions */
-  --color-accent: #D47753; 
-}
-
-/* Dark Mode Overrides */
-@media (prefers-color-scheme: dark) {
-  @theme {
-    /* Claude exact dark mode palette */
-    --color-bg-base: #232220;
-    --color-bg-panel: #1D1C1A;
-    --color-border-subtle: #333130;
-    
-    --color-text-primary: #EAE8E3;
-    --color-text-muted: #9E9C99;
-    
-    --color-accent: #D97757;
-  }
+  --color-text-primary: #ECECE7;
+  --color-text-muted: #8B8982;
+  
+  --color-accent: #D97757; 
 }
 
 body {
@@ -37,6 +23,8 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   margin: 0;
+  /* Smooth color transitions */
+  transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 h1, h2, h3, .serif-font {
@@ -52,9 +40,9 @@ h1, h2, h3, .serif-font {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--color-border-subtle);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--color-text-muted);
 }

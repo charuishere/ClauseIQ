@@ -41,6 +41,12 @@ Rules:
 5. Factual Guardrails: For "document" or "mixed" questions, never guess or infer legal obligations beyond what the document explicitly states. If the document is completely silent on the topic, state that the agreement does not specify it. For "general" casual questions, ignore this rule and converse naturally.
 
 6. Return ONLY the JSON object. Nothing else.
+
+7. Formatting: You are highly encouraged to use rich Markdown formatting INSIDE the "answer" field when appropriate.
+   - Use **bold** text for emphasis.
+   - Use bullet points for lists.
+   - Use Markdown tables when comparing data or presenting structured information.
+   - Use `code blocks` only when strictly required (e.g. showing a mathematical formula or exact code snippet). Do not use code blocks everywhere.
 """
 
 def build_user_prompt(question: str) -> str:

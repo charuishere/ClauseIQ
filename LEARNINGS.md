@@ -131,3 +131,37 @@ The backend must respond with an HTTP 200 OK status and headers like:
 - `Access-Control-Allow-Methods: GET, POST, OPTIONS`
 - `Access-Control-Allow-Headers: Authorization, Content-Type`
 Only if this preflight succeeds will the browser send the actual user data. If the backend crashes during this preflight (returning a 500 Error instead of a 200 OK), the browser immediately throws a CORS error and blocks the connection.
+
+## 31. Stateless LLM Memory Architecture
+**What it is:** The standard architectural pattern used by ChatGPT, Claude, and all major LLM APIs to maintain a continuous conversation, despite the AI models themselves having no memory.
+
+**The Problem:**
+LLMs (Large Language Models) are fundamentally **stateless APIs**. They do not "remember" who you are or what you asked 10 seconds ago. Every time you send a request to the AI, it is treated as an entirely isolated event. If you ask "What is my name?" the LLM cannot answer unless your name is included in that exact request.
+
+**The Industry Standard Solution (Conversation History Injection):**
+To simulate "memory," the responsibility falls entirely on the application's backend infrastructure (not the AI). 
+1. The backend application stores every message of the conversation in a database (e.g., DynamoDB).
+2. When a user sends a new message, the backend queries the database to retrieve the previous chat history (e.g., the last 10 messages).
+3. The backend constructs a `messages` array, placing the older messages first (`{"role": "user"}`, `{"role": "assistant"}`), and appending the newest question at the very end.
+4. The backend sends this *entire historical transcript* to the LLM in a single request. 
+
+By reading the entire transcript, the LLM gains the necessary context to respond to conversational follow-ups seamlessly.
+
+**Interview Question:** "How do LLMs remember the context of a conversation, and how did you implement it in your project?"
+**Interview-Ready Answer:** "LLMs are stateless by design, so they don't actually remember anything between API calls. To achieve conversational memory, the application layer must handle the state. In my project, I implemented the standard stateless memory architecture. When a user sends a message, my backend queries DynamoDB for the previous chat history, injects that history into a `messages` array, and sends the entire conversation transcript to the LLM. This provides the context window needed for the AI to seamlessly answer follow-up questions."
+
+## 32. Long Context Windows vs. RAG (Retrieval-Augmented Generation)
+**The Problem:** LLM APIs charge you money for every single token (word) you send them. If you upload a massive 500-page legal document, sending that entire document to the AI for every single chat question becomes extremely expensive and slow.
+
+**Solution 1: Long Context Window (Brute Force)**
+Modern models (like Claude 3 or Amazon Nova) have massive "Context Windows" of up to 200,000 or even 1 million tokens. You *can* just brute-force it by stuffing the entire 500-page document into the prompt every time.
+- **Pros:** The AI has perfect visibility of the whole document. It can easily answer cross-referencing questions (e.g., "Summarize the entire contract").
+- **Cons:** It is painfully slow (can take 30+ seconds to process) and wildly expensive per question.
+
+**Solution 2: RAG / Vector Databases (The Industry Standard)**
+Retrieval-Augmented Generation (RAG) is how the industry solves this trade-off. Instead of sending the whole 500-page document to the AI, you slice it into small chunks and store them in a Vector Database (like **Pinecone**). When a user asks a question, the backend queries Pinecone to find only the 3 or 4 paragraphs mathematically relevant to the question. You then send *only those 4 paragraphs* to the AI.
+- **Pros:** Blazing fast responses and 99% cheaper, because the AI only reads a few paragraphs instead of 500 pages.
+- **Cons:** The AI cannot answer global questions (e.g., "Summarize the whole contract") because it literally cannot see the rest of the document.
+
+**How we implemented it in this project:**
+We built a **hybrid architecture**! If a document is reasonably sized (under 200,000 tokens), we pass the full document directly to Amazon Nova Lite (using Solution 1) to maximize accuracy for complex legal analysis. However, if a massive enterprise document exceeds 200,000 tokens, our backend automatically falls back to Solution 2. It queries our **Pinecone Vector Database** to fetch only the relevant legal chunks, injecting them into the chat prompt. This guarantees the system never crashes and never hits hard LLM token limits!

@@ -41,11 +41,11 @@ export default function Sidebar({ currentAgreementId, onNewAgreement }: SidebarP
   return (
     <div className="w-64 h-screen bg-[var(--color-bg-panel)] border-r border-[var(--color-border-subtle)] flex flex-col">
       {/* Top Section: Logo & New Agreement Button */}
-      <div className="p-4 flex flex-col gap-4">
-        <h1 className="text-xl font-bold text-[var(--color-text-primary)] font-serif pl-2">ClauseIQ</h1>
+      <div className="p-4 flex flex-col gap-6">
+        <h1 className="text-lg font-semibold text-[var(--color-text-primary)] tracking-wide pl-2">ClauseIQ</h1>
         <button 
           onClick={onNewAgreement}
-          className="w-full flex items-center gap-3 px-3 py-2 text-[var(--color-text-primary)] rounded-md hover:bg-[var(--color-bg-base)] transition-colors text-sm"
+          className="w-full flex items-center gap-3 px-2 py-1.5 text-[var(--color-text-primary)] rounded hover:bg-[var(--color-bg-elevated)] transition-colors text-sm font-medium"
         >
           <Plus size={16} className="text-[var(--color-text-muted)]" />
           <span>New chat</span>
@@ -59,7 +59,8 @@ export default function Sidebar({ currentAgreementId, onNewAgreement }: SidebarP
         ) : agreements?.length === 0 ? (
           <div className="text-sm text-[var(--color-text-muted)] p-2">No agreements yet.</div>
         ) : (
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 px-2">
+            <h3 className="text-[11px] font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2 pl-2">Recents</h3>
             {agreements?.map((doc: any) => {
               // Handle DynamoDB ghost items (which occur if an item was deleted while its SQS job was still processing/retrying)
               const actualId = doc.agreementId || (doc.SK && doc.SK.replace('AGREEMENT#', ''))
@@ -69,13 +70,12 @@ export default function Sidebar({ currentAgreementId, onNewAgreement }: SidebarP
               <Link
                 key={actualId}
                 to={`/agreements/${actualId}`}
-                className={`flex items-center gap-2 p-2 rounded-md text-sm transition-colors ${
+                className={`group relative flex items-center gap-2 px-2 py-1.5 rounded text-[13px] transition-colors ${
                   currentAgreementId === actualId
-                    ? 'bg-[var(--color-bg-base)] text-[var(--color-text-base)] border border-[var(--color-border-subtle)] shadow-sm'
-                    : 'text-[var(--color-text-muted)] hover:bg-[var(--color-bg-base)] hover:text-[var(--color-text-base)]'
+                    ? 'bg-[var(--color-bg-elevated)] text-[var(--color-text-primary)]'
+                    : 'text-[var(--color-text-muted)] hover:bg-[var(--color-bg-elevated)] hover:text-[var(--color-text-primary)]'
                 }`}
               >
-                <FileText size={16} />
                 <span className="truncate flex-1">{doc.title || 'Unknown Document'}</span>
                 
                 {/* Status Badges */}
