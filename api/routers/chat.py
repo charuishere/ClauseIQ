@@ -36,15 +36,15 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
             },
             ConditionExpression="attribute_not_exists(PK) OR last_request_time <= :limit",
             ExpressionAttributeValues={
-                ":limit": now - 5.0
+                ":limit": now - 30.0
             }
         )
     except boto3.client("dynamodb").exceptions.ConditionalCheckFailedException:
-        raise HTTPException(status_code=429, detail="Rate limit exceeded. Please wait 5 seconds between messages.")
+        raise HTTPException(status_code=429, detail="Rate limit exceeded. Please wait 30 seconds between messages.")
     except Exception as e:
         # If it's the generic ClientError for conditional check failed
         if e.__class__.__name__ == 'ClientError' and e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-            raise HTTPException(status_code=429, detail="Rate limit exceeded. Please wait 5 seconds between messages.")
+            raise HTTPException(status_code=429, detail="Rate limit exceeded. Please wait 30 seconds between messages.")
         # Otherwise log and continue so we don't break the chat if rate limiting fails
         pass
     
