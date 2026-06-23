@@ -126,6 +126,16 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
         response_body = json.loads(nova_resp['body'].read().decode('utf-8'))
         ai_text = response_body.get('output', {}).get('message', {}).get('content', [])[0].get('text', '')
         
+        # Strip any accidental markdown formatting the AI might add
+        ai_text = ai_text.strip()
+        if ai_text.startswith("```json"):
+            ai_text = ai_text[7:]
+        if ai_text.startswith("```"):
+            ai_text = ai_text[3:]
+        if ai_text.endswith("```"):
+            ai_text = ai_text[:-3]
+        ai_text = ai_text.strip()
+        
         # Parse the JSON from the AI
         ai_json = json.loads(ai_text)
     except Exception as e:
