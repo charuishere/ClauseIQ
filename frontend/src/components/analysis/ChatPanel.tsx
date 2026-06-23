@@ -62,12 +62,11 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
               {/* AI Answer */}
               <div className="flex justify-start px-2 mt-2">
                 <div className="max-w-[95%] space-y-3 prose prose-invert prose-p:leading-relaxed max-w-none prose-pre:bg-[var(--color-bg-elevated)] prose-pre:border prose-pre:border-[var(--color-border-subtle)] prose-td:border prose-td:border-[var(--color-border-subtle)] prose-th:border prose-th:border-[var(--color-border-subtle)] prose-table:border-collapse">
-                  <ReactMarkdown 
-                    remarkPlugins={[remarkGfm]}
-                    className="font-serif text-base text-[var(--color-text-primary)] leading-relaxed"
-                  >
-                    {msg.answer}
-                  </ReactMarkdown>
+                  <div className="font-serif text-[15px] text-[var(--color-text-primary)] leading-relaxed">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {msg.answer}
+                    </ReactMarkdown>
+                  </div>
                   
                   {/* Render Citations if the AI used the document to answer */}
                   {msg.found_in_document && msg.citations && msg.citations.length > 0 && (

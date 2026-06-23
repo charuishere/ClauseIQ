@@ -78,8 +78,8 @@ export default function DashboardPage() {
           {/* 2. Center Panel (Document / Chat) */}
           <div className="flex-1 flex flex-col bg-[var(--color-bg-panel)] overflow-hidden">
             {/* Minimalist Claude Header */}
-            <div className="p-3 flex items-center justify-between h-14">
-              <div className="flex items-center gap-2 cursor-pointer hover:bg-[var(--color-bg-elevated)] px-2 py-1.5 rounded transition-colors">
+            <div className="p-3 flex items-center justify-between h-14 relative">
+              <div className="flex items-center gap-2 cursor-pointer hover:bg-[var(--color-bg-elevated)] px-2 py-1.5 rounded transition-colors w-1/3">
                 <h1 className="font-sans text-[14px] font-medium text-[var(--color-text-primary)] truncate max-w-md">
                   {agreement?.title || 'Stateless LLM memory architecture'}
                 </h1>
@@ -87,7 +87,29 @@ export default function DashboardPage() {
                 {isProcessing && <span className="text-xs bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-0.5 rounded-full animate-pulse font-semibold ml-2">Analyzing...</span>}
               </div>
               
-              <div className="flex items-center gap-3 pr-2">
+              {/* Centered Toggle Buttons */}
+              {isCompleted && (
+                <div className="absolute left-1/2 -translate-x-1/2 flex bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-lg p-0.5 z-10">
+                  <button
+                    onClick={() => setActiveTab('analysis')}
+                    className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                      activeTab === 'analysis' ? 'bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
+                    }`}
+                  >
+                    Document
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('chat')}
+                    className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                      activeTab === 'chat' ? 'bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
+                    }`}
+                  >
+                    Chat
+                  </button>
+                </div>
+              )}
+              
+              <div className="flex items-center justify-end gap-3 pr-2 w-1/3">
                 <button className="px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-md hover:bg-[var(--color-border-subtle)] transition-colors">
                   Share
                 </button>
