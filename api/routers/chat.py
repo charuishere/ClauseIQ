@@ -110,8 +110,7 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
     
     body = json.dumps({
         "system": [
-            {"text": system_text},
-            {"cachePoint": {"type": "default"}}
+            {"text": system_text}
         ],
         "messages": messages,
         "inferenceConfig": {"temperature": 0.0, "max_new_tokens": 1000}
