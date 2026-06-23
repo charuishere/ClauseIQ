@@ -43,7 +43,8 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
   return (
     <div className="flex flex-col h-full bg-[var(--color-bg-base)]">
       {/* Message History Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4" ref={scrollRef}>
+      <div className="flex-1 overflow-y-auto p-4" ref={scrollRef}>
+        <div className="max-w-3xl mx-auto w-full space-y-4">
         {messages.length === 0 ? (
           <div className="text-center text-[var(--color-text-muted)] mt-10">
             <p>Ask a question about this agreement!</p>
@@ -98,7 +99,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
             </div>
           </div>
         )}
-
+        
         {/* Loading indicator while waiting for the AI */}
         {isPending && (
           <div className="flex justify-start px-2 mt-2">
@@ -108,6 +109,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
             </div>
           </div>
         )}
+        </div>
       </div>
 
       {/* Floating Input Area */}
