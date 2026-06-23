@@ -108,23 +108,14 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
     # Finally, append the new user question
     messages.append({"role": "user", "content": [{"text": user_text}]})
     
-    body = json.dumps({
-        "system": [
-            {"text": system_text}
-        ],
-        "messages": messages,
-        "inferenceConfig": {"temperature": 0.0, "max_new_tokens": 1000}
-    })
-
     try:
-        nova_resp = bedrock.invoke_model(
+        nova_resp = bedrock.converse(
             modelId="amazon.nova-lite-v1:0",
-            contentType="application/json",
-            accept="application/json",
-            body=body
+            system=[{"text": system_text}],
+            messages=messages,
+            inferenceConfig={"temperature": 0.0, "maxTokens": 1000}
         )
-        response_body = json.loads(nova_resp['body'].read().decode('utf-8'))
-        ai_text = response_body.get('output', {}).get('message', {}).get('content', [])[0].get('text', '')
+        ai_text = nova_resp['output']['message']['content'][0]['text']
         
         # Strip any accidental markdown formatting the AI might add
         ai_text = ai_text.strip()
@@ -137,7 +128,16 @@ def ask_question(agreement_id: str, request: ChatRequest, user: dict = Depends(g
         ai_text = ai_text.strip()
         
         # Parse the JSON from the AI
-        ai_json = json.loads(ai_text)
+        try:
+            ai_json = json.loads(ai_text)
+        except json.JSONDecodeError:
+            print(f"Nova did not return JSON. Falling back to plain text handling. Raw text: {ai_text}")
+            ai_json = {
+                "answer": ai_text,
+                "answer_type": "general",
+                "citations": [],
+                "found_in_document": False
+            }
     except Exception as e:
         print(f"Nova Error: {e}")
         raise HTTPException(status_code=500, detail="Failed to get valid response from AI")
