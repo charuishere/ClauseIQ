@@ -41,9 +41,9 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
   const messages = history || []
 
   return (
-    <div className="flex flex-col h-full bg-[var(--color-bg-base)]">
+    <div className="relative h-full bg-[var(--color-bg-base)] overflow-hidden">
       {/* Message History Area */}
-      <div className="flex-1 overflow-y-auto p-4" ref={scrollRef}>
+      <div className="absolute inset-0 overflow-y-auto p-4 pb-40" ref={scrollRef}>
         <div className="max-w-3xl mx-auto w-full space-y-4">
         {messages.length === 0 ? (
           <div className="text-center text-[var(--color-text-muted)] mt-10">
@@ -113,8 +113,8 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
       </div>
 
       {/* Floating Input Area */}
-      <div className="p-4 shrink-0 bg-gradient-to-t from-[var(--color-bg-base)] to-transparent">
-        <div className="relative flex flex-col max-w-3xl mx-auto bg-[#2c2b2a] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] focus-within:border-[var(--color-text-muted)] transition-colors">
+      <div className="absolute bottom-0 left-0 right-0 p-4 pt-12 bg-gradient-to-t from-[var(--color-bg-base)] via-[var(--color-bg-base)] to-transparent pointer-events-none">
+        <div className="pointer-events-auto relative flex flex-col max-w-3xl mx-auto bg-[#2c2b2a] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] focus-within:border-[var(--color-text-muted)] transition-colors">
           <input
             type="text"
             value={input}
