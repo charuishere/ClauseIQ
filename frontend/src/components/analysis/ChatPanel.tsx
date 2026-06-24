@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Loader2, Info, Plus, Mic, ArrowUp } from 'lucide-react'
+import { Loader2, Info, ArrowUp } from 'lucide-react'
 import { useChatHistory, useSendMessage } from '../../hooks/useChat'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -128,25 +128,13 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
           {/* Bottom Tool Row */}
           <div className="flex items-center justify-between px-3 pb-3">
             <div className="flex items-center">
-              <button 
-                disabled={isPending}
-                className="text-[var(--color-text-muted)] hover:text-white transition-colors disabled:opacity-50"
-              >
-                <Plus size={20} />
-              </button>
+              {/* Optional left tools */}
             </div>
             
-            <div className="flex items-center gap-4">
-              <div className="text-[13px] font-medium text-white flex items-center gap-1.5 cursor-pointer">
-                Sonnet 4.6 <span className="text-[var(--color-text-muted)] font-normal flex items-center gap-1">Medium <span className="text-[9px] mt-0.5">▼</span></span>
+            <div className="flex items-center gap-3">
+              <div className="text-[13px] font-medium text-[var(--color-text-muted)] hover:text-white transition-colors cursor-pointer mr-2">
+                Nova Lite
               </div>
-              
-              <button 
-                disabled={isPending}
-                className="text-[var(--color-text-muted)] hover:text-white transition-colors disabled:opacity-50"
-              >
-                <Mic size={18} />
-              </button>
               
               <button
                 onClick={handleSend}
