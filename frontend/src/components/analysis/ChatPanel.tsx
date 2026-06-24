@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Send, Loader2, Info } from 'lucide-react'
+import { Loader2, Info, Plus, Mic, ArrowUp } from 'lucide-react'
 import { useChatHistory, useSendMessage } from '../../hooks/useChat'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -62,7 +62,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
               
               {/* AI Answer */}
               <div className="flex justify-start px-2 mt-2">
-                <div className="max-w-[95%] space-y-3 prose prose-invert prose-p:leading-relaxed max-w-none prose-pre:bg-[var(--color-bg-elevated)] prose-pre:border prose-pre:border-[var(--color-border-subtle)] prose-td:border prose-td:border-[var(--color-border-subtle)] prose-th:border prose-th:border-[var(--color-border-subtle)] prose-table:border-collapse">
+                <div className="max-w-[95%] space-y-3 prose prose-invert prose-p:leading-relaxed max-w-none prose-pre:bg-[var(--color-bg-elevated)] prose-pre:border prose-pre:border-[var(--color-border-subtle)] prose-td:border-0 prose-td:border-b prose-td:border-[var(--color-border-subtle)] prose-th:border-0 prose-th:border-b prose-th:border-[var(--color-border-subtle)] prose-table:border-collapse prose-code:before:content-none prose-code:after:content-none prose-code:text-[#ff8a8a] prose-code:bg-[#3d2a2a] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-mono prose-code:font-medium">
                   <div className="font-serif text-[15px] text-[var(--color-text-primary)] leading-relaxed">
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
                       {msg.answer}
@@ -114,7 +114,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
 
       {/* Floating Input Area */}
       <div className="p-4 shrink-0 bg-gradient-to-t from-[var(--color-bg-base)] to-transparent">
-        <div className="relative flex flex-col max-w-3xl mx-auto bg-[var(--color-bg-elevated)] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] focus-within:border-[var(--color-text-muted)] transition-colors">
+        <div className="relative flex flex-col max-w-3xl mx-auto bg-[#2c2b2a] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] focus-within:border-[var(--color-text-muted)] transition-colors">
           <input
             type="text"
             value={input}
@@ -122,27 +122,39 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Write a message..."
             disabled={isPending}
-            className="w-full bg-transparent px-4 pt-4 pb-2 text-[15px] focus:outline-none disabled:opacity-50 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] transition-all"
+            className="w-full bg-transparent px-4 pt-4 pb-4 text-[15px] focus:outline-none disabled:opacity-50 text-white placeholder-[var(--color-text-muted)] transition-all"
           />
           
           {/* Bottom Tool Row */}
-          <div className="flex items-center justify-between px-2 pb-2">
-            <div className="flex items-center gap-1">
-              {/* Optional space for future left-side tools */}
+          <div className="flex items-center justify-between px-3 pb-3">
+            <div className="flex items-center">
+              <button 
+                disabled={isPending}
+                className="text-[var(--color-text-muted)] hover:text-white transition-colors disabled:opacity-50"
+              >
+                <Plus size={20} />
+              </button>
             </div>
             
-            <div className="flex items-center gap-1">
-              <div className="px-2 py-1 mr-1 text-[12px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] cursor-pointer flex items-center gap-1.5 transition-colors">
-                Nova Lite
+            <div className="flex items-center gap-4">
+              <div className="text-[13px] font-medium text-white flex items-center gap-1.5 cursor-pointer">
+                Sonnet 4.6 <span className="text-[var(--color-text-muted)] font-normal flex items-center gap-1">Medium <span className="text-[9px] mt-0.5">▼</span></span>
               </div>
+              
+              <button 
+                disabled={isPending}
+                className="text-[var(--color-text-muted)] hover:text-white transition-colors disabled:opacity-50"
+              >
+                <Mic size={18} />
+              </button>
               
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isPending}
-                className="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-base)] rounded-lg disabled:opacity-30 transition-colors flex items-center justify-center relative"
+                className="bg-[#d97757] hover:bg-[#e88463] text-white p-1.5 rounded-lg disabled:opacity-30 transition-colors flex items-center justify-center relative ml-1"
               >
-                <Send size={18} className={isPending ? "opacity-0" : "opacity-100"} />
-                {isPending && <Loader2 size={18} className="animate-spin absolute text-[var(--color-accent)]" />}
+                <ArrowUp size={18} className={isPending ? "opacity-0" : "opacity-100"} />
+                {isPending && <Loader2 size={18} className="animate-spin absolute text-white" />}
               </button>
             </div>
           </div>
