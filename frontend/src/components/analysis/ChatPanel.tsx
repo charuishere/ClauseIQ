@@ -133,7 +133,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
             
             <div className="flex items-center gap-1">
               <div className="px-2 py-1 mr-1 text-[12px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] cursor-pointer flex items-center gap-1.5 transition-colors">
-                Nova Lite <span className="text-[9px] mt-0.5">▼</span>
+                Nova Lite
               </div>
               
               <button
