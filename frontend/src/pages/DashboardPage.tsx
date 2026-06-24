@@ -79,11 +79,10 @@ export default function DashboardPage() {
           <div className="flex-1 flex flex-col bg-[var(--color-bg-panel)] overflow-hidden">
             {/* Minimalist Claude Header */}
             <div className="p-3 flex items-center justify-between h-14 relative">
-              <div className="flex items-center gap-2 cursor-pointer hover:bg-[var(--color-bg-elevated)] px-2 py-1.5 rounded transition-colors w-1/3">
+              <div className="flex items-center gap-2 px-2 py-1.5 rounded transition-colors w-1/3">
                 <h1 className="font-sans text-[14px] font-medium text-[var(--color-text-primary)] truncate max-w-md">
                   {agreement?.title || 'Stateless LLM memory architecture'}
                 </h1>
-                <span className="text-[var(--color-text-muted)] text-[10px] mt-0.5">▼</span>
                 {isProcessing && <span className="text-xs bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-0.5 rounded-full animate-pulse font-semibold ml-2">Analyzing...</span>}
               </div>
               

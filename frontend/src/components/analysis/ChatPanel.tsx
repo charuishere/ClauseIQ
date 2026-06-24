@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Send, Loader2, Info, Plus, Mic } from 'lucide-react'
+import { Send, Loader2, Info } from 'lucide-react'
 import { useChatHistory, useSendMessage } from '../../hooks/useChat'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -128,25 +128,13 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
           {/* Bottom Tool Row */}
           <div className="flex items-center justify-between px-2 pb-2">
             <div className="flex items-center gap-1">
-              <button 
-                disabled={isPending}
-                className="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-base)] rounded-lg transition-colors disabled:opacity-50"
-              >
-                <Plus size={18} />
-              </button>
+              {/* Optional space for future left-side tools */}
             </div>
             
             <div className="flex items-center gap-1">
               <div className="px-2 py-1 mr-1 text-[12px] font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] cursor-pointer flex items-center gap-1.5 transition-colors">
                 Nova Lite <span className="text-[9px] mt-0.5">▼</span>
               </div>
-              
-              <button 
-                disabled={isPending}
-                className="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-base)] rounded-lg transition-colors disabled:opacity-50"
-              >
-                <Mic size={18} />
-              </button>
               
               <button
                 onClick={handleSend}
