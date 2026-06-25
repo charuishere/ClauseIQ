@@ -74,11 +74,23 @@ export default function DocumentViewer({ agreementId }: DocumentViewerProps) {
   }
 
   return (
-    <div className="h-full w-full bg-[var(--color-bg-base)] overflow-y-auto p-4 md:p-8 flex justify-center">
-      <div className="w-full max-w-4xl bg-[var(--color-bg-base)] shadow-2xl border border-[var(--color-border-subtle)] rounded-lg min-h-screen p-8 md:p-12">
-        <pre className="whitespace-pre-wrap font-sans text-[var(--color-text-primary)] text-sm leading-relaxed">
-          {viewerData.content}
-        </pre>
+    <div className="h-full w-full bg-[var(--color-bg-base)] overflow-y-auto p-4 md:p-8 flex justify-center pb-32">
+      <div className="w-full max-w-4xl bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-xl shadow-sm h-fit overflow-hidden">
+        
+        {/* File Header */}
+        <div className="flex items-center gap-3 px-6 py-4 border-b border-[var(--color-border-subtle)] bg-[var(--color-bg-base)]">
+          <FileText className="text-[var(--color-text-muted)]" size={20} />
+          <span className="text-sm font-medium text-[var(--color-text-primary)] font-mono">
+            document_content.txt
+          </span>
+        </div>
+
+        {/* File Content */}
+        <div className="p-8 md:p-10">
+          <pre className="whitespace-pre-wrap font-sans text-[var(--color-text-primary)] text-[15px] leading-relaxed">
+            {viewerData.content}
+          </pre>
+        </div>
       </div>
     </div>
   )
