@@ -139,7 +139,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isPending}
-                className="bg-[#d97757] hover:bg-[#e88463] text-white p-1.5 rounded-lg disabled:opacity-30 transition-colors flex items-center justify-center relative ml-1"
+                className="bg-[var(--color-accent)] hover:opacity-90 text-white p-1.5 rounded-lg disabled:opacity-30 transition-all flex items-center justify-center relative ml-1"
               >
                 <ArrowUp size={18} className={isPending ? "opacity-0" : "opacity-100"} />
                 {isPending && <Loader2 size={18} className="animate-spin absolute text-white" />}
