@@ -47,7 +47,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
       
       {/* Message History Area */}
       <div className="absolute inset-0 overflow-y-auto p-4 pt-6 pb-40" ref={scrollRef}>
-        <div className="max-w-3xl mx-auto w-full space-y-4">
+        <div className="max-w-2xl mx-auto w-full space-y-4">
         {messages.length === 0 ? (
           <div className="text-center text-[var(--color-text-muted)] mt-10">
             <p>Ask a question about this agreement!</p>
@@ -117,7 +117,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
 
       {/* Floating Input Area */}
       <div className="absolute bottom-0 left-0 right-0 p-4 pt-12 bg-gradient-to-t from-[var(--color-bg-base)] via-[var(--color-bg-base)] to-transparent pointer-events-none">
-        <div className="pointer-events-auto relative flex flex-col max-w-3xl mx-auto bg-[#2c2b2a] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] focus-within:border-[var(--color-text-muted)] transition-colors">
+        <div className="pointer-events-auto relative flex flex-col max-w-2xl mx-auto bg-[#2c2b2a] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] focus-within:border-[var(--color-text-muted)] transition-colors">
           <input
             type="text"
             value={input}
