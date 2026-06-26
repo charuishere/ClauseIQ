@@ -21,9 +21,10 @@ def health():
 def me(user=Depends(get_current_user)):
     return {"userId": user["userId"]}
 
-from routers import agreements, chat
+from routers import agreements, chat, share
 
 app.include_router(agreements.router)
 app.include_router(chat.router)
+app.include_router(share.router)
 
 handler = Mangum(app)
