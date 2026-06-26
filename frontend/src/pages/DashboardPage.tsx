@@ -14,6 +14,7 @@ import TimelineCard from '../components/analysis/TimelineCard'
 import SummaryCard from '../components/analysis/SummaryCard'
 import ChatPanel from '../components/analysis/ChatPanel'
 import DocumentViewer from '../components/analysis/DocumentViewer'
+import { useCreateShareLink } from '../hooks/useShare'
 
 export default function DashboardPage() {
   const { id } = useParams<{ id: string }>()
@@ -22,6 +23,20 @@ export default function DashboardPage() {
   const [panelWidth, setPanelWidth] = useState(384) // 384px is w-96
   const [isDragging, setIsDragging] = useState(false)
   const [activeTab, setActiveTab] = useState<'analysis' | 'chat'>('analysis')
+  const [isCopied, setIsCopied] = useState(false)
+  const { mutate: createShareLink, isPending: isSharing } = useCreateShareLink(id || '')
+
+  const handleShare = () => {
+    if (!id) return
+    createShareLink(undefined, {
+      onSuccess: (data) => {
+        const shareUrl = `${window.location.origin}/share/${data.share_id}`
+        navigator.clipboard.writeText(shareUrl)
+        setIsCopied(true)
+        setTimeout(() => setIsCopied(false), 2000)
+      }
+    })
+  }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -109,8 +124,12 @@ export default function DashboardPage() {
               )}
               
               <div className="flex items-center justify-end gap-3 pr-2 w-1/3">
-                <button className="px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-md hover:bg-[var(--color-border-subtle)] transition-colors">
-                  Share
+                <button 
+                  onClick={handleShare}
+                  disabled={isSharing}
+                  className="px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-md hover:bg-[var(--color-border-subtle)] transition-colors disabled:opacity-50"
+                >
+                  {isSharing ? 'Sharing...' : isCopied ? 'Copied!' : 'Share'}
                 </button>
                 {/* Keeping your panel toggle for functionality, but restyled */}
                 {agreement && (
