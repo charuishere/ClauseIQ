@@ -41,9 +41,12 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
   const messages = history || []
 
   return (
-    <div className="relative h-full bg-[var(--color-bg-base)] overflow-hidden">
+    <div className="relative h-full bg-transparent overflow-hidden">
+      {/* Top Fade Gradient to mask text scrolling under header */}
+      <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[var(--color-bg-panel)] to-transparent pointer-events-none z-10" />
+      
       {/* Message History Area */}
-      <div className="absolute inset-0 overflow-y-auto p-4 pb-40" ref={scrollRef}>
+      <div className="absolute inset-0 overflow-y-auto p-4 pt-6 pb-40" ref={scrollRef}>
         <div className="max-w-3xl mx-auto w-full space-y-4">
         {messages.length === 0 ? (
           <div className="text-center text-[var(--color-text-muted)] mt-10">
