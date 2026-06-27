@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import DashboardPage from './pages/DashboardPage'
+import SharedChatPage from './pages/SharedChatPage'
 
 // A security wrapper to protect the Dashboard route
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -62,6 +63,9 @@ export default function App() {
               <DashboardPage />
             </ProtectedRoute>
           } />
+          
+          {/* Public Shared Chat Route */}
+          <Route path="/share/:shareId" element={<SharedChatPage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
