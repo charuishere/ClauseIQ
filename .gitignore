@@ -7,6 +7,17 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .coverage
+.vscode/
+
+# Administrative files
+logs.txt
+logs2.txt
+LEARNINGS.md
+INTERVIEW_GUIDE.md
+ClauseIQ_BuildPlan_v5 (1).md
+ClauseIQ_PRD_v9 (1).md
+test_api.py
+
 
 # Environment variables
 .env

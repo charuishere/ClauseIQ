@@ -26,8 +26,8 @@ def create_share_link(agreement_id: str, user: dict = Depends(get_current_user))
     chat_resp = table.query(
         KeyConditionExpression="PK = :pk AND begins_with(SK, :sk_prefix)",
         ExpressionAttributeValues={
-            ":pk": f"USER#{user_id}",
-            ":sk_prefix": f"CHAT#{agreement_id}#"
+            ":pk": f"AGREEMENT#{agreement_id}",
+            ":sk_prefix": "CHAT#"
         }
     )
     
