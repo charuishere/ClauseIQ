@@ -93,41 +93,46 @@ export default function DashboardPage() {
           {/* 2. Center Panel (Document / Chat) */}
           <div className="flex-1 flex flex-col bg-[var(--color-bg-panel)] overflow-hidden">
             {/* Minimalist Claude Header */}
-            <div className="p-3 flex items-center justify-between h-14 relative">
-              <div className="flex items-center gap-2 px-2 py-1.5 rounded transition-colors w-1/3">
-                <h1 className="font-sans text-[14px] font-medium text-[var(--color-text-primary)] truncate max-w-md">
+            <div className="p-3 grid grid-cols-[1fr_auto_1fr] items-center h-14 gap-2 md:gap-4">
+              
+              {/* Left Side: Title */}
+              <div className="flex items-center gap-2 px-2 py-1.5 min-w-0">
+                <h1 className="font-sans text-[14px] font-medium text-[var(--color-text-primary)] truncate">
                   {agreement?.title || 'Stateless LLM memory architecture'}
                 </h1>
-                {isProcessing && <span className="text-xs bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-0.5 rounded-full animate-pulse font-semibold ml-2">Analyzing...</span>}
+                {isProcessing && <span className="text-xs bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-0.5 rounded-full animate-pulse font-semibold shrink-0">Analyzing...</span>}
               </div>
               
-              {/* Centered Toggle Buttons */}
-              {isCompleted && (
-                <div className="absolute left-1/2 -translate-x-1/2 flex bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-lg p-0.5 z-10">
-                  <button
-                    onClick={() => setActiveTab('analysis')}
-                    className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                      activeTab === 'analysis' ? 'bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
-                    }`}
-                  >
-                    Document
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('chat')}
-                    className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                      activeTab === 'chat' ? 'bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
-                    }`}
-                  >
-                    Chat
-                  </button>
-                </div>
-              )}
+              {/* Center: Toggle Buttons */}
+              <div className="flex justify-center shrink-0">
+                {isCompleted && (
+                  <div className="flex bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-lg p-0.5 z-10 shadow-sm">
+                    <button
+                      onClick={() => setActiveTab('analysis')}
+                      className={`px-3 py-1 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+                        activeTab === 'analysis' ? 'bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
+                      }`}
+                    >
+                      Document
+                    </button>
+                    <button
+                      onClick={() => setActiveTab('chat')}
+                      className={`px-3 py-1 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+                        activeTab === 'chat' ? 'bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]'
+                      }`}
+                    >
+                      Chat
+                    </button>
+                  </div>
+                )}
+              </div>
               
-              <div className="flex items-center justify-end gap-3 pr-2 w-1/3">
+              {/* Right Side: Tools */}
+              <div className="flex items-center justify-end gap-3 pr-2 shrink-0">
                 <button 
                   onClick={handleShare}
                   disabled={isSharing}
-                  className="px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-md hover:bg-[var(--color-border-subtle)] transition-colors disabled:opacity-50"
+                  className="px-3 py-1.5 text-xs font-medium text-[var(--color-text-primary)] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-md hover:bg-[var(--color-border-subtle)] transition-colors disabled:opacity-50 whitespace-nowrap shadow-sm"
                 >
                   {isSharing ? 'Sharing...' : isCopied ? 'Copied!' : 'Share'}
                 </button>
@@ -135,7 +140,7 @@ export default function DashboardPage() {
                 {agreement && (
                   <button 
                     onClick={() => setIsRightPanelOpen(!isRightPanelOpen)}
-                    className="p-1.5 rounded-md hover:bg-[var(--color-bg-elevated)] text-[var(--color-text-muted)] transition-colors"
+                    className="p-1.5 rounded-md hover:bg-[var(--color-bg-elevated)] text-[var(--color-text-muted)] transition-colors shrink-0"
                   >
                     {isRightPanelOpen ? <PanelRightClose size={18} /> : <PanelRightOpen size={18} />}
                   </button>
