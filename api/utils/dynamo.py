@@ -14,26 +14,40 @@ def create_agreement(user_id: str, agreement_id: str, title: str, file_count: in
     We set 'GSI1PK' so our API can verify ownership of the agreement later.
     """
     table = get_table()
-    table.put_item(Item={
-        "PK": f"USER#{user_id}",
-        "SK": f"AGREEMENT#{agreement_id}",
-        # GSI-1: lets any endpoint look up userId from just an agreementId
-        "GSI1PK": f"AGREEMENT#{agreement_id}",
-        "agreementId": agreement_id,
-        "userId": user_id,
-        "title": title,
-        "s3_key": s3_key,
-        "status": "UPLOADED",
-        "document_hash": document_hash,
-        "token_count": token_count,
-        "file_count": file_count,
-        "source_filenames": source_filenames,
-        "document_types": None,       # set later by AI Worker
-        "overall_risk": None,         # set later by AI Worker
-        "has_rag": False,        # set to True if we use custom RAG
-        "has_pdf": has_pdf,
-        "created_at": datetime.now(timezone.utc).isoformat()
-    })
+    try:
+        with table.batch_writer() as batch:
+            # 1. Main Agreement Record
+            batch.put_item(Item={
+                "PK": f"USER#{user_id}",
+                "SK": f"AGREEMENT#{agreement_id}",
+                # GSI-1: lets any endpoint look up userId from just an agreementId
+                "GSI1PK": f"AGREEMENT#{agreement_id}",
+                "agreementId": agreement_id,
+                "userId": user_id,
+                "title": title,
+                "s3_key": s3_key,
+                "status": "UPLOADED",
+                "document_hash": document_hash,
+                "token_count": token_count,
+                "file_count": file_count,
+                "source_filenames": source_filenames,
+                "document_types": None,       # set later by AI Worker
+                "overall_risk": None,         # set later by AI Worker
+                "has_rag": False,        # set to True if we use custom RAG
+                "has_pdf": has_pdf,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            })
+            
+            # 2. Hash Record for deduplication
+            batch.put_item(Item={
+                "PK": f"HASH#{document_hash}",
+                "SK": "#METADATA",
+                "agreementId": agreement_id,
+                "userId": user_id,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            })
+    except Exception as e:
+        print(f"Failed to create agreement: {e}")
 
 def get_hash_index(sha256_hash: str) -> dict | None:
     """
