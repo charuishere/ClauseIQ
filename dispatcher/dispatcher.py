@@ -17,6 +17,12 @@ def handler(event, _context):
         
         # The key looks like: documents/{userId}/{agreementId}/original.txt
         parts = s3_key.split("/")
+        
+        # Guard: Only process the .txt files (avoid duplicate triggers for .pdf files)
+        if not s3_key.endswith(".txt"):
+            print(f"Skipping non-text file: {s3_key}")
+            continue
+            
         user_id = parts[1]
         agreement_id = parts[2]
 

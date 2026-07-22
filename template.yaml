@@ -80,6 +80,8 @@ Resources:
                 Rules:
                   - Name: prefix
                     Value: documents/
+                  - Name: suffix
+                    Value: .txt
 
   # ── AI Worker Lambda (SQS trigger) ──
   AiWorkerFunction:
