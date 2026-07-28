@@ -1,4 +1,5 @@
 import os
+# Trigger CI/CD pipeline deployment
 import json
 import boto3
 from pinecone import Pinecone
