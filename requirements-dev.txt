@@ -1,0 +1,4 @@
+-r api/requirements.txt
+pytest
+pytest-cov
+moto[dynamodb,s3,sqs,secretsmanager]

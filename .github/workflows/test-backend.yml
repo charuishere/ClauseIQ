@@ -1,0 +1,39 @@
+name: Test Backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "api/**"
+      - "worker/**"
+      - "dispatcher/**"
+      - "tests/**"
+      - "conftest.py"
+      - "requirements-dev.txt"
+  pull_request:
+    paths:
+      - "api/**"
+      - "worker/**"
+      - "dispatcher/**"
+      - "tests/**"
+      - "conftest.py"
+      - "requirements-dev.txt"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Run tests with coverage
+        run: pytest tests/ --cov=api --cov=worker --cov=dispatcher --cov-report=term-missing --cov-report=xml
