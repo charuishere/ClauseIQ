@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Loader2, PanelRightClose, PanelRightOpen, MessageSquare, FileText } from 'lucide-react'
+import { Loader2, PanelRightClose, PanelRightOpen } from 'lucide-react'
 import Sidebar from '../components/Sidebar'
 import UploadModal from '../components/UploadModal'
 import { useAgreementStatus } from '../hooks/useAgreements'
@@ -98,7 +98,7 @@ export default function DashboardPage() {
               {/* Left Side: Title */}
               <div className="flex items-center gap-2 px-2 py-1.5 min-w-0">
                 <h1 className="font-sans text-[14px] font-medium text-[var(--color-text-primary)] truncate">
-                  {agreement?.title || 'Stateless LLM memory architecture'}
+                  {agreement?.title || 'Untitled Document'}
                 </h1>
                 {isProcessing && <span className="text-xs bg-[var(--color-accent)]/10 text-[var(--color-accent)] px-2 py-0.5 rounded-full animate-pulse font-semibold shrink-0">Analyzing...</span>}
               </div>

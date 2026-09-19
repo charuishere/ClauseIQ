@@ -1,14 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
-import { Loader2, Info, ArrowUp } from 'lucide-react'
+import { Loader2, ArrowUp } from 'lucide-react'
 import { useChatHistory, useSendMessage } from '../../hooks/useChat'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import ChatMessageBubble from './ChatMessageBubble'
+import { getErrorMessage } from '../../lib/errors'
 
 export default function ChatPanel({ agreementId }: { agreementId: string }) {
   const [input, setInput] = useState('')
   const [optimisticQuestion, setOptimisticQuestion] = useState('')
+  const [sendError, setSendError] = useState('')
   const scrollRef = useRef<HTMLDivElement>(null)
-  
+
   // 1. Connect to the hooks we just built
   const { data: history, isLoading: isHistoryLoading } = useChatHistory(agreementId)
   const { mutate: sendMessage, isPending } = useSendMessage(agreementId)
@@ -18,16 +19,22 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-  }, [history, optimisticQuestion, isPending])
+  }, [history, optimisticQuestion, isPending, sendError])
 
   // 3. Handle sending a message
   const handleSend = () => {
     if (!input.trim() || isPending) return
+    setSendError('')
     setOptimisticQuestion(input)
-    sendMessage(input, {
-      onSettled: () => setOptimisticQuestion('')
-    })
+    const question = input
     setInput('') // clear the input box immediately
+    sendMessage(question, {
+      onSettled: () => setOptimisticQuestion(''),
+      onError: (err) => {
+        setSendError(getErrorMessage(err, 'Failed to send message. Please try again.'))
+        setInput(question) // give the user their question back so they don't retype it
+      }
+    })
   }
 
   if (isHistoryLoading) {
@@ -55,42 +62,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
           </div>
         ) : (
           messages.map((msg) => (
-            <div key={msg.messageId} className="flex flex-col gap-4">
-              {/* User Question */}
-              <div className="flex justify-end">
-                <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] px-4 py-3 rounded-2xl rounded-tr-sm max-w-[85%] text-[15px]">
-                  {msg.question}
-                </div>
-              </div>
-              
-              {/* AI Answer */}
-              <div className="flex justify-start px-2 mt-2">
-                <div className="max-w-[95%] space-y-3 prose prose-invert prose-p:leading-relaxed max-w-none prose-pre:bg-[var(--color-bg-elevated)] prose-pre:border prose-pre:border-[var(--color-border-subtle)] prose-td:border-0 prose-td:border-b prose-td:border-[var(--color-border-subtle)] prose-th:border-0 prose-th:border-b prose-th:border-[var(--color-border-subtle)] prose-table:border-collapse prose-code:before:content-none prose-code:after:content-none prose-code:text-[#ff8a8a] prose-code:bg-[#3d2a2a] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-mono prose-code:font-medium">
-                  <div className="font-serif text-[15px] text-[var(--color-text-primary)] leading-relaxed">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {msg.answer}
-                    </ReactMarkdown>
-                  </div>
-                  
-                  {/* Render Citations if the AI used the document to answer */}
-                  {msg.found_in_document && msg.citations && msg.citations.length > 0 && (
-                    <div className="mt-3 pt-3 border-t border-[var(--color-border-subtle)]">
-                      <div className="flex items-center gap-1.5 text-xs text-[var(--color-accent)] mb-2 font-medium">
-                        <Info size={14} />
-                        <span>Sources</span>
-                      </div>
-                      <div className="flex flex-wrap gap-1.5">
-                        {msg.citations.map((cite: any, idx) => (
-                          <span key={idx} className="text-[10px] bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] px-2 py-1 rounded-md text-[var(--color-text-muted)]">
-                            {cite.file_name || 'Document'} {cite.page_number ? `(Page ${cite.page_number})` : ''}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+            <ChatMessageBubble key={msg.messageId} message={msg} />
           ))
         )}
         
@@ -108,7 +80,16 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
           <div className="flex justify-start px-2 mt-2">
             <div className="flex items-center gap-2">
               <Loader2 className="animate-spin text-[var(--color-accent)]" size={20} />
-              <span className="font-serif text-[var(--color-text-muted)] text-sm italic">Claude is thinking...</span>
+              <span className="font-serif text-[var(--color-text-muted)] text-sm italic">Thinking...</span>
+            </div>
+          </div>
+        )}
+
+        {/* Error message if the last send failed */}
+        {sendError && (
+          <div className="flex justify-start px-2 mt-2">
+            <div className="text-sm text-[var(--color-error,#e05c5c)] bg-[var(--color-error,#e05c5c)]/10 border border-[var(--color-error,#e05c5c)]/30 rounded-lg px-3 py-2">
+              {sendError}
             </div>
           </div>
         )}
@@ -117,7 +98,7 @@ export default function ChatPanel({ agreementId }: { agreementId: string }) {
 
       {/* Floating Input Area */}
       <div className="absolute bottom-0 left-0 right-0 p-4 pt-12 bg-gradient-to-t from-[var(--color-bg-base)] via-[var(--color-bg-base)] to-transparent pointer-events-none">
-        <div className="pointer-events-auto relative flex flex-col max-w-2xl mx-auto bg-[#2c2b2a] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] focus-within:border-[var(--color-text-muted)] transition-colors">
+        <div className="pointer-events-auto relative flex flex-col max-w-2xl mx-auto bg-[#2c2b2a]/60 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 ring-1 ring-white/5 focus-within:border-white/30 focus-within:ring-white/10 transition-all duration-300">
           <input
             type="text"
             value={input}
