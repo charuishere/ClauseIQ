@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { X, Upload, FileText, Loader2 } from 'lucide-react'
 import { useQueryClient } from '@tanstack/react-query'
 import api from '../lib/api'
+import { getErrorMessage } from '../lib/errors'
 
 interface UploadModalProps {
   isOpen: boolean
@@ -13,6 +14,7 @@ export default function UploadModal({ isOpen, onClose }: UploadModalProps) {
   const [text, setText] = useState('')
   const [mode, setMode] = useState<'file' | 'text'>('file')
   const [isUploading, setIsUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
   
   // This hooks into TanStack Query's manager
@@ -25,6 +27,7 @@ export default function UploadModal({ isOpen, onClose }: UploadModalProps) {
     if (mode === 'text' && !text.trim()) return
 
     setIsUploading(true)
+    setUploadError('')
     const formData = new FormData()
     
     if (mode === 'file' && files.length > 0) {
@@ -47,20 +50,20 @@ export default function UploadModal({ isOpen, onClose }: UploadModalProps) {
       onClose()
     } catch (error) {
       console.error('Failed to upload', error)
-      alert('Failed to upload file.')
+      setUploadError(getErrorMessage(error, 'Failed to upload. Please try again.'))
     } finally {
       setIsUploading(false)
     }
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-[var(--color-bg-panel)] w-full max-w-md rounded-lg shadow-xl border border-[var(--color-border-subtle)] overflow-hidden">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 p-4 transition-all duration-300">
+      <div className="bg-[#1A1915]/70 backdrop-blur-2xl w-full max-w-md rounded-2xl shadow-2xl border border-white/10 overflow-hidden ring-1 ring-white/5">
         
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b border-[var(--color-border-subtle)]">
-          <h2 className="text-lg font-semibold">Analyze New Agreement</h2>
-          <button onClick={onClose} className="p-1 hover:bg-[var(--color-bg-base)] rounded-md transition-colors">
+        <div className="flex justify-between items-center p-4 border-b border-white/10 bg-white/5">
+          <h2 className="text-lg font-semibold text-white/90">Analyze New Agreement</h2>
+          <button onClick={() => { setUploadError(''); onClose() }} className="p-1 hover:bg-[var(--color-bg-base)] rounded-md transition-colors">
             <X size={20} />
           </button>
         </div>
@@ -69,7 +72,7 @@ export default function UploadModal({ isOpen, onClose }: UploadModalProps) {
         <div className="p-6 flex flex-col items-center justify-center gap-4">
           
           {/* Mode Toggle */}
-          <div className="flex bg-[var(--color-bg-base)] rounded-lg p-1 w-full border border-[var(--color-border-subtle)]">
+          <div className="flex bg-black/20 rounded-xl p-1 w-full border border-white/5 shadow-inner">
             <button
               onClick={() => setMode('file')}
               className={`flex-1 py-1.5 text-sm font-medium rounded-md transition-colors ${mode === 'file' ? 'bg-[var(--color-bg-panel)] shadow-sm' : 'text-[var(--color-text-muted)] hover:text-white'}`}
@@ -140,15 +143,21 @@ export default function UploadModal({ isOpen, onClose }: UploadModalProps) {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Paste contract text here..."
-              className="w-full h-32 bg-[var(--color-bg-base)] border border-[var(--color-border-subtle)] rounded-lg p-3 text-sm focus:outline-none focus:border-[var(--color-accent)] resize-none"
+              className="w-full h-32 bg-black/20 border border-white/10 rounded-xl p-3 text-sm focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] resize-none text-white/90 placeholder-white/30 transition-all"
             />
+          )}
+
+          {uploadError && (
+            <div className="w-full text-sm text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2">
+              {uploadError}
+            </div>
           )}
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-[var(--color-border-subtle)] flex justify-end gap-2 bg-[var(--color-bg-base)]">
-          <button 
-            onClick={onClose}
+        <div className="p-4 border-t border-white/10 flex justify-end gap-2 bg-black/20">
+          <button
+            onClick={() => { setUploadError(''); onClose() }}
             className="px-4 py-2 text-sm font-medium hover:bg-[var(--color-bg-panel)] rounded-md transition-colors"
           >
             Cancel
@@ -167,6 +176,4 @@ export default function UploadModal({ isOpen, onClose }: UploadModalProps) {
     </div>
   )
 }
-
-
 

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Plus, FileText, LogOut, Trash2 } from 'lucide-react'
+import { Plus, LogOut, Trash2 } from 'lucide-react'
 import { useAgreements, useDeleteAgreement } from '../hooks/useAgreements'
 import { useAuth } from '../context/AuthContext'
+import type { AgreementSummary } from '../types'
 
 interface SidebarProps {
   currentAgreementId?: string
@@ -39,7 +40,7 @@ export default function Sidebar({ currentAgreementId, onNewAgreement }: SidebarP
   }
 
   return (
-    <div className="w-64 h-screen bg-[var(--color-bg-panel)] border-r border-[var(--color-border-subtle)] flex flex-col">
+    <div className="w-64 h-screen bg-[#1A1915]/60 backdrop-blur-2xl border-r border-white/5 flex flex-col transition-all">
       {/* Top Section: Logo & New Agreement Button */}
       <div className="p-4 flex flex-col gap-6">
         <h1 className="text-lg font-semibold text-[var(--color-text-primary)] tracking-wide pl-2">ClauseIQ</h1>
@@ -61,7 +62,7 @@ export default function Sidebar({ currentAgreementId, onNewAgreement }: SidebarP
         ) : (
           <div className="flex flex-col gap-1 px-2">
             <h3 className="text-[11px] font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2 pl-2">Recents</h3>
-            {agreements?.map((doc: any) => {
+            {agreements?.map((doc: AgreementSummary) => {
               // Handle DynamoDB ghost items (which occur if an item was deleted while its SQS job was still processing/retrying)
               const actualId = doc.agreementId || (doc.SK && doc.SK.replace('AGREEMENT#', ''))
               if (!actualId) return null
@@ -116,7 +117,7 @@ export default function Sidebar({ currentAgreementId, onNewAgreement }: SidebarP
       </div>
 
       {/* Bottom Section: User Profile & Logout */}
-      <div className="p-4 border-t border-[var(--color-border-subtle)]">
+      <div className="p-4 border-t border-white/5 bg-white/5">
         <div className="flex items-center justify-between text-sm text-[var(--color-text-muted)]">
           <span className="truncate pr-2">{user?.email}</span>
           <button 

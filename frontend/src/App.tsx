@@ -5,33 +5,38 @@ import SignupPage from './pages/SignupPage'
 import DashboardPage from './pages/DashboardPage'
 import SharedChatPage from './pages/SharedChatPage'
 
+// Shared by both route guards below while the initial auth check is in flight.
+function FullScreenLoader() {
+  return <div className="h-screen flex items-center justify-center bg-[var(--color-bg-base)] text-white">Loading...</div>
+}
+
 // A security wrapper to protect the Dashboard route
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth()
-  
+
   if (isLoading) {
-    return <div className="h-screen flex items-center justify-center bg-[var(--color-bg-base)] text-white">Loading...</div>
+    return <FullScreenLoader />
   }
-  
+
   if (!user) {
     return <Navigate to="/" />
   }
-  
+
   return <>{children}</>
 }
 
 // A wrapper to prevent logged-in users from seeing the Login/Signup pages
 function PublicRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth()
-  
+
   if (isLoading) {
-    return <div className="h-screen flex items-center justify-center bg-[var(--color-bg-base)] text-white">Loading...</div>
+    return <FullScreenLoader />
   }
-  
+
   if (user) {
     return <Navigate to="/dashboard" />
   }
-  
+
   return <>{children}</>
 }
 
