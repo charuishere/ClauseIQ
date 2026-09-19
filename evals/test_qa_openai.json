@@ -1,0 +1,130 @@
+[
+  {
+    "question": "If I use ChatGPT to write a book, does OpenAI own the copyright?",
+    "expected_answer": "No, OpenAI assigns all right, title, and interest in the Output to you."
+  },
+  {
+    "question": "Can I use ChatGPT's answers to train my own AI model and sell it?",
+    "expected_answer": "No, you cannot use the Output to develop competing models."
+  },
+  {
+    "question": "If I use my company email to sign up, can my boss see my chat history?",
+    "expected_answer": "Yes, the organization's administrator can control the account and access your Content."
+  },
+  {
+    "question": "If ChatGPT gives me bad medical advice and I get hurt, can I sue OpenAI for millions?",
+    "expected_answer": "No, liability is limited to $100 or what you paid in the last 12 months, and you shouldn't rely on it for medical advice."
+  },
+  {
+    "question": "Can I join a massive class action lawsuit against OpenAI if they leak my data?",
+    "expected_answer": "No, you waive the right to class actions and must resolve disputes individually through arbitration."
+  },
+  {
+    "question": "If I haven't logged into my free account for two years, will they delete it?",
+    "expected_answer": "Yes, they can terminate accounts that have been inactive for over a year if they are not paid."
+  },
+  {
+    "question": "Is there any way I can opt out of the mandatory arbitration rule?",
+    "expected_answer": "Yes, by filling out an opt-out form within 30 days of creating your account."
+  },
+  {
+    "question": "Will OpenAI use my private prompts to train their future models?",
+    "expected_answer": "Yes, they may use your Content to train models, unless you specifically opt out."
+  },
+  {
+    "question": "If I find a bug, am I allowed to reverse engineer the app to see how it works?",
+    "expected_answer": "No, you cannot reverse engineer or decompile the services unless law strictly prohibits this restriction."
+  },
+  {
+    "question": "If I'm living in London, do these exact terms apply to me?",
+    "expected_answer": "No, users in the UK are governed by a different set of terms."
+  },
+  {
+    "question": "Does ChatGPT keep my credit card information on file forever?",
+    "expected_answer": "Unanswerable. The Terms of Use do not state how long credit card info is kept."
+  },
+  {
+    "question": "What happens if I try to scrape data from ChatGPT automatically using a python script?",
+    "expected_answer": "You may not automatically or programmatically extract data or Output."
+  },
+  {
+    "question": "Can I use ChatGPT if I am 15 years old?",
+    "expected_answer": "Yes, but you must have your parent or legal guardian's permission if you are under 18."
+  },
+  {
+    "question": "If OpenAI increases the price of my ChatGPT Plus subscription, can they just charge my card immediately?",
+    "expected_answer": "No, they will give at least 30 days' notice, taking effect on the next renewal."
+  },
+  {
+    "question": "Will OpenAI refund me if they randomly decide to shut down the service completely?",
+    "expected_answer": "Yes, they will give a refund for any prepaid, unused Services."
+  },
+  {
+    "question": "Is OpenAI's API governed by these exact same Terms of Use?",
+    "expected_answer": "No, Business Terms govern APIs."
+  },
+  {
+    "question": "If I live in North Korea, can I use ChatGPT?",
+    "expected_answer": "No, services cannot be used in a U.S. embargoed country."
+  },
+  {
+    "question": "If another user generates the exact same poem as me, can I sue them for copying my Output?",
+    "expected_answer": "No. Output may not be unique and the assignment does not extend to other users' output."
+  },
+  {
+    "question": "What is OpenAI's phone number for customer support?",
+    "expected_answer": "Unanswerable. A phone number is not provided in the Terms."
+  },
+  {
+    "question": "If I share my account password with my sister so she can use DALL-E, is that allowed?",
+    "expected_answer": "No, you may not share your account credentials."
+  },
+  {
+    "question": "Can I assign my rights under these Terms to someone else if I sell my business?",
+    "expected_answer": "No, you may not assign or transfer any rights or obligations under these Terms, and any attempt to do so is void."
+  },
+  {
+    "question": "Before OpenAI can start formal arbitration against me, do they have to try anything else first?",
+    "expected_answer": "Yes, both parties must first attempt informal dispute resolution; if unresolved within 60 days, either side can initiate arbitration."
+  },
+  {
+    "question": "If OpenAI ignores one violation of the Terms by me, does that mean they give up the right to enforce it against me later?",
+    "expected_answer": "No, failure to enforce a provision is not a waiver of the right to enforce it later."
+  },
+  {
+    "question": "Can I get emergency injunctive relief from a court, or do I have to wait for arbitration to finish?",
+    "expected_answer": "Yes, injunctive or other equitable relief to stop unauthorized use, abuse, or IP infringement is excluded from the arbitration requirement."
+  },
+  {
+    "question": "If 30 people with the same lawyer all file similar arbitration claims against OpenAI within 90 days of each other, are the claims handled separately or together?",
+    "expected_answer": "They are grouped into batches of up to 50 claimants and administered as a single consolidated arbitration."
+  },
+  {
+    "question": "Does OpenAI own the text I type into ChatGPT, or just what it generates back to me?",
+    "expected_answer": "You retain ownership of your Input; OpenAI assigns you ownership of the Output."
+  },
+  {
+    "question": "If I'm a business customer and someone sues me over how I used ChatGPT, does OpenAI have to defend me?",
+    "expected_answer": "No, it's the reverse -- as a business, you must indemnify and hold OpenAI harmless from third-party claims arising from your use."
+  },
+  {
+    "question": "Is there a maximum amount of money I could ever win if I sue OpenAI successfully?",
+    "expected_answer": "Yes, aggregate liability is capped at the greater of what you paid in the prior 12 months or $100."
+  },
+  {
+    "question": "Does OpenAI's Privacy Policy count as a legally binding part of these Terms?",
+    "expected_answer": "No, the Privacy Policy is an important document to read but does not form part of these Terms."
+  },
+  {
+    "question": "If I'm 12 years old, can I use ChatGPT even with my parents' permission?",
+    "expected_answer": "No, you must be at least 13 years old (or the minimum age required in your country) regardless of parental consent."
+  },
+  {
+    "question": "How many employees does OpenAI have?",
+    "expected_answer": "Unanswerable. The Terms of Use do not state OpenAI's employee count."
+  },
+  {
+    "question": "Which specific ChatGPT model version am I entitled to use on the free plan?",
+    "expected_answer": "Unanswerable. The document does not specify which model versions are included in any particular plan."
+  }
+]

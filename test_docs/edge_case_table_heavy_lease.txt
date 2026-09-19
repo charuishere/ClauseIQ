@@ -1,0 +1,66 @@
+RESIDENTIAL LEASE AGREEMENT
+
+This Lease Agreement ("Lease") is entered into as of June 1, 2026, between
+Harborview Properties LLC ("Landlord") and the undersigned Tenant, for the
+property located at 4521 Maple Ridge Drive, Unit 3B, Austin, TX 78704.
+
+1. TERM
+The Lease term shall begin on July 1, 2026 and end on June 30, 2027.
+
+2. RENT SCHEDULE
+Tenant shall pay rent according to the following schedule, due on the 1st of
+each month:
+
+| Month           | Rent Amount | Due Date | Late Fee (after 5 days) |
+|-----------------|-------------|----------|--------------------------|
+| July 2026       | $1,850.00   | July 1   | $75.00                   |
+| August 2026     | $1,850.00   | Aug 1    | $75.00                   |
+| September 2026  | $1,850.00   | Sep 1    | $75.00                   |
+| October 2026    | $1,900.00   | Oct 1    | $75.00                   |
+| November 2026   | $1,900.00   | Nov 1    | $75.00                   |
+| December 2026   | $1,900.00   | Dec 1    | $75.00                   |
+| January 2027    | $1,900.00   | Jan 1    | $75.00                   |
+| February 2027   | $1,900.00   | Feb 1    | $75.00                   |
+| March 2027      | $1,950.00   | Mar 1    | $75.00                   |
+| April 2027      | $1,950.00   | Apr 1    | $75.00                   |
+| May 2027        | $1,950.00   | May 1    | $75.00                   |
+| June 2027       | $1,950.00   | Jun 1    | $75.00                   |
+
+Note: rent increases reflect the scheduled seasonal adjustment described in
+Section 4 below.
+
+3. SECURITY DEPOSIT
+A security deposit of $1,850.00 is due upon signing and will be held in
+accordance with Texas Property Code Chapter 92, Subchapter C.
+
+4. UTILITIES AND FEES
+
+| Item                  | Responsible Party | Estimated Monthly Cost |
+|-----------------------|--------------------|--------------------------|
+| Electricity           | Tenant             | $90 - $150               |
+| Water/Sewer           | Landlord           | Included in rent         |
+| Trash Collection      | Landlord           | Included in rent         |
+| Internet              | Tenant             | Not provided              |
+| Parking (1 space)     | Landlord           | Included in rent         |
+| Additional parking    | Tenant             | $50/month per space       |
+| Pet fee (if applicable)| Tenant            | $35/month per pet         |
+
+5. MAINTENANCE RESPONSIBILITIES
+Landlord shall be responsible for structural repairs, plumbing, and HVAC
+systems. Tenant shall be responsible for routine upkeep, replacing light
+bulbs and air filters, and promptly reporting any needed repairs.
+
+6. EARLY TERMINATION
+Tenant may terminate this Lease early by providing sixty (60) days written
+notice and paying an early termination fee equal to two (2) months' rent at
+the then-current rate.
+
+7. PET POLICY
+Pets are permitted with prior written Landlord approval and payment of the
+monthly pet fee listed in Section 4. Maximum of two (2) pets per unit.
+
+8. GOVERNING LAW
+This Lease shall be governed by the laws of the State of Texas.
+
+IN WITNESS WHEREOF, the parties have executed this Lease as of the date
+first written above.

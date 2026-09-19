@@ -1,0 +1,114 @@
+[
+  {
+    "question": "On what date was the Tobacco Master Settlement Agreement entered into?",
+    "expected_answer": "November 23, 1998."
+  },
+  {
+    "question": "Which four companies were the original participating manufacturers in the MSA?",
+    "expected_answer": "Philip Morris, R. J. Reynolds, Brown & Williamson, and Lorillard."
+  },
+  {
+    "question": "How many states' attorneys general were party to the settlement?",
+    "expected_answer": "46 states, plus the District of Columbia, Puerto Rico, and the Virgin Islands (four states -- Florida, Minnesota, Texas, Mississippi -- had already settled individually)."
+  },
+  {
+    "question": "How much did the companies commit to pay over the first 25 years of the agreement?",
+    "expected_answer": "At least $206 billion."
+  },
+  {
+    "question": "Who was the Mississippi Attorney General who filed the first state lawsuit against the tobacco industry, and when?",
+    "expected_answer": "Mike Moore, in May 1994."
+  },
+  {
+    "question": "How many private lawsuits were brought against tobacco companies in the forty years leading up to 1994, and how many plaintiffs actually won?",
+    "expected_answer": "Over 800 private claims were brought, and only two plaintiffs ever prevailed, both of which were later reversed on appeal."
+  },
+  {
+    "question": "What was the dollar amount of the rejected 1997 congressional settlement proposal (the June 20, 1997 Proposal)?",
+    "expected_answer": "$365.5 billion, with payments to the states of $368.5 billion over 25 years."
+  },
+  {
+    "question": "Which senator carried the more aggressive alternative bill that Congress ultimately rejected in spring 1998?",
+    "expected_answer": "Senator John McCain of Arizona."
+  },
+  {
+    "question": "Which state was the first to individually settle its tobacco litigation, and on what date?",
+    "expected_answer": "Mississippi, on July 2, 1997."
+  },
+  {
+    "question": "What percentage of the domestic cigarette market did the Original Participating Manufacturers (OPMs) control when the MSA became effective?",
+    "expected_answer": "Approximately 97%."
+  },
+  {
+    "question": "Within how many days of the MSA's Execution Date did a Subsequent Participating Manufacturer need to join to become an 'exempt SPM'?",
+    "expected_answer": "Ninety (90) days."
+  },
+  {
+    "question": "How much was the one-time State Enforcement Fund payment?",
+    "expected_answer": "$50 million."
+  },
+  {
+    "question": "How much were the up-front payments to the states under the MSA's financial provisions?",
+    "expected_answer": "$12.742 billion."
+  },
+  {
+    "question": "How many states are eligible to receive payments from the Phase II tobacco growers' settlement trust fund, and what is one of them?",
+    "expected_answer": "14 states grow flue-cured and burley tobacco and are eligible; examples include Kentucky, North Carolina, and Virginia."
+  },
+  {
+    "question": "What was the per-cigarette escrow amount required in 1999 under the model escrow statute?",
+    "expected_answer": "$0.0094241 per unit sold."
+  },
+  {
+    "question": "By what date each year must an NPM place its required amount into the qualified escrow fund?",
+    "expected_answer": "By April 15 of the year following the year in question."
+  },
+  {
+    "question": "What loophole did NPMs exploit in Kansas due to the state's low allocable share percentage?",
+    "expected_answer": "Because Kansas's allocable share was roughly 0.8%, NPMs concentrating sales there could obtain refunds of nearly all their escrow payments under the original refund formula."
+  },
+  {
+    "question": "When did the National Association of Attorneys General introduce the Allocable Share Release Repealer, and what did it do?",
+    "expected_answer": "In late 2002; it eliminated the loophole in the original escrow refund formula by removing the reference to a state's allocable share."
+  },
+  {
+    "question": "How did the U.S. Court of Appeals for the Ninth Circuit rule in 2007 on the claim that the MSA created an illegal cartel?",
+    "expected_answer": "It rejected the claim, concluding the plaintiffs had not alleged sufficient facts to show the MSA and related state laws violated the Sherman Act."
+  },
+  {
+    "question": "As of 2020, how much settlement money had actually been paid out?",
+    "expected_answer": "More than $138 billion."
+  },
+  {
+    "question": "What percentage of settlement money is spent on tobacco prevention programs, according to the criticism section?",
+    "expected_answer": "Less than 3% of every dollar."
+  },
+  {
+    "question": "By what percentage had cigarette sales fallen by 2005 since the settlement was negotiated?",
+    "expected_answer": "Over 21 percent, reaching a 55-year low."
+  },
+  {
+    "question": "What organization did the MSA create to fund anti-smoking public education efforts?",
+    "expected_answer": "The National Public Education Foundation (the MSA also led to creation of the Truth Initiative advocacy group)."
+  },
+  {
+    "question": "What financial instrument have many state and local governments sold to transfer the risk of declining future MSA payments?",
+    "expected_answer": "Tobacco bonds, a form of securitization."
+  },
+  {
+    "question": "How much in outstanding tobacco bonds was affected by the growth of the e-cigarette market, according to the article?",
+    "expected_answer": "$97 billion outstanding in tobacco bonds."
+  },
+  {
+    "question": "What was the total settlement amount awarded to Google and YouTube in this case?",
+    "expected_answer": "Unanswerable. This article is about the Tobacco Master Settlement Agreement; it does not mention Google or YouTube."
+  },
+  {
+    "question": "Which pharmaceutical company was fined in this settlement?",
+    "expected_answer": "Unanswerable. The article is about the tobacco industry settlement, not a pharmaceutical case."
+  },
+  {
+    "question": "What was the name of the law firm that represented the tobacco companies in these negotiations?",
+    "expected_answer": "Unanswerable. The article does not name any law firm representing the tobacco companies."
+  }
+]

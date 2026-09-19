@@ -1,0 +1,94 @@
+[
+  {
+    "question": "If GTCR is legally subpoenaed to hand over Vocus's confidential information, what must they do first?",
+    "expected_answer": "Provide Vocus with prompt written notice so Vocus can seek a protective order, before disclosing anything."
+  },
+  {
+    "question": "How long does the standstill period last that restricts GTCR from trying to acquire Vocus?",
+    "expected_answer": "Eighteen (18) months from the date of the agreement."
+  },
+  {
+    "question": "If Vocus fires an employee, is GTCR still barred from hiring that former employee under the non-solicitation clause?",
+    "expected_answer": "No, soliciting or hiring employees whose employment was already terminated by the Company is explicitly excluded from the restriction."
+  },
+  {
+    "question": "How many days does GTCR have to return or destroy Vocus's confidential information after Vocus asks for it back?",
+    "expected_answer": "No later than 10 days after receiving the request."
+  },
+  {
+    "question": "Can GTCR's lawyers keep a paper copy of the confidential information after the deal falls through?",
+    "expected_answer": "Yes, GTCR's legal counsel may retain one complete paper copy for compliance/litigation purposes, kept confidential in counsel's archives."
+  },
+  {
+    "question": "When does this NDA itself expire?",
+    "expected_answer": "On the second anniversary of the agreement's date, except that trade secrets remain confidential for as long as they qualify as trade secrets under applicable law."
+  },
+  {
+    "question": "If GTCR breaches this agreement, does Vocus have to prove actual dollar damages to get an injunction?",
+    "expected_answer": "No, Vocus is entitled to seek injunctions and specific performance without needing to prove actual damages or post a bond."
+  },
+  {
+    "question": "For how long after signing is GTCR barred from trying to hire away Vocus's employees?",
+    "expected_answer": "One (1) year following the date of the Agreement."
+  },
+  {
+    "question": "Under what circumstance does the 18-month standstill period end early?",
+    "expected_answer": "It terminates immediately if Vocus publicly announces a definitive agreement to sell more than 50% of its equity or assets, or if a tender offer for more than 50% succeeds and Vocus recommends it via a Schedule 14D-9."
+  },
+  {
+    "question": "Who is the designated contact person at the Company for due diligence questions about the potential deal?",
+    "expected_answer": "Jason Stack (jstack@stifel.com, 212-271-3868)."
+  },
+  {
+    "question": "What state's law governs this NDA?",
+    "expected_answer": "Delaware."
+  },
+  {
+    "question": "If there's a lawsuit over this NDA, does the losing party have to pay the winner's legal fees?",
+    "expected_answer": "Yes, the prevailing party is entitled to reasonable legal fees and expenses from the other party."
+  },
+  {
+    "question": "Does signing this NDA obligate Vocus to actually go through with a deal with GTCR?",
+    "expected_answer": "No, no agreement for a Transaction exists or is implied until a separate definitive written agreement is signed."
+  },
+  {
+    "question": "Is GTCR allowed to publicly announce that it's in talks with Vocus about a possible acquisition?",
+    "expected_answer": "No, GTCR may not disclose the existence of discussions, negotiations, or its interest in a Transaction without Vocus's prior written consent."
+  },
+  {
+    "question": "Does Vocus guarantee that the confidential information it shares with GTCR is accurate and complete?",
+    "expected_answer": "No, neither the Company nor its Representatives make any representation or warranty as to the accuracy or completeness of the Evaluation Material."
+  },
+  {
+    "question": "What is the total dollar value of the potential Transaction being discussed between Vocus and GTCR?",
+    "expected_answer": "Unanswerable. The NDA does not specify a transaction value."
+  },
+  {
+    "question": "Does this NDA include a non-compete clause preventing GTCR from investing in Vocus's competitors generally?",
+    "expected_answer": "Unanswerable. This is a confidentiality/standstill/non-solicitation agreement; it does not contain a general non-compete restricting GTCR's other investments."
+  },
+  {
+    "question": "If information Vocus shares becomes public through no fault of GTCR, does GTCR still have to keep it confidential?",
+    "expected_answer": "No, information that becomes generally known to the public other than through GTCR's breach is excluded from the definition of Evaluation Material."
+  },
+  {
+    "question": "Can GTCR use Vocus's confidential information to try to poach Vocus's customers?",
+    "expected_answer": "No, GTCR may not use information from the Evaluation Material to divert or attempt to divert any business or customer of the Company."
+  },
+  {
+    "question": "Who signed this agreement on behalf of Vocus, and what was their title?",
+    "expected_answer": "Stephen A. Vintz, Executive Vice President/Chief Financial Officer."
+  },
+  {
+    "question": "Is this NDA mutual, with both sides sharing confidential information, or one-directional?",
+    "expected_answer": "One-directional -- it obligates GTCR, the recipient, to keep Vocus's information confidential."
+  },
+  {
+    "question": "If a court finds part of this NDA unenforceable, does the rest of the agreement remain valid?",
+    "expected_answer": "Unanswerable. Unlike many contracts, this NDA does not contain an explicit general severability clause addressing what happens if one provision is found unenforceable."
+  },
+  {
+    "question": "What is the maximum notice period GTCR has to designate someone else as its due diligence contact?",
+    "expected_answer": "Unanswerable. The document does not specify a notice period for changing designated contact persons."
+  }
+]

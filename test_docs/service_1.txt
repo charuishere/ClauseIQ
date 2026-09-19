@@ -1,0 +1,725 @@
+EX1A-6 MAT CTRCT
+
+5
+
+ex6_6crowdfundx.htm
+
+EXHIBIT 6.6 SERVICE AGREEMENT
+
+Exhibit 6.6 Service Agreement
+	
+
+Exhibit 6.6 
+
+MASTER SERVICES AGREEMENT
+
+This Master Services Agreement (the "
+Agreement
+") is entered into as of April 4, 2017, (the "
+Effective Date
+") between True Leaf Medicine International, Ltd. ("
+Client
+") and WhoYouKnow LLC, California limited liability company d/b/a CrowdfundX ("
+Consultant
+"). Client and Consultant may be referred to herein as a "
+Party
+" or collectively, the "
+Parties
+."
+
+Statement of Purpose
+
+A.Client desires to retain Consultant to perform "
+Services
+" as may be described in one or more statements of work (each, a "
+Statement of Work
+" or an "
+SOW
+") agreed to by the Parties from time to time; and
+
+B.Consultant undertakes to provide the Services in accordance with the terms and conditions contained herein.
+
+The Parties hereby agree as follows:
+
+Agreement
+
+Services Provided by Consultant
+.
+ The Services that are to be provided by Consultant will be described in one or more Statements of Work as may be agreed upon by the Parties from time to time. Each such Statement of Work must be signed by both Client and Consultant prior to Consultant performing any Services for Client in accordance therewith, and each such Statement of Work will be deemed a part of this Agreement and is hereby incorporated by reference as if set forth fully herein. Each Statement of Work shall specify the nature, location, and duration of the Services, and the compensation to be paid by Client for such Services, as well as the manner in which such Statement of Work may be terminated. In the event of any conflict between this Agreement and any Statement of Work, this Agreement shall control unless the parties override a provision of this Agreement by express reference in a Statement of Work.
+ 
+
+Independent Contractor Status
+.
+ It is expressly agreed that Consultant is acting as an independent contractor in performing the Services. No agent or employee of Consultant shall be deemed to be an employee or agent of Client. None of the benefits provided by Client to its employees, including, without limitation, life, disability, health, and/or profit sharing benefits, if any, shall be available to Consultant or to any agent or employee of Consultant. Consultant will be performing the Services independently of Client and will be solely responsible for determining the manner, means, and timing of the performance of its responsibilities hereunder.
+
+Compensation and Expense Reimbursements
+.
+ The amount and timing of the compensation to be paid by Client to Consultant (the "
+Fees
+"), together with any invoicing requirements, shall be set forth in each Statement of Work.
+
+  
+
+  
+
+Term and Termination
+.
+ This Agreement shall commence on the Effective Date and shall terminate upon the earlier to occur of: (a) the date which is six (6) months following the date on which all work has ceased under any Statement of Work or (b) either Party giving written notice of termination of this Agreement at any time during which no Statement of Work is in effect (either of the foregoing, a "
+Termination
+"). The following provisions shall survive any Termination: [2, 3, 4, 5, 6, 7, 8, 9, 11, 12, and 13].
+
+ 
+
+1
+
+Confidentiality
+.During the course of Consultant performing Services for Client, each Party may be given access to the other Party's trade secrets and proprietary and confidential information relating to the disclosing Party's (and/or its affiliates') business (collectively, "
+Confidential Information
+"). Each Party receiving Confidential Information of the other Party agrees to: (i) protect the discloser's Confidential Information in a reasonable and appropriate manner to the same extent it protects the confidentiality of its own Confidential Information of like kind, but in no event less than a reasonable manner; and (ii) use and reproduce the discloser's Confidential Information only to perform its obligations and exercise its rights pursuant to the Agreement. Recipient may share the discloser's Confidential Information with its employees and third parties that assist recipient in its performance of its obligations and the exercise of its rights pursuant to the Agreement and who are subject to non- disclosure obligations no less restrictive than those set forth herein. The obligations set forth in this Section shall not apply to information that is: (a) publicly known; (b) already known to the recipient; (c) disclosed to recipient by a third party who is not, to recipient's knowledge, under a confidentiality restriction with respect to such Confidential Information; or (d) independently developed by the recipient without reference to any Confidential Information. The disclosure of Confidential Information pursuant to a subpoena or other validly issued administrative or judicial process shall not be a breach of the recipient's obligations, provided that the recipient shall provide prior notice to the discloser of such disclosure if permitted by law. The terms, conditions and content of this Agreement and any SOW are in all respects confidential. Client agrees to not disclose, directly or indirectly, the terms, conditions or content of this Agreement to any third person or entity other than to (i) Client's employees, financial or legal advisors who have a need to be informed of the contents hereof and who are advised and agree to abide by the confidentiality provisions in this Agreement or (ii) as required to comply with any applicable law or court order. Each Party acknowledges and agrees that this Section shall survive any Termination for a period of two (2) years.
+ 
+
+Intellectual Property
+
+6.1. Consultant agrees to and hereby assigns to Client all of Consultant's right, title, and interest (including, without limitation, copyrights, trade secrets and proprietary rights), to any deliverables delivered as part of the Services and paid for in full by Client under this Agreement (collectively, the "
+IP Deliverables
+"), except that Consultant will remain the sole owner of any Pre-existing Works incorporated therein. To the extent applicable, the IP Deliverables shall be deemed to be "works made for hire" under the federal copyright laws. Consultant agrees to give Client reasonable assistance to perfect such assignment of such rights, title and interest, at Client's sole cost and expense.
+
+6.2. The IP Deliverables may contain pre-existing works of Consultant that are of a non-project-specific nature and are generally applicable to Consultant's business (collectively, the "
+Pre-existing Works
+"), and Consultant retains exclusive ownership rights thereto. To the extent that any Pre-existing Works are integrated into any IP Deliverables, Consultant hereby grants to Client a perpetual, worldwide, non-exclusive, paid-up, limited license to use, copy and modify such Pre-existing Works as integrated into such IP Deliverables for the operation of its business in the ordinary course.
+
+  
+
+2
+
+6.3. The Parties acknowledge and agree that any email addresses or other contact information which is aggregated, compiled, or in any manner obtained by Consultant in connection with Consultant's services under this Agreement do not constitute IP Deliverables and may be used in perpetuity by Consultant unless otherwise in conflict with a legal agreement or business arrangement.
+
+Hiring and Solicitation
+.During the period that this Agreement remains in effect and for a period of twelve (12) months after Termination, the Parties agree that they will not hire or solicit the other Party's employees, agents, or subcontractors, either directly or indirectly through the use of third parties, without the prior written consent and approval of the other Party, provided however, that general advertisements and other similar broad forms of solicitation, such as non-directed executive recruiters or placement agencies, shall not constitute direct or indirect solicitation hereunder.
+
+Representations and Warranties
+.
+
+8.1. Consultant represents and warrants to Client that no materials used by Consultant (not including materials supplied by or on behalf of Client) will infringe any third party's rights.
+
+8.2. OTHER THAN THE FOREGOING WARRANTY, CONSULTANT MAKES NO WARRANTIES, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+8.3. Consultant cannot and does not give any guarantee about the results of any of the Services to be provided, and no target set forth in any SOW shall be construed as a statement of guarantee. Client acknowledges and agrees that Client is purchasing services and not results, and any failure of a Campaign to reach its goals will not in and of itself entitle Client to any refund or remedy. Further, Client acknowledges and agrees that if Client does not fully fund a Campaign or if Client terminates a Campaign without allowing it to run in full, the Campaign will not yield any positive results. 
+
+8.4. For the avoidance of doubt, Client acknowledges that Consultant is not a registered broker-dealer under the Securities Exchange Act of 1934, as amended, or any similar state law, that Consultant is not registered as an investment advisor under the Investment Advisers Act of 1930, as amended, or any similar state law, and that Consultant cannot and will not be required to engage in the offer or sale of securities for or on behalf of Client. 
+
+8.5. Client represents and warrants to Consultant as follows:
+
+8.5.1. Client and its professional advisors shall be solely responsible for structuring all securities-related aspects of the Campaign and for conducting any negotiations with prospective investors.
+
+8.5.2. Client shall be solely responsible for compliance with, and shall ensure compliance with, all applicable laws, ordinances, rules and regulations pertaining to its business and any Campaign, including without limitation all applicable securities laws and regulations.
+
+3
+
+8.5.3. All statements made by Client in connection with any Campaign, and all Documents provided by Client to Consultant, will in each case be accurate and complete in all material respects and will not contain any untrue statement of a material fact or omit to state a material fact necessary in order to make the statements therein not misleading, and any projected and pro forma information relating to Client will represent Client's best current estimate of such projected or pro forma information, based on current assumptions and circumstances. Consultant will not be obligated to verify the accuracy and/or adequacy of any such statements or Documents supplied or disclosed to potential investors. All statements and communications which directly or indirectly describe or reference any securities shall be made by Client and not by Consultant, whose role in such regard is limited to marketing and public relations assistance and guidance.
+
+8.5.3.1. "
+Documents
+" means and includes all information furnished to Consultant by or on behalf of Client, including any private placement or financing memorandum, projected and pro forma information, registration statement, tender offer document, financial information, and proxy statement, any amendments or supplements thereto, various corporate reports or filings and any other materials or documents provided by or on behalf of Client for use in connection with the Campaign.
+
+8.6. Client will not make any false or misleading statements in connection with any Campaign with respect to which Consultant renders any Services.
+
+  
+
+  
+
+Acceptance of Services and Deliverables
+. If Client is dissatisfied with or objects to any service or deliverable under this Agreement, including without limitation for any purported failure to conform to any specifications set forth in any Statement of Work, then Client must notify Consultant of such dissatisfaction or objection, in a detailed writing, within ten business days after performance or receipt of the service or deliverable at issue. If Client does not timely provide any such notice, Client shall be deemed to have forever waived any objection or dispute with respect to the service or deliverable at issue. If Client does timely provide any such notice, Consultant will use commercially reasonable efforts to cure any unsatisfactory elements or alleged defects within ten (10) business days after receipt of the notice. Any attempt by Client to withhold payment because of a disputed service or deliverable without first giving Consultant ten (10) business days to cure the alleged defect will constitute a material breach of this Agreement.
+ 
+
+  
+
+  
+
+Insurance
+. Client shall at all times during the term of this Agreement maintain Commercial General Liability and Errors and Omissions insurance each with a limit of not less than $1,000,000 per claim, $2,000,000 annual aggregate with a reputable insurer reasonably satisfactory to Consultant. Client shall forward evidence of such policies to Consultant and shall name Consultant as an additional insured on the policy. 
+
+  
+
+  
+
+Indemnification
+
+11.1. Consultant hereby agrees to defend, indemnify, and hold harmless Client and its shareholders, officers, directors, agents, employees, affiliates, successors, and assigns (collectively, the "
+Client Indemnitees
+"), from any and all claims, suits, causes of action, losses, liabilities, costs, and expenses (including reasonable attorneys' fees and costs) (collectively, "
+Claims
+") resulting from or arising out of or related to any breach of Consultant's representations or warranties under Section 8 of this Agreement.
+
+  
+
+4
+
+11.2. Client hereby agrees to defend, indemnify, and hold harmless Consultant and its shareholders, officers, directors, agents, employees, affiliates, successors, and assigns (collectively, the "
+Consultant Indemnitees
+"), from any and all Claims resulting from or arising out of or related to (a) any materials or intellectual property provided by or on behalf of Client to Consultant; (b) the Services, except to the extent that such Claims result from Consultant's intentional misconduct; (c) any indemnifiable matters as may be set forth in any SOW; or (d) any breach of Client's covenants, representations, or warranties under this Agreement.
+
+Limitation of Liability
+. In no event will any Consultant Indemnitee be liable to any Client Indemnitee for any consequential, indirect, special, incidental, or punitive damages of any kind, including without limitation, lost profits, loss of data, or frustration of business expectations, arising out of or related to this Agreement or the Services, even if any Consultant Indemnitee has been advised of the possibility of such loss or damage. The aggregate liability of all Consultant Indemnitees arising out of or related to this Agreement or the Services, including liability pursuant to the indemnification provisions of this Agreement or otherwise, will not exceed the aggregate amount of payments actually received by Consultant from Client under this Agreement during the twelve month period preceding the first event giving rise to indemnification or liability, except if such liability is caused by a Consultant Indemnitee's intentional misconduct.
+ 
+
+Miscellaneous
+
+13.1. 
+Publicity
+. Client hereby grants Consultant a royalty-free, non-exclusive, worldwide, perpetual, irrevocable, non-assignable (except to a successor-in-interest to Consultant or an affiliate of Consultant), non-sublicensable, right and license to use Client's name, logo, and trademarks, solely for promotional purposes such as in a portfolio, exhibition, advertising, or promotion of Consultant's products or services, and to reference Client on Consultant's website as a client of Consultant.
+
+13.2. 
+Non-Disparagement
+. Client agrees that it shall not disparage or encourage others to disparage Consultant or its business or any of Consultant's past or present employees, contractors, agents, managers, members, products, or services. For purposes of this Agreement, the term "disparage" includes, without limitation, any public comment or statement, and any comment or statement to Consultant's employees or to any individual or entity with whom Consultant has a business relationship (including, without limitation, any employee, contractor, agent, member, current or prospective investor, vendor, supplier, customer, or distributor of Consultant) that would adversely affect in any manner: (i) the conduct of Consultant's business or (ii) the business reputation of Consultant or any of Consultant's past or present employees, contractors, agents, managers, members, products, or services.
+
+13.3. 
+Notices
+. Any notice or communication permitted or required by this Agreement shall be deemed effective when (a) personally delivered or (b) deposited, postage prepaid, return receipt requested, in the first class mail of the United States properly addressed to the appropriate Party at the addresses set forth on the signature page below or (c) upon confirmation of receipt of email to the email address set forth on the signature page below. The addresses below may be changed by giving notice of such change in the manner provided above for giving notice.
+
+5
+
+13.4. 
+Amendment.
+ This Agreement and any Statement of Work hereunder may be amended only by a written agreement executed by both Parties.
+
+13.5. 
+Waiver. 
+ No waiver by either party of any default shall be deemed as a waiver of any prior or subsequent default of the same or other provisions of this Agreement.
+
+13.6. 
+Severability. 
+ If any provision hereof is held invalid or unenforceable by a court of competent jurisdiction, such invalidity shall not affect the validity or operation of any other provision and such invalid provision shall be deemed to be severed from the Agreement.
+
+13.7. 
+Counterparts
+. This Agreement may be executed in one or more counterparts by original or facsimile or PDF signature, and each such counterpart will be deemed an original and will become effective and binding on the Effective Date.
+
+13.8. 
+Binding on Successors and Permitted Assigns
+. This Agreement shall be binding and shall inure to the benefit of Client and Consultant and their respective successors and permitted assigns. Neither Party may assign this Agreement or any of its rights or obligations hereunder except with the prior written consent of the other Party or in connection with a sale of all or substantially all of the assets of the assigning Party, provided that the assigning Party must give reasonable notice of such sale.
+
+13.9. 
+Governing Law
+. This Agreement shall be governed by, construed, and enforced in accordance with the laws of the State of California, without regard to conflict of law provisions.
+
+13.10. 
+Jurisdiction and Venue
+. Each of the Parties hereby submits to the exclusive jurisdiction of the state and federal courts located in Santa Clara County, California, as well as to the jurisdiction of all courts from which an appeal may be taken therefrom, for the purpose of any suit, action, or other proceeding arising out of or with respect to this Agreement or the Services. Any and all objections any Party may have regarding venue in any such court is hereby waived. Each of the Parties hereto also agrees that any final and unappealable judgment resulting from any such suit, action, or other proceeding shall be conclusive and binding on the Parties hereto and that such award or judgment may be enforced in any court of competent jurisdiction, either within or outside the United States.
+
+13.11. 
+Attorneys' Fees and Costs
+. Should any dispute arise out of or in connection with this Agreement or the Services, including, but not limited to, a dispute regarding the enforcement of any of its terms, the prevailing Party in such dispute (as determined by a court of competent jurisdiction or arbitrator, as the case may be) shall be entitled to an award of its reasonable attorneys' fees and other costs incurred in connection with such dispute, in addition to any other relief.
+
+6
+
+13.12. 
+Integration
+. This Agreement (including any Statements of Work that may be agreed upon hereunder) embodies the entire agreement of the Parties hereto respecting the matters within its scope and supersedes any prior or contemporaneous negotiations, correspondence, agreements, proposals or understandings relating to the subject matter hereof. There are no representations, warranties, or agreements, whether express or implied, or oral or written, with respect to the subject matter hereof, except as set forth herein.
+
+  
+
+[
+signatures on following page
+]
+
+7
+
+The Parties hereby execute this Agreement as of the Effective Date.
+
+CLIENT
+:
+
+  
+
+TRUE LEAF MEDICINE INTERNATIONAL, LTD.
+
+  
+
+ /s/ Darcy Bomford
+
+___________________________
+
+ By: Darcy Bomford
+
+ Its: CEO
+
+CONSULTANT
+:
+
+  
+
+WHOYOUKNOW LLC, DBA CROWDFUNDX
+
+  
+
+ /s/ Darrne Marble
+
+___________________________
+
+ By: Darren Marble
+
+ Its: CEO
+
+8
+
+Statement of Work
+
+This Statement of Work ("
+SOW
+") is entered into pursuant to that certain Master Services Agreement (the "
+Agreement
+") entered into as of April 4, 2017 (the "
+Effective Date
+") between True Leaf Medicine International, Ltd. ("
+Client
+") and WhoYouKnow LLC, California limited liability company d/b/a CrowdfundX ("
+Consultant
+"). Client and Consultant are hereinafter sometimes collectively referred to as the "
+Parties"
+.
+
+Summary Description
+:
+
+Client through its wholly-owned subsidiary 'True Leaf Pet', has entered the $104.9 billion global pet care industry with a line of hemp-focused pet chews and supplements marketed through natural pet health and veterinary channels in Canada, the United States and Europe. Client has also filed an application under Health Canada's Access to Cannabis for Medical Purposes Regulations (ACMPR) to become a Canadian licensed producer through its 'True Leaf Medicine' subsidiary. It has passed through the preliminary and enhanced screening process of Health Canada's review and is currently awaiting security clearance and 'pre-licensing inspection' approval.
+
+Client intends to launch a strategic digital marketing campaign(the "
+Campaign
+") on its Owned & Operated platform (the "
+Platform
+")using the Katapult backend to build brand recognition and awareness and to gain access to new Market Participants.
+
+Client has shared its preliminary crowdfunding objectives with Consultant and has invited Consultant to propose this SOW for Consultant to manage the planning, public relations, and marketing of Client's Campaign.
+
+Client's objectives for the Campaign are as follows:
+
+Build brand recognition and awareness for the Client's company and gain access to new market participants, including potential customers, vendors, partners, and investors (the "
+Market Participants
+").
+
+Raise $3M from prospective accredited and unaccredited investors inclusive of offline efforts with institutional and strategic sources of capital.
+
+Build an online audience of Market Participants that can be carried beyond the Campaign.
+
+Generate strategic and tactical press coverage for Client.
+
+9
+
+Project Scope
+:
+
+The following activities are included within the scope of the project and will be managed and monitored by Consultant.
+
+Phase 1: Campaign Management
+
+Branding and Advertising Strategy
+
+Identify all team members, assign roles, responsibilities and communication plan
+
+Evaluate Client's value proposition and assess target audiences for Campaign
+
+Produce compelling themes (including art and copy) to consider as a foundation
+
+Create an integrated PR & Marketing strategy utilizing selected theme
+
+Insure all assets are compliant with the True Leaf brand
+
+Campaign Planning
+
+Create Google Drive folder that will serve as a dashboard for project collaboration
+
+Evaluate marketing opportunities involving Client's founders, partners and sponsors
+
+Generate story ideas and hooks to pitch the media and press partners
+
+Social Media Marketing:
+
+Manage Client's Facebook and Twitter and Instagram channels
+
+Bi-weekly reviews/posting on all accounts to grow Client's online audience
+
+Use of custom content, contests and calls to action to drive engagement
+
+Monthly reporting of key metrics including fan base, reach, and growth
+
+Insure UTM codes generated for all digital marketing for tracking purposes with broker-dealer
+
+Campaign Page Design
+
+Design and develop Campaign brand, themes, and key art
+
+Draft FAQs and assist Client with drafting updates in advance of launch
+
+Collateral Design
+
+Provide detailed graphics and branding for Campaign Page
+
+Create digital posters and promotional materials as part of branding strategy
+
+Design graphics for major Campaign updates
+
+Design Facebook/Twitter/Instagram graphics (backgrounds, avatars, countdowns)
+
+Strategic & Tactical PR - Soft Launch
+
+Identify and target high value press outlets
+
+Create a detailed traditional and social media marketing editorial schedule
+
+Draft press release, offer exclusive coverage, follow-up with mass promotion
+
+Crowdfunding Video Design and Production
+
+Determine video style, look and feel based on target audience and theme
+
+Write, revise, and finalize script for video; attach talent as needed
+
+Produce 2 minute video with a specialized crowdfunding video production team
+
+Edit video to incorporate strong imagery and music to inspire target audience
+
+10
+
+Phase 1: Deliverables
+
+Google Drive folder 
+
+Twenty (20) Campaign graphics
+
+Detailed marketing plan including:
+
+ 
+
+Traditional PR
+
+Blog outreach
+
+Social media marketing
+
+Email marketing
+
+Digital marketing
+
+Advocate marketing
+
+Media buying strategy
+
+Weekly campaign progress reports
+
+Campaign Video
+
+Phase 2: Reg A+ Live Offer
+
+Strategic & Tactical PR 
+
+Continue execution of integrated PR strategy
+
+Manage PR calendar incorporating launch and offline events
+
+Identify, target, and pitch Pet, Cannabis, Business and Investment blogs
+
+Coordinate media interviews and events with Client executives 
+
+Provide guidance on Campaign messaging for interviews
+
+Maintain tracking system
+
+Digital Media Buying
+
+Work with Client to evaluate Campaign's media buying needs
+
+Prepare media plan options, analyses, and recommendations
+
+Implement plan and maintain budget control throughout the process
+
+Phase 2: Deliverables
+
+Weekly Campaign status reports, including:
+
+ 
+
+Traffic and ROI analytics
+
+Detailed press summary
+
+Milestones summary
+
+Issues log 
+
+Weekly media buying Campaign reports
+
+11
+
+Key Assumptions
+:
+
+Consultant and Client will share login credentials to its Platform and online channels. Consultant agrees not to disclose, directly or indirectly, any confidential or proprietary information related to these accounts to any third party or entity.
+
+Client acknowledges that any bugs, downtime, or other unforeseen technical issues with the Platform could cause the Campaign to fail to meet its target objectives.
+
+Client will manage all communications with investors or regarding any investment in the Company, with Consultant assisting as requested with marketing and public relations guidance. Client shall be the party making all statements that promote or describe any securities.
+
+Consultant will lead the production in partnership with client of an HD crowdfunding video.
+
+Consultant will manage Client's digital media buying which may include Sponsored Media, Facebook Lookalike Audiences, Paid Influencer Marketing or other paid media channels.
+
+Client is responsible for any Platform and/or Broker-Dealer fees associated with the Campaign. 
+
+Client acknowledges that Consultant is only providing resources outlined below in Project Staffing section. Any additional resources requested required by Client will be procured at Client's discretion, cost and risk.
+
+The fees for services described in this proposal are based on the current scope. If the scope of work changes, a change order(s) will be issued to account for such price changes.
+
+12
+
+Project Staffing
+:
+
+Consultant's proposed team includes an Executive Sponsor, Account Manager, Campaign Strategist & Crowdfunding Hacker, Art Director, PR and Media Outreach Expert, Social Media Marketing Expert, Media Buyer and Video Production Team as needed. Consultant will identify and attach qualified experts who will provide the Services.The primary roles are described below.
+
+Consultant's Account Manager will be available to assist Client during the Initial Period (defined below), participating in up to eight (8) separate hour-long conference calls or GoToMeeting remote conferences each month, and will respond promptly to phone calls and emails. Consultant's Account Manager will act as Client's single point of contact during the project and will liaise with Consultant personnel as needed on behalf of Client.
+
+Campaign Management Resources:
+
+Executive Sponsor:
+ Responsible for the business success of the project, providing leadership on Campaign planning, execution and overall customer satisfaction. Work directly with Client to mitigate project risk and focus on realization of Campaign benefits. Available to Client on as-needed basis.
+
+Account Manager:
+ Responsible for day-to-day oversight of team management and task execution. The Account Manager will monitor project progress, identifying and resolving project issues and quality assurance reviews of any project deliverables.
+
+Campaign Strategist & Crowdfunding Hacker
+:
+ Responsible for designing the overall Campaign strategy, branding, marketing, and execution. This resource will set the tone of the Campaign and the approach to grow the base of prospective Investors.
+
+Art Director:
+ Responsible for implementing Campaign branding, crowdfunding page design, collateral design, and all visual content for social media and content marketing.
+
+PR & Media Outreach Expert:
+ Responsible for PR. This resource will identify and target Pet, Cannabis, Business and Investment outlets to generate PR coinciding with the launch of the Campaign.
+
+Social Media Marketing Expert:
+ This resource will manage Client's social media accounts. Responsible for content creation, approvals, posting on behalf of Client, and audience engagement.
+
+Media Buyer:
+Thisresource will design and manage Client's digital media buying strategy and execution. Responsible for ad design and optimizing marketing spend by serving ads to target audiences.
+
+Video Production Team:
+This team is responsible for the supervision, production, editing and scoring of the primary crowdfunding video, which will be shot in HD.
+
+13
+
+Project Schedule
+:
+
+This SOW will begin on the Effective Date and continue for a minimum of four (4) months (the "Initial Period"). Phase 1, the Campaign Management phase, is anticipated to launch April 5, 2017, and will run for one sixty-one (61) days. Phase 2, the Reg A+ Live Offer portion of the Campaign, is anticipated to launch on June 5, 2017 and will run for sixty-one (61) days. The timeline for the project is represented in Exhibit A below:
+
+Exhibit A - Project Timeline (2017- 2017)
+
+Apr. 5 - May. 4 
+
+May 5
+
+- Jun. 4
+
+Jun. 5
+
+- Jul. 4 
+
+Jul. 5
+
+- Aug. 5 
+
+Campaign Management 
+
+X
+
+X
+
+X
+
+X
+
+Reg A+ Live Offer
+
+X
+
+X
+
+ In the event that Client wants to extend either the Campaign Management and Reg A+ Live Offer portion of the Campaign, the term shall be extended on a month-to-month basis as may be mutually agreed in writing by the parties, and for additional fees in the amount of $35,000 per month for Campaign Management and a 20% commission on any Paid Media Spend. Any other fees must be agreed to by the parties in advance.
+
+Fees
+:
+
+The fees for the Services outlined in this SOW are a flat 
+$225,000.
+
+Service
+
+# of Months
+
+Monthly Rate
+
+Fees
+
+Campaign Management 
+
+4
+
+$35,000
+
+$140,000
+
+Paid Media - Ad Spend*
+
+4
+
+$15,000
+
+$60,000
+
+Video Production**
+
+NA
+
+NA
+
+$25,000
+
+Total
+
+$225,000
+
+Invoicing:
+
+ Client agrees to promptly pay Consultant: (a) $56,250 within five business days after the Effective Date, (b); $56,250 on May 1, 2017, (c); $56,250 on June 1, 2017, and (d); $56,250 on July 1, 2017. Within the first four (4) weeks after the Effective Date, Consultant shall provide to Client a plan for use of the Paid Media - Ad Spend budget. After Client has approved such plan in writing, Consultant shall have full discretion over all expenditures of the Paid Media - Ad Spend budget, provided that such expenditures conform to the approved plan.
+
+*The Paid Media - Ad Spend budget for $60,000 is a recommended starting budget to ensure maximum visibility for Client's Campaign. Consultant will provide receipts to Client for all Ad Spend. Client will have option to engage Consultant for additional Paid Media services based on initial results, and the parties must agree in writing to any additional budget. Any additional media spend will have an additional fee of 20% of spend to Consultant.
+
+**The 'Video Production' scope for $25,000 is outlined in Exhibit B.
+
+14
+
+Overdue payments shall be subject to the lower of (i) a ten percent (10%) annualized finance charge, or (ii) the highest amount permitted by law, plus any related collection and legal costs incurred by us.
+
+Form of Payments
+:
+
+All payments to be made hereunder shall be by wire transfer to an account designated by Consultant.
+
+SOW Term and Termination; Survival; Indemnification
+:
+
+This SOW will expire at the conclusion of the Campaign unless the parties agree in writing to extend the term.
+
+Either party may terminate this SOW at any time, without cause or penalty, upon at least fifteen (15) business days' written notice to the other party. In the event Client terminates this SOW or if Consultant terminates this SOW for Client's non-cooperation with the Campaign or material breach after having been given at least 10 days to cure, then Consultant shall be entitled to retain all sums previously paid under this SOW, including any unspent Media Buying Budget. In the event Client terminates this SOW because of a material breach by Consultant which has not been cured within 10 days after Consultant's receipt of written notice thereof, or in the event Consultant terminates this SOW other than for Client's non-cooperation or material breach, then Consultant shall be entitled to retain a pro-rated portion of the Campaign Management fees and any spent or committed media budget and reimbursable costs.
+
+Notwithstanding any expiration or termination of this SOW, any obligations of a party which by their nature are contemplated to occur after the conclusion of the Campaign shall survive the expiration or termination of this SOW. Such obligations include, without limitation, limitations of liability, indemnification obligations, and payment owed to Consultant.
+
+The parties hereto have caused this SOW to be executed as of the date first written above:
+
+TRUE LEAF MEDICAL INTERNATIONAL, LTD. 
+
+WHOYOUKNOW LLC, DBA CROWDFUNDX
+
+By:
+ 
+/s/ Darcy Bomford_
+_______________
+
+ Name: Darcy Bomford
+
+ Title: CEO
+
+By:
+ 
+/s/ _Darren Marble
+____________________
+
+ Name: Darren Marble
+
+ Title: CEO
+
+15
+
+Exhibit B:
+ - 'Video Production'
+
+"TRUE LEAF"
+
+PRE-PRODUCTION
+
+Production Planning and Coordination
+
+ Staffing
+
+ Location Scouting
+
+ Visual Effect Previsualization ("Previs")
+
+------------------------------------------------------------------------------------------------------------
+
+SHOOTING LABOR
+
+Camera, Lighting, Production Crew
+
+ Sound Crew
+
+ Specialty Equipment Operators
+
+ Camera Dolly Operator or Steadicam
+
+Visual FX Supervisor
+
+ Standard Support Crew
+
+------------------------------------------------------------------------------------------------------------
+
+EQUIPMENT COST
+
+Camera
+
+Arri Alexa Digital Cinema Camera
+
+ Location sound recordists
+
+ Lighting to be coordinated with event lighting
+
+Camera Dolly, Steadicam, or Camera Crane
+
+------------------------------------------------------------------------------------------------------------
+
+SET OPERATION
+
+Meals
+
+ Parking/Gas/Tolls
+
+ Craft Service
+
+ Mileage
+
+ Professional Location Protection
+
+-----------------------------------------------------------------------------------------------------------
+
+SUPPLIES, MATERIALS, INSURANCE
+
+-----------------------------------------------------------------------------------------------------------
+
+HARD DRIVES
+
+------------------------------------------------------------------------------------------------------------
+
+POST PRODUCTION
+
+Picture Edit
+
+ Graphics
+
+ Sound Mix
+
+ Professional Color Grading
+
+ Final Delivery
+
+16

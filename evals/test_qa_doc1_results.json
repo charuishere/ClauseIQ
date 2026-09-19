@@ -1,0 +1,128 @@
+{
+  "doc_id": "doc1",
+  "hit_rate_pct": 90.0,
+  "passed": 18,
+  "total": 20,
+  "details": [
+    {
+      "question": "If I quit because they slashed my salary in half, do I still get my severance pay?",
+      "expected_answer": "Yes, this counts as a 'Good Reason' termination, so you are entitled to twelve months of severance.",
+      "verdict": "PASS",
+      "reason": "The retrieved context explicitly states that if the termination is by the company without cause or by the executive for good reason, the executive is entitled to severance pay, which is payable in substantially equal installments over twelve (12) months."
+    },
+    {
+      "question": "Do I get to keep my severance if I refuse to sign the release form?",
+      "expected_answer": "No, you must sign a release and it must become non-revocable within 60 days of termination.",
+      "verdict": "PASS",
+      "reason": "The retrieved context explicitly states that the Executive shall not be entitled to receive any Severance unless the Release has become fully enforceable and non-revocable prior to the sixtieth (60th) day after the date of termination, which directly supports the expected answer."
+    },
+    {
+      "question": "Can I be fired immediately without any warning if I'm charged with a felony?",
+      "expected_answer": "Yes, felony charges are 'Cause' and do not require a 10-day cure period.",
+      "verdict": "FAIL",
+      "reason": "The retrieved context does not mention anything about being charged with a felony as a reason for immediate termination without warning. The context only discusses termination for cause, which includes material failure to perform duties, gross negligence, fraud, etc., but does not specifically address felony charges."
+    },
+    {
+      "question": "If I get hit by a bus and can't work for 4 months, can they fire me?",
+      "expected_answer": "Yes, they can terminate you for Disability if you are unable to work for more than 90 days in a 365 day period.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts needed to answer the question. It explicitly states that the company can terminate the agreement due to disability if the executive is unable to perform their duties for more than ninety (90) days during any consecutive three hundred and sixty-five (365) day period."
+    },
+    {
+      "question": "If I develop an app on my personal laptop over the weekend, does the company own it?",
+      "expected_answer": "No, unless the app relates to the company's business or resulted from work you performed for them.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts needed to answer the question. It explicitly states that inventions developed entirely on the Executive's own time without using the Company's equipment, supplies, facilities, or trade secret information do not belong to the company, unless they relate to the company's business or result from work performed for the company."
+    },
+    {
+      "question": "Am I allowed to serve on the board of my friend's startup while working here?",
+      "expected_answer": "Only if you get prior written approval from the Board and it doesn't compete with the company.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts from the expected answer, including the requirement for prior written approval from the Board and the condition that the activity must not compete with the company."
+    },
+    {
+      "question": "If the company owes me a huge tax penalty because of a 'change in control', do they cover the extra tax?",
+      "expected_answer": "No, there is no gross-up. Payments are reduced to avoid the tax if it gives you more money after-tax.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts that the company will reduce the payments to avoid the tax if it gives the Executive more money after-tax, and that the Executive is solely responsible for the payment of all personal tax liability incurred as a result of the payments and benefits."
+    },
+    {
+      "question": "Can I use company trade secrets in a lawsuit if they retaliate against me for whistleblowing?",
+      "expected_answer": "Yes, you can give them to your attorney and file them under seal.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts needed to answer the question. It explicitly states that if the Executive files a lawsuit for retaliation by any member of the Company Group for reporting a suspected violation of law, the Executive may disclose the trade secrets of any such member of the Company Group to the Executive\u2019s attorney and use the trade secret information in the court proceeding if the Executive files any document containing the trade secret under seal and does not disclose the trade secret except pursuant to court order."
+    },
+    {
+      "question": "Do I get a guaranteed bonus every year, or is it based on performance?",
+      "expected_answer": "It is not guaranteed; it is based on the performance of the company as determined by the Compensation Committee.",
+      "verdict": "PASS",
+      "reason": "The retrieved context clearly states that the bonus is based on the performance of the Company Group, as determined by the Compensation Committee, which directly supports the expected answer."
+    },
+    {
+      "question": "If I accidentally disclose confidential info because I was subpoenaed, can the company sue me?",
+      "expected_answer": "No, provided you give the company prompt written notice so they can get a protective order.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key fact that if the Executive is legally required to disclose confidential information, they must provide prompt written notice to the company so it can seek a protective order. This directly supports the expected answer that the company cannot sue if the Executive provides prompt notice."
+    },
+    {
+      "question": "Does this agreement provide me with a company car?",
+      "expected_answer": "Unanswerable. The document does not mention a company car.",
+      "verdict": "PASS",
+      "reason": "The retrieved context does not contain a clear, direct answer to the question about whether the agreement provides a company car."
+    },
+    {
+      "question": "How many sick days do I get per year?",
+      "expected_answer": "Unanswerable. The document does not specify a set number of sick days, only a Disability threshold.",
+      "verdict": "PASS",
+      "reason": "The retrieved context does not contain a clear, direct answer to the question about the number of sick days per year."
+    },
+    {
+      "question": "If my manager sexually harasses me and I quit, is that considered 'Good Reason' for severance?",
+      "expected_answer": "Unanswerable. Sexual harassment is not explicitly listed as Good Reason (only salary reduction, title diminution, or material breach).",
+      "verdict": "PASS",
+      "reason": "The retrieved context does not contain a clear, direct answer to the question about whether sexual harassment by a manager constitutes 'Good Reason' for severance. The context lists specific events that qualify as 'Good Reason' but does not mention sexual harassment."
+    },
+    {
+      "question": "Can they fire me if I post something political on my personal Twitter account?",
+      "expected_answer": "Yes, if the company determines it is reasonably likely to injure the reputation or business of the company.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts needed to answer the question. It explicitly states that an employee can be fired if their actions are 'reasonably likely to injure the reputation or business of any member of the Company Group', which directly supports the expected answer."
+    },
+    {
+      "question": "Will they reimburse my relocation expenses if I move to Connecticut?",
+      "expected_answer": "Unanswerable. The document does not mention relocation expenses.",
+      "verdict": "PASS",
+      "reason": "The retrieved context does not contain a clear, direct answer to the question about reimbursement of relocation expenses if the employee moves to Connecticut. The context discusses reimbursement of business-related expenses but does not address relocation expenses specifically."
+    },
+    {
+      "question": "Is there a non-compete clause that prevents me from working for a rival after I leave?",
+      "expected_answer": "Unanswerable. The provided document does not contain an explicit post-employment non-compete clause.",
+      "verdict": "PASS",
+      "reason": "The retrieved context does not contain a clear, direct answer to the question about a non-compete clause preventing the executive from working for a rival after leaving."
+    },
+    {
+      "question": "If I quit my job because I found a better one, how much notice do I have to give?",
+      "expected_answer": "You must give sixty (60) days prior written notice.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key fact that the Executive must provide sixty (60) days' prior written notice to the Company when terminating the employment without Good Reason, which directly supports the expected answer."
+    },
+    {
+      "question": "Do I get to keep my 15,000 shares of restricted stock if I get fired for stealing?",
+      "expected_answer": "No, you must be continuously employed through the vesting dates; if fired for Cause, unvested shares are forfeit.",
+      "verdict": "FAIL",
+      "reason": "The retrieved context does not contain specific information about the forfeiture of unvested shares if an employee is fired for Cause, which is a key fact needed to answer the question."
+    },
+    {
+      "question": "If they fire me without cause, do I get my severance in one lump sum?",
+      "expected_answer": "No, it is payable in substantially equal installments over twelve (12) months.",
+      "verdict": "PASS",
+      "reason": "The retrieved context explicitly states that the severance is payable in substantially equal installments over twelve (12) months, which directly supports the expected answer."
+    },
+    {
+      "question": "Are my medical insurance premiums fully paid by the company?",
+      "expected_answer": "Unanswerable. The document says you can participate in medical plans, but does not state the company pays 100% of the premiums.",
+      "verdict": "PASS",
+      "reason": "The retrieved context does not contain a clear, direct answer to the question about medical insurance premiums being fully paid by the company."
+    }
+  ]
+}

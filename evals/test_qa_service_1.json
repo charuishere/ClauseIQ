@@ -1,0 +1,102 @@
+[
+  {
+    "question": "How much is the total flat fee for this campaign under the Statement of Work?",
+    "expected_answer": "$225,000."
+  },
+  {
+    "question": "How is the $225,000 fee broken down by service?",
+    "expected_answer": "$140,000 for Campaign Management, $60,000 for Paid Media / Ad Spend, and $25,000 for Video Production."
+  },
+  {
+    "question": "When is the first invoice payment due after the agreement starts?",
+    "expected_answer": "$56,250 within five business days after the Effective Date."
+  },
+  {
+    "question": "If Client wants to extend the Campaign Management phase beyond the initial term, what does it cost?",
+    "expected_answer": "An additional $35,000 per month, plus a 20% commission on any Paid Media Spend."
+  },
+  {
+    "question": "What happens to overdue invoice payments?",
+    "expected_answer": "They accrue a finance charge of the lower of a 10% annualized rate or the highest amount permitted by law, plus collection and legal costs."
+  },
+  {
+    "question": "How much notice does either party need to give to terminate the Statement of Work without cause?",
+    "expected_answer": "At least fifteen (15) business days' written notice."
+  },
+  {
+    "question": "If Client is unhappy with a deliverable, how long do they have to formally object before losing the right to dispute it?",
+    "expected_answer": "Ten (10) business days after performance or receipt of the deliverable."
+  },
+  {
+    "question": "Once Client objects to a deliverable in writing, how long does Consultant have to fix it?",
+    "expected_answer": "Ten (10) business days after receipt of the notice."
+  },
+  {
+    "question": "Does Consultant own the email addresses and contact lists it collects while running the campaign?",
+    "expected_answer": "Yes, contact information gathered is not considered an IP Deliverable, and Consultant may use it in perpetuity."
+  },
+  {
+    "question": "If Client stops paying, does Consultant still have to hand over the marketing deliverables it created?",
+    "expected_answer": "IP Deliverables are only assigned to Client once they've been paid for in full, so unpaid deliverables would not yet be assigned."
+  },
+  {
+    "question": "How long after the agreement ends are both parties barred from poaching each other's employees?",
+    "expected_answer": "Twelve (12) months after Termination."
+  },
+  {
+    "question": "What insurance coverage limits must Client maintain during the agreement?",
+    "expected_answer": "Commercial General Liability and Errors & Omissions insurance, each with at least $1,000,000 per claim and $2,000,000 annual aggregate."
+  },
+  {
+    "question": "Is Consultant liable for lost profits if the marketing campaign underperforms?",
+    "expected_answer": "No, Consultant is not liable for consequential, indirect, special, incidental, or punitive damages, including lost profits."
+  },
+  {
+    "question": "What's the maximum amount Consultant could be liable for under this agreement?",
+    "expected_answer": "The aggregate amount of payments Consultant actually received from Client in the 12 months before the event giving rise to liability."
+  },
+  {
+    "question": "Is Consultant guaranteeing the crowdfunding campaign will hit its $3 million fundraising goal?",
+    "expected_answer": "No, Consultant makes no guarantee about results; Client acknowledges it is purchasing services, not results."
+  },
+  {
+    "question": "Can Consultant use Client's logo in its own marketing materials and portfolio?",
+    "expected_answer": "Yes, Client grants Consultant a royalty-free, worldwide, perpetual license to use Client's name, logo, and trademarks for promotional purposes."
+  },
+  {
+    "question": "What state's courts have jurisdiction over disputes under this agreement?",
+    "expected_answer": "The state and federal courts located in Santa Clara County, California."
+  },
+  {
+    "question": "Is WhoYouKnow LLC registered as a broker-dealer or investment advisor?",
+    "expected_answer": "No, Consultant explicitly represents that it is not a registered broker-dealer or investment advisor."
+  },
+  {
+    "question": "How long does the confidentiality obligation survive after the agreement terminates?",
+    "expected_answer": "Two (2) years."
+  },
+  {
+    "question": "What's the minimum duration of this Statement of Work engagement?",
+    "expected_answer": "A minimum of four (4) months, referred to as the Initial Period."
+  },
+  {
+    "question": "If Client terminates the SOW because Consultant materially breached and didn't fix it in time, what does Consultant get to keep?",
+    "expected_answer": "Only a pro-rated portion of the Campaign Management fees and any spent or committed media budget and reimbursable costs."
+  },
+  {
+    "question": "Does this agreement give Consultant any equity or ownership stake in Client's company?",
+    "expected_answer": "Unanswerable. The Fees section describes flat fees and a media spend commission, not any equity or ownership stake."
+  },
+  {
+    "question": "What is the name of the specific bank Consultant uses to receive wire transfers?",
+    "expected_answer": "Unanswerable. The document only says payments are made by wire transfer; it doesn't name Consultant's bank."
+  },
+  {
+    "question": "Can Client publicly disparage Consultant if it's unhappy with the campaign results?",
+    "expected_answer": "No, Client agrees not to disparage or encourage others to disparage Consultant, its business, employees, or products/services."
+  },
+  {
+    "question": "If Client and Consultant disagree about whether a payment is owed, can Client just withhold payment without warning?",
+    "expected_answer": "No, withholding payment over a disputed deliverable without first giving Consultant 10 business days to cure the alleged defect is itself a material breach."
+  }
+]

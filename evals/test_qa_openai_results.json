@@ -1,0 +1,128 @@
+{
+  "doc_id": "openai",
+  "hit_rate_pct": 90.0,
+  "passed": 18,
+  "total": 20,
+  "details": [
+    {
+      "question": "If I use ChatGPT to write a book, does OpenAI own the copyright?",
+      "expected_answer": "No, OpenAI assigns all right, title, and interest in the Output to you.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key fact that 'We hereby assign to you all our right, title, and interest, if any, in and to Output,' which directly supports the expected answer that 'No, OpenAI assigns all right, title, and interest in the Output to you.'"
+    },
+    {
+      "question": "Can I use ChatGPT's answers to train my own AI model and sell it?",
+      "expected_answer": "No, you cannot use the Output to develop competing models.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key fact that you cannot use Output to develop models that compete with OpenAI, which directly supports the expected answer."
+    },
+    {
+      "question": "If I use my company email to sign up, can my boss see my chat history?",
+      "expected_answer": "Yes, the organization's administrator can control the account and access your Content.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key information that if you create an account using an email address owned by an organization, the account may be added to the organization's business account, and the organization\u2019s administrator will be able to control your account, including being able to access Content and restrict or remove your access to the account."
+    },
+    {
+      "question": "If ChatGPT gives me bad medical advice and I get hurt, can I sue OpenAI for millions?",
+      "expected_answer": "No, liability is limited to $100 or what you paid in the last 12 months, and you shouldn't rely on it for medical advice.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts from the expected answer, including the limitation of liability to $100 or what you paid in the last 12 months, and the disclaimer that the service should not be relied upon for medical advice."
+    },
+    {
+      "question": "Can I join a massive class action lawsuit against OpenAI if they leak my data?",
+      "expected_answer": "No, you waive the right to class actions and must resolve disputes individually through arbitration.",
+      "verdict": "PASS",
+      "reason": "The retrieved context explicitly states that 'You and OpenAI agree that Disputes must be brought on an individual basis only, and may not be brought as a plaintiff or class member in any purported class, consolidated, or representative proceeding. Class arbitrations, class actions, and representative actions are prohibited.' This directly supports the expected answer that you waive the right to class actions and must resolve disputes individually through arbitration."
+    },
+    {
+      "question": "If I haven't logged into my free account for two years, will they delete it?",
+      "expected_answer": "Yes, they can terminate accounts that have been inactive for over a year if they are not paid.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts needed to answer the question. It explicitly states that accounts can be terminated if they have been inactive for over a year and the user does not have a paid account."
+    },
+    {
+      "question": "Is there any way I can opt out of the mandatory arbitration rule?",
+      "expected_answer": "Yes, by filling out an opt-out form within 30 days of creating your account.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key information that you may opt out of arbitration within 30 days of account creation by filling out a form, which directly supports the expected answer."
+    },
+    {
+      "question": "Will OpenAI use my private prompts to train their future models?",
+      "expected_answer": "Yes, they may use your Content to train models, unless you specifically opt out.",
+      "verdict": "FAIL",
+      "reason": "The retrieved context does not contain information that directly supports the expected answer regarding the use of private prompts to train future models unless specifically opted out."
+    },
+    {
+      "question": "If I find a bug, am I allowed to reverse engineer the app to see how it works?",
+      "expected_answer": "No, you cannot reverse engineer or decompile the services unless law strictly prohibits this restriction.",
+      "verdict": "PASS",
+      "reason": "The retrieved context explicitly states that you may not reverse engineer, decompile, or discover the source code or underlying components of the services, except where prohibited by applicable law. This directly supports the expected answer."
+    },
+    {
+      "question": "If I'm living in London, do these exact terms apply to me?",
+      "expected_answer": "No, users in the UK are governed by a different set of terms.",
+      "verdict": "FAIL",
+      "reason": "The retrieved context does not contain information that directly supports the expected answer. The context mentions that users in the UK are governed by these terms, but it does not explicitly state that users in the UK are governed by a different set of terms."
+    },
+    {
+      "question": "Does ChatGPT keep my credit card information on file forever?",
+      "expected_answer": "Unanswerable. The Terms of Use do not state how long credit card info is kept.",
+      "verdict": "PASS",
+      "reason": "The retrieved context does not contain a clear, direct answer to the question about whether ChatGPT keeps credit card information on file forever."
+    },
+    {
+      "question": "What happens if I try to scrape data from ChatGPT automatically using a python script?",
+      "expected_answer": "You may not automatically or programmatically extract data or Output.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts needed to answer the question. It explicitly states that you may not automatically or programmatically extract data or Output from the services."
+    },
+    {
+      "question": "Can I use ChatGPT if I am 15 years old?",
+      "expected_answer": "Yes, but you must have your parent or legal guardian's permission if you are under 18.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key information that a user must be at least 13 years old to use the services and if under 18, must have a parent or legal guardian's permission."
+    },
+    {
+      "question": "If OpenAI increases the price of my ChatGPT Plus subscription, can they just charge my card immediately?",
+      "expected_answer": "No, they will give at least 30 days' notice, taking effect on the next renewal.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts from the expected answer, including that any price increase will take effect on the next renewal and that users will be given at least 30 days' notice."
+    },
+    {
+      "question": "Will OpenAI refund me if they randomly decide to shut down the service completely?",
+      "expected_answer": "Yes, they will give a refund for any prepaid, unused Services.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key information that if OpenAI decides to discontinue their services, they will provide a refund for any prepaid, unused services, which directly supports the expected answer."
+    },
+    {
+      "question": "Is OpenAI's API governed by these exact same Terms of Use?",
+      "expected_answer": "No, Business Terms govern APIs.",
+      "verdict": "PASS",
+      "reason": "The retrieved context explicitly states that 'Our Business Terms govern use of ChatGPT Enterprise, our APIs, and our other services for businesses and developers.' This directly supports the expected answer that the API is governed by Business Terms, not the Terms of Use."
+    },
+    {
+      "question": "If I live in North Korea, can I use ChatGPT?",
+      "expected_answer": "No, services cannot be used in a U.S. embargoed country.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts needed to answer the question. It explicitly states that the services may not be used in or for the benefit of, or exported or re-exported to any U.S. embargoed country or territory, which directly supports the expected answer that services cannot be used in a U.S. embargoed country."
+    },
+    {
+      "question": "If another user generates the exact same poem as me, can I sue them for copying my Output?",
+      "expected_answer": "No. Output may not be unique and the assignment does not extend to other users' output.",
+      "verdict": "PASS",
+      "reason": "The retrieved context contains the key facts needed to answer the question. It explicitly states that output may not be unique and the assignment of rights does not extend to other users' output."
+    },
+    {
+      "question": "What is OpenAI's phone number for customer support?",
+      "expected_answer": "Unanswerable. A phone number is not provided in the Terms.",
+      "verdict": "PASS",
+      "reason": "The retrieved context does not contain a clear, direct answer to the question about OpenAI's phone number for customer support."
+    },
+    {
+      "question": "If I share my account password with my sister so she can use DALL-E, is that allowed?",
+      "expected_answer": "No, you may not share your account credentials.",
+      "verdict": "PASS",
+      "reason": "The retrieved context explicitly states that you may not share your account credentials or make your account available to anyone else, which directly supports the expected answer that sharing your account password is not allowed."
+    }
+  ]
+}

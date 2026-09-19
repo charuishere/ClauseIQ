@@ -1,0 +1,126 @@
+[
+  {
+    "question": "If I quit because they slashed my salary in half, do I still get my severance pay?",
+    "expected_answer": "Yes, this counts as a 'Good Reason' termination, so you are entitled to twelve months of severance."
+  },
+  {
+    "question": "Do I get to keep my severance if I refuse to sign the release form?",
+    "expected_answer": "No, you must sign a release and it must become non-revocable within 60 days of termination."
+  },
+  {
+    "question": "Can I be fired immediately without any warning if I'm charged with a felony?",
+    "expected_answer": "Yes, felony charges are 'Cause' and do not require a 10-day cure period."
+  },
+  {
+    "question": "If I get hit by a bus and can't work for 4 months, can they fire me?",
+    "expected_answer": "Yes, they can terminate you for Disability if you are unable to work for more than 90 days in a 365 day period."
+  },
+  {
+    "question": "If I develop an app on my personal laptop over the weekend, does the company own it?",
+    "expected_answer": "No, unless the app relates to the company's business or resulted from work you performed for them."
+  },
+  {
+    "question": "Am I allowed to serve on the board of my friend's startup while working here?",
+    "expected_answer": "Only if you get prior written approval from the Board and it doesn't compete with the company."
+  },
+  {
+    "question": "If the company owes me a huge tax penalty because of a 'change in control', do they cover the extra tax?",
+    "expected_answer": "No, there is no gross-up. Payments are reduced to avoid the tax if it gives you more money after-tax."
+  },
+  {
+    "question": "Can I use company trade secrets in a lawsuit if they retaliate against me for whistleblowing?",
+    "expected_answer": "Yes, you can give them to your attorney and file them under seal."
+  },
+  {
+    "question": "Do I get a guaranteed bonus every year, or is it based on performance?",
+    "expected_answer": "It is not guaranteed; it is based on the performance of the company as determined by the Compensation Committee."
+  },
+  {
+    "question": "If I accidentally disclose confidential info because I was subpoenaed, can the company sue me?",
+    "expected_answer": "No, provided you give the company prompt written notice so they can get a protective order."
+  },
+  {
+    "question": "Does this agreement provide me with a company car?",
+    "expected_answer": "Unanswerable. The document does not mention a company car."
+  },
+  {
+    "question": "How many sick days do I get per year?",
+    "expected_answer": "Unanswerable. The document does not specify a set number of sick days, only a Disability threshold."
+  },
+  {
+    "question": "If my manager sexually harasses me and I quit, is that considered 'Good Reason' for severance?",
+    "expected_answer": "Unanswerable. Sexual harassment is not explicitly listed as Good Reason (only salary reduction, title diminution, or material breach)."
+  },
+  {
+    "question": "Can they fire me if I post something political on my personal Twitter account?",
+    "expected_answer": "Yes, if the company determines it is reasonably likely to injure the reputation or business of the company."
+  },
+  {
+    "question": "Will they reimburse my relocation expenses if I move to Connecticut?",
+    "expected_answer": "Unanswerable. The document does not mention relocation expenses."
+  },
+  {
+    "question": "Is there a non-compete clause that prevents me from working for a rival after I leave?",
+    "expected_answer": "Unanswerable. The provided document does not contain an explicit post-employment non-compete clause."
+  },
+  {
+    "question": "If I quit my job because I found a better one, how much notice do I have to give?",
+    "expected_answer": "You must give sixty (60) days prior written notice."
+  },
+  {
+    "question": "Do I get to keep my 15,000 shares of restricted stock if I get fired for stealing?",
+    "expected_answer": "No, you must be continuously employed through the vesting dates; if fired for Cause, unvested shares are forfeit."
+  },
+  {
+    "question": "If they fire me without cause, do I get my severance in one lump sum?",
+    "expected_answer": "No, it is payable in substantially equal installments over twelve (12) months."
+  },
+  {
+    "question": "Are my medical insurance premiums fully paid by the company?",
+    "expected_answer": "Unanswerable. The document says you can participate in medical plans, but does not state the company pays 100% of the premiums."
+  },
+  {
+    "question": "How many weeks of vacation do I get each year?",
+    "expected_answer": "Five weeks of vacation per year."
+  },
+  {
+    "question": "If the company hits 150% of its performance target in 2023, what's the maximum bonus I could get?",
+    "expected_answer": "Up to 200% of Base Salary."
+  },
+  {
+    "question": "Do I have the right to a jury trial if I have a legal dispute with the company?",
+    "expected_answer": "No, both parties irrevocably waive the right to a jury trial."
+  },
+  {
+    "question": "Where do disputes with the company actually get resolved -- court or arbitration?",
+    "expected_answer": "Binding arbitration through JAMS in Connecticut, except either party can still seek injunctive or equitable relief from a court."
+  },
+  {
+    "question": "Can the company suspend my duties while investigating whether I did something that could be Cause for firing, and do I still get paid during that?",
+    "expected_answer": "Yes, the Board can relieve you of duties during the investigation, but the company must continue paying your Base Salary and benefits during that period."
+  },
+  {
+    "question": "What happens to my employment if I pass away while working there?",
+    "expected_answer": "The Agreement and your employment automatically terminate without notice to either party."
+  },
+  {
+    "question": "Can the company transfer this agreement to another company that buys them, without asking me first?",
+    "expected_answer": "Yes, the Executive consents to assignment of the Company's rights and obligations to an affiliate or a purchaser of substantially all of the Company Group's assets."
+  },
+  {
+    "question": "If my salary gets cut but I wait three months before saying anything, can I still quit and claim Good Reason severance?",
+    "expected_answer": "No, you must provide written notice within thirty (30) days after becoming aware of the Good Reason event, and terminate at the end of a further 30-day cure period, or you lose the right to claim Good Reason."
+  },
+  {
+    "question": "If a court later finds one clause of this agreement illegal, does the entire contract become void?",
+    "expected_answer": "No, the remaining provisions stay enforceable; only the invalid or unenforceable provision is modified or severed."
+  },
+  {
+    "question": "Do I get paid parental leave under this agreement?",
+    "expected_answer": "Unanswerable. The document does not mention parental leave."
+  },
+  {
+    "question": "What is the exact effective date I actually start working, versus the date the agreement was signed?",
+    "expected_answer": "The Agreement was signed January 9, 2023, but employment begins on the Effective Date, January 23, 2023."
+  }
+]
