@@ -1,12 +1,12 @@
 import { CheckCircle2, XCircle, ChevronRight } from 'lucide-react'
 import type { DiscoveredClauseItem, NormalizedClauseItem } from '../../types'
 
-interface ClausesCardProps {
+interface ClauseCardProps {
   discovered_clauses: DiscoveredClauseItem[]
   normalized_checklist: NormalizedClauseItem[]
 }
 
-export default function ClausesCard({ discovered_clauses, normalized_checklist }: ClausesCardProps) {
+export default function ClauseCard({ discovered_clauses, normalized_checklist }: ClauseCardProps) {
   if (!discovered_clauses?.length && !normalized_checklist?.length) return null
 
   // Group normalized checklist into Found and Missing
@@ -17,7 +17,7 @@ export default function ClausesCard({ discovered_clauses, normalized_checklist }
     <div className="space-y-6 mb-6">
       {discovered_clauses?.length > 0 && (
         <div>
-          <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Discovered Clauses</h3>
+          <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Discovered Clauses</h3>
           <div className="p-5 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl space-y-4">
             {discovered_clauses.map((clause, idx) => (
               <div key={idx} className="flex flex-col gap-1">
@@ -39,7 +39,7 @@ export default function ClausesCard({ discovered_clauses, normalized_checklist }
 
       {normalized_checklist?.length > 0 && (
         <div>
-          <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Standard Checklist</h3>
+          <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Standard Checklist</h3>
           <div className="p-5 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl">
             
             {/* Found Clauses Section */}

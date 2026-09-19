@@ -9,7 +9,7 @@ export default function RisksCard({ risks }: RisksCardProps) {
   if (!risks || risks.length === 0) {
     return (
       <div className="mb-6">
-        <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Identified Risks</h3>
+        <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Identified Risks</h3>
         <div className="p-4 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl text-[var(--color-text-muted)] text-sm flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-green-600/70" />
           No significant risks identified
@@ -26,7 +26,7 @@ export default function RisksCard({ risks }: RisksCardProps) {
 
   return (
     <div className="mb-8">
-      <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Identified Risks ({risks.length})</h3>
+      <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Identified Risks ({risks.length})</h3>
       
       <div className="space-y-4">
         {sortedRisks.map((risk) => {

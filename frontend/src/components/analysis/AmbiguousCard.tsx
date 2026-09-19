@@ -10,7 +10,7 @@ export default function AmbiguousCard({ clauses }: AmbiguousCardProps) {
   if (!clauses || clauses.length === 0) {
     return (
       <div className="mb-8">
-        <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Ambiguous Clauses</h3>
+        <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Ambiguous Clauses</h3>
         <div className="p-5 bg-[var(--color-bg-panel)] border border-[var(--color-border-subtle)] rounded-xl text-[var(--color-text-muted)] text-sm">
           No ambiguous clauses detected.
         </div>
@@ -20,7 +20,7 @@ export default function AmbiguousCard({ clauses }: AmbiguousCardProps) {
 
   return (
     <div className="mb-8">
-      <h3 className="font-serif text-lg text-[var(--color-text-primary)] mb-4">Ambiguous Clauses ({clauses.length})</h3>
+      <h3 className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-4">Ambiguous Clauses ({clauses.length})</h3>
       
       <div className="space-y-4">
         {clauses.map((clause) => (

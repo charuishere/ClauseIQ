@@ -1,10 +1,10 @@
 import type { FinancialItem } from '../../types'
 
-interface FinancialsCardProps {
+interface FinancialCardProps {
   financials: FinancialItem[]
 }
 
-export default function FinancialsCard({ financials }: FinancialsCardProps) {
+export default function FinancialCard({ financials }: FinancialCardProps) {
   if (!financials || financials.length === 0) {
     return (
       <div className="mb-6">
