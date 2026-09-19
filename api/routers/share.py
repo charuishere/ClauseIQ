@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from auth import get_current_user
-from utils.dynamo import get_table
+from utils.dynamo import get_table, get_owned_agreement
 
 router = APIRouter()
 
@@ -17,10 +17,7 @@ def create_share_link(agreement_id: str, user: dict = Depends(get_current_user))
     table = get_table()
     
     # 1. Fetch the agreement to make sure it exists and belongs to the user
-    agreement_resp = table.get_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{agreement_id}"})
-    if "Item" not in agreement_resp:
-        raise HTTPException(status_code=404, detail="Agreement not found")
-    agreement = agreement_resp["Item"]
+    agreement = get_owned_agreement(table, user_id, agreement_id)
 
     # 2. Fetch the current chat history
     chat_resp = table.query(
@@ -44,9 +41,17 @@ def create_share_link(agreement_id: str, user: dict = Depends(get_current_user))
         "messages": chat_resp.get("Items", [])
     }
     
-    # Save the snapshot to DynamoDB
-    table.put_item(Item=snapshot_item)
-    
+    # Save the public snapshot, plus an index item under the agreement's own
+    # PK so delete_agreement (which already queries AGREEMENT#{id} children)
+    # can find and delete it too -- otherwise the public snapshot outlives
+    # the agreement it was shared from.
+    with table.batch_writer() as batch:
+        batch.put_item(Item=snapshot_item)
+        batch.put_item(Item={
+            "PK": f"AGREEMENT#{agreement_id}",
+            "SK": f"SHARELINK#{share_id}",
+        })
+
     return {"share_id": share_id}
 
 @router.get("/share/{share_id}")
