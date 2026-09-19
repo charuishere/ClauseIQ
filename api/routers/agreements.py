@@ -1,6 +1,7 @@
 import os
 import uuid
 import boto3
+from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, UploadFile, File, Form, HTTPException
 from typing import List, Optional
 from boto3.dynamodb.conditions import Key
@@ -8,11 +9,25 @@ from auth import get_current_user
 from utils.extraction import extract_pdf, extract_docx, concatenate_files
 from utils.tokens import count_tokens, compute_hash
 import fitz
-from utils.dynamo import create_agreement, get_hash_index, get_table
+from utils.dynamo import create_agreement, get_hash_index, get_table, get_owned_agreement
 
 router = APIRouter()
 s3_client = boto3.client("s3")
 S3_BUCKET = os.environ["S3_BUCKET_NAME"]
+
+def _write_document_to_s3(user_id: str, agreement_id: str, combined_text: str,
+                           has_pdf: bool, pdf_bytes: bytes | None) -> str:
+    """Writes the extracted text (and merged PDF, if any) to S3 under this
+    agreement's key. Shared by both the normal upload path and the dedup
+    cache-hit path, which otherwise duplicated this block verbatim."""
+    s3_key = f"documents/{user_id}/{agreement_id}/original.txt"
+    s3_client.put_object(Bucket=S3_BUCKET, Key=s3_key, Body=combined_text.encode("utf-8"))
+
+    if has_pdf and pdf_bytes:
+        pdf_key = f"documents/{user_id}/{agreement_id}/original.pdf"
+        s3_client.put_object(Bucket=S3_BUCKET, Key=pdf_key, Body=pdf_bytes, ContentType="application/pdf")
+
+    return s3_key
 
 def copy_analysis_for_dedup(table, original_agreement_id: str, new_agreement_id: str,
                              new_user_id: str, title: str, token_count: int,
@@ -29,12 +44,10 @@ def copy_analysis_for_dedup(table, original_agreement_id: str, new_agreement_id:
     source_items = child_resp["Items"]
 
     # 3. Create the new Agreement record (status=COMPLETED immediately)
-    from datetime import datetime, timezone
     now = datetime.now(timezone.utc).isoformat()
     table.put_item(Item={
         "PK": f"USER#{new_user_id}",
         "SK": f"AGREEMENT#{new_agreement_id}",
-        "GSI1PK": f"AGREEMENT#{new_agreement_id}",
         "agreementId": new_agreement_id,
         "userId": new_user_id,
         "title": title,
@@ -52,7 +65,7 @@ def copy_analysis_for_dedup(table, original_agreement_id: str, new_agreement_id:
     })
 
     # 4. Batch-copy all child entities
-    copy_sk_prefixes = {"#ANALYSIS", "RISK#", "AMBIGUOUS#", "CLAUSE#"}
+    copy_sk_prefixes = {"#ANALYSIS", "RISK#", "AMBIGUOUS#", "DISCOVERED#", "NORMALIZED#"}
     with table.batch_writer() as batch:
         for item in source_items:
             sk = item.get("SK", "")
@@ -164,21 +177,7 @@ def upload_agreement(
         )
         
         if copied:
-            s3_client.put_object(
-                Bucket=S3_BUCKET,
-                Key=new_s3_key,
-                Body=combined_text.encode("utf-8")
-            )
-            
-            if has_pdf and pdf_bytes:
-                pdf_key = f"documents/{user_id}/{new_agreement_id}/original.pdf"
-                s3_client.put_object(
-                    Bucket=S3_BUCKET,
-                    Key=pdf_key,
-                    Body=pdf_bytes,
-                    ContentType="application/pdf"
-                )
-                
+            _write_document_to_s3(user_id, new_agreement_id, combined_text, has_pdf, pdf_bytes)
             return {
                 "agreementId": new_agreement_id,
                 "status": "COMPLETED",
@@ -187,22 +186,7 @@ def upload_agreement(
 
     # 5. Generate ID and Save to S3
     agreement_id = f"agmt-{uuid.uuid4().hex[:8]}"
-    s3_key = f"documents/{user_id}/{agreement_id}/original.txt"
-    
-    s3_client.put_object(
-        Bucket=S3_BUCKET,
-        Key=s3_key,
-        Body=combined_text.encode("utf-8")
-    )
-    
-    if has_pdf and pdf_bytes:
-        pdf_key = f"documents/{user_id}/{agreement_id}/original.pdf"
-        s3_client.put_object(
-            Bucket=S3_BUCKET,
-            Key=pdf_key,
-            Body=pdf_bytes,
-            ContentType="application/pdf"
-        )
+    s3_key = _write_document_to_s3(user_id, agreement_id, combined_text, has_pdf, pdf_bytes)
 
     # 6. Save metadata to DynamoDB
     create_agreement(
@@ -237,33 +221,14 @@ def list_agreements(user: dict = Depends(get_current_user)):
 
 @router.get("/agreements/{agreement_id}")
 def get_agreement(agreement_id: str, user: dict = Depends(get_current_user)):
-    user_id = user["userId"]
-    table = get_table()
-    
-    response = table.get_item(
-        Key={
-            "PK": f"USER#{user_id}",
-            "SK": f"AGREEMENT#{agreement_id}"
-        }
-    )
-    
-    item = response.get("Item")
-    if not item:
-        raise HTTPException(status_code=404, detail="Agreement not found")
-        
-    return item
+    return get_owned_agreement(get_table(), user["userId"], agreement_id)
 
 @router.get("/agreements/{agreement_id}/analysis")
 def get_analysis(agreement_id: str, user: dict = Depends(get_current_user)):
     user_id = user["userId"]
     table = get_table()
     
-    agreement_resp = table.get_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{agreement_id}"})
-    agreement = agreement_resp.get("Item")
-    
-    if not agreement:
-        raise HTTPException(status_code=404, detail="Agreement not found")
-        
+    agreement = get_owned_agreement(table, user_id, agreement_id)
     if agreement.get("status") != "COMPLETED":
         raise HTTPException(status_code=409, detail={"error": "Analysis not yet complete", "status": agreement.get("status")})
         
@@ -316,20 +281,24 @@ def delete_agreement(agreement_id: str, user: dict = Depends(get_current_user)):
     user_id = user["userId"]
     table = get_table()
     
-    agreement_resp = table.get_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{agreement_id}"})
-    agreement = agreement_resp.get("Item")
-    if not agreement:
-        raise HTTPException(status_code=404, detail="Agreement not found")
-        
+    agreement = get_owned_agreement(table, user_id, agreement_id)
+
     child_resp = table.query(
         KeyConditionExpression=Key("PK").eq(f"AGREEMENT#{agreement_id}")
     )
     items = child_resp.get("Items", [])
-    
+
     with table.batch_writer() as batch:
         batch.delete_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{agreement_id}"})
         for item in items:
             batch.delete_item(Key={"PK": item["PK"], "SK": item["SK"]})
+            # Each SHARELINK# index item points at a public SHARE# snapshot
+            # that lives outside this agreement's PK -- delete it too, or it
+            # stays publicly reachable forever after the agreement is gone.
+            sk = item.get("SK", "")
+            if sk.startswith("SHARELINK#"):
+                share_id = sk.replace("SHARELINK#", "")
+                batch.delete_item(Key={"PK": f"SHARE#{share_id}", "SK": f"SHARE#{share_id}"})
             
     s3_key = agreement.get("s3_key")
     if s3_key:
@@ -345,43 +314,13 @@ def delete_agreement(agreement_id: str, user: dict = Depends(get_current_user)):
             
     return {"message": "Agreement deleted"}
 
-@router.get("/agreements/{agreement_id}/document")
-async def get_document_content(agreement_id: str, user: dict = Depends(get_current_user)):
-    """Fetch the raw text content of the document from S3 and return it directly."""
-    user_id = user["userId"]
-    table = get_table()
-    
-    # 1. Verify ownership
-    resp = table.get_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{agreement_id}"})
-    item = resp.get("Item")
-    if not item:
-        raise HTTPException(status_code=404, detail="Agreement not found")
-        
-    # 2. Get the S3 Key
-    s3_key = item.get("s3_key")
-    if not s3_key:
-        raise HTTPException(status_code=404, detail="Document not found")
-        
-    # 3. Fetch the text content directly from S3
-    try:
-        response = s3_client.get_object(Bucket=S3_BUCKET, Key=s3_key)
-        text_content = response['Body'].read().decode('utf-8')
-        return {"text": text_content}
-    except Exception as e:
-        print(f"Error fetching document content: {e}")
-        raise HTTPException(status_code=500, detail="Failed to fetch document content")
-
 @router.get("/agreements/{agreement_id}/viewer_data")
 async def get_viewer_data(agreement_id: str, user: dict = Depends(get_current_user)):
     """Smart endpoint to return either a PDF presigned URL or raw text."""
     user_id = user["userId"]
     table = get_table()
     
-    resp = table.get_item(Key={"PK": f"USER#{user_id}", "SK": f"AGREEMENT#{agreement_id}"})
-    item = resp.get("Item")
-    if not item:
-        raise HTTPException(status_code=404, detail="Agreement not found")
-        
+    item = get_owned_agreement(table, user_id, agreement_id)
     has_pdf = item.get("has_pdf", False)
     
     if has_pdf:
