@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { FileText, Loader2, FileX } from 'lucide-react'
 import { useDocumentViewerData } from '../../hooks/useDocumentViewerData'
 import { Document, Page, pdfjs } from 'react-pdf'
+import pdfWorkerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerSrc
 
 interface DocumentViewerProps {
   agreementId: string
@@ -56,7 +57,7 @@ export default function DocumentViewer({ agreementId }: DocumentViewerProps) {
               </div>
             }
           >
-            {Array.from(new Array(numPages), (el, index) => (
+            {Array.from(new Array(numPages), (_, index) => (
               <div key={`page_${index + 1}`} className="mb-6 shadow-2xl bg-white rounded-sm overflow-hidden">
                 <Page
                   pageNumber={index + 1}
