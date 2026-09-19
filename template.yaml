@@ -17,6 +17,7 @@ Globals:
         SQS_QUEUE_URL: !Ref AnalysisQueue
         BEDROCK_REGION: "us-east-1"   # Nova Lite only available in us-east-1 — never use !Ref AWS::Region here
         ENVIRONMENT: !Ref Environment
+        RAG_TOKEN_THRESHOLD: "200000"   # single source of truth, shared by ApiFunction and AiWorkerFunction
 
 Resources:
 
@@ -42,7 +43,7 @@ Resources:
               Action: [s3:GetObject, s3:PutObject, s3:DeleteObject]
               Resource: !Sub "${DocumentsBucket.Arn}/*"
             - Effect: Allow
-              Action: [bedrock:InvokeModel]
+              Action: [bedrock:InvokeModel, bedrock:Rerank]
               Resource: "*"
             - Effect: Allow
               Action: [secretsmanager:GetSecretValue]
@@ -114,20 +115,6 @@ Resources:
           Properties:
             Queue: !GetAtt AnalysisQueue.Arn
             BatchSize: 1
-
-  # ── User Initializer Lambda (Cognito Post-Confirmation trigger) ──
-  UserInitializerFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: user_initializer.handler
-      CodeUri: ./user_initializer/
-      MemorySize: 128
-      Timeout: 10
-      Policies:
-        - Statement:
-            - Effect: Allow
-              Action: [dynamodb:PutItem]
-              Resource: !GetAtt DynamoDBTable.Arn
 
   # ── S3 Bucket (private) ──
   DocumentsBucket:
@@ -237,6 +224,12 @@ Resources:
     Properties:
       TableName: !Sub clauseiq-${Environment}
       BillingMode: PAY_PER_REQUEST
+      # api/routers/chat.py's rate-limiter writes a `ttl` field expecting
+      # DynamoDB to auto-expire RATELIMIT#CHAT items -- that only actually
+      # happens once TTL is enabled here, naming that same attribute.
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
       AttributeDefinitions:
         - AttributeName: PK
           AttributeType: S
@@ -283,16 +276,6 @@ Resources:
         - email
       UsernameAttributes:
         - email
-      LambdaConfig:
-        PostConfirmation: !GetAtt UserInitializerFunction.Arn
-
-  CognitoUserInitializerPermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      FunctionName: !GetAtt UserInitializerFunction.Arn
-      Action: lambda:InvokeFunction
-      Principal: cognito-idp.amazonaws.com
-      SourceArn: !GetAtt UserPool.Arn
 
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
