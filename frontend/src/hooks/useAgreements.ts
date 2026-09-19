@@ -1,11 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../lib/api'
+import type { AgreementSummary } from '../types'
 
 // 1. Hook to fetch the list of all agreements for the sidebar
 export function useAgreements() {
   return useQuery({
     queryKey: ['agreements'],
-    queryFn: () => api.get('/agreements').then(r => r.data)
+    queryFn: () => api.get('/agreements').then(r => r.data as AgreementSummary[])
   })
 }
 
@@ -14,7 +15,7 @@ export function useAgreementStatus(agreementId: string | undefined, enabled: boo
   return useQuery({
     queryKey: ['agreement', agreementId],
     // Guard: never fire if agreementId is undefined/empty (prevents GET /agreements/undefined)
-    queryFn: () => api.get(`/agreements/${agreementId}`).then(r => r.data),
+    queryFn: () => api.get(`/agreements/${agreementId}`).then(r => r.data as AgreementSummary),
     
     // Polling logic: If the document is UPLOADED or PROCESSING, ask the server for an update every 3 seconds.
     // If it is COMPLETED or FAILED, stop asking.
@@ -45,8 +46,8 @@ export function useDeleteAgreement() {
       const previousAgreements = queryClient.getQueryData(['agreements'])
 
       // Optimistically update to the new value by filtering out the deleted agreement
-      queryClient.setQueryData(['agreements'], (old: any) => 
-        old ? old.filter((doc: any) => doc.SK !== `AGREEMENT#${deletedId}`) : []
+      queryClient.setQueryData(['agreements'], (old?: AgreementSummary[]) =>
+        old ? old.filter((doc) => doc.SK !== `AGREEMENT#${deletedId}`) : []
       )
 
       // Return a context object with the snapshotted value so we can rollback if it fails
@@ -54,7 +55,7 @@ export function useDeleteAgreement() {
     },
     
     // If the API call fails, roll back to the previous state
-    onError: (err, newTodo, context) => {
+    onError: (_err, _deletedId, context) => {
       if (context?.previousAgreements) {
         queryClient.setQueryData(['agreements'], context.previousAgreements)
       }

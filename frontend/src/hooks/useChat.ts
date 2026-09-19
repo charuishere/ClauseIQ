@@ -1,15 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import api from '../lib/api'
-
-interface ChatMessage {
-  messageId: string;
-  question: string;
-  answer: string;
-  answer_type?: 'document' | 'general' | 'mixed';
-  citations: any[];
-  found_in_document: boolean;
-  created_at: string;
-}
+import type { ChatMessage } from '../types'
 
 // 1. Fetch the chat history for a specific agreement
 export function useChatHistory(agreementId: string | undefined) {

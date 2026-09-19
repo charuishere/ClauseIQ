@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import api from '../lib/api'
+import type { SharedChatResponse } from '../types'
 
 export function useCreateShareLink(agreementId: string) {
   return useMutation({
@@ -15,7 +16,7 @@ export function useSharedChat(shareId: string | undefined) {
     queryKey: ['sharedChat', shareId],
     queryFn: async () => {
       const res = await api.get(`/share/${shareId}`)
-      return res.data
+      return res.data as SharedChatResponse
     },
     enabled: !!shareId
   })
