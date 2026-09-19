@@ -14,15 +14,18 @@ def handler(event, _context):
     for record in event["Records"]:
         # 1. Get the exact path of the uploaded file
         s3_key = record["s3"]["object"]["key"]
-        
+
         # The key looks like: documents/{userId}/{agreementId}/original.txt
+        # -- that exact shape is defined in api/routers/agreements.py's
+        # _write_document_to_s3(), not here. The S3 event filter in
+        # template.yaml (prefix "documents/", suffix ".txt") guarantees we
+        # only ever see keys of this form, but we still guard against a
+        # malformed key rather than crashing on a bad index.
         parts = s3_key.split("/")
-        
-        # Guard: Only process the .txt files (avoid duplicate triggers for .pdf files)
-        if not s3_key.endswith(".txt"):
-            print(f"Skipping non-text file: {s3_key}")
+        if len(parts) < 3:
+            print(f"Skipping unexpected key shape: {s3_key}")
             continue
-            
+
         user_id = parts[1]
         agreement_id = parts[2]
 
