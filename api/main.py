@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from mangum import Mangum
 from auth import get_current_user
+from routers import agreements, chat, share
+
 app = FastAPI()
 
 app.add_middleware(
@@ -20,8 +22,6 @@ def health():
 @app.get("/me")
 def me(user=Depends(get_current_user)):
     return {"userId": user["userId"]}
-
-from routers import agreements, chat, share
 
 app.include_router(agreements.router)
 app.include_router(chat.router)
