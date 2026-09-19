@@ -8,6 +8,8 @@ __pycache__/
 .pytest_cache/
 .coverage
 .vscode/
+.venv/
+htmlcov/
 
 # Administrative files
 logs.txt
