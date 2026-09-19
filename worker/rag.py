@@ -12,6 +12,12 @@ logger.setLevel(logging.INFO)
 bedrock_runtime = boto3.client("bedrock-runtime")
 secrets_client = boto3.client("secretsmanager")
 
+# Stored on every vector's metadata below so a future embedding-model change
+# can be detected instead of silently comparing incompatible vector spaces
+# (a query embedded with a different model would still return a Pinecone
+# similarity score -- just a meaningless one).
+EMBEDDING_MODEL_ID = "amazon.titan-embed-text-v2:0"
+
 def _get_pinecone_credentials() -> dict:
     """Fetch Pinecone API key and index host from Secrets Manager."""
     response = secrets_client.get_secret_value(SecretId=os.environ["PINECONE_SECRET_ARN"])
@@ -59,7 +65,7 @@ def get_embeddings(texts: list[str]) -> list[list[float]]:
         })
         try:
             response = bedrock_runtime.invoke_model(
-                modelId="amazon.titan-embed-text-v2:0",
+                modelId=EMBEDDING_MODEL_ID,
                 body=body,
                 accept="application/json",
                 contentType="application/json"
@@ -71,14 +77,17 @@ def get_embeddings(texts: list[str]) -> list[list[float]]:
             raise
     return embeddings
 
-def index_document(agreement_id: str, document_text: str):
+def index_document(agreement_id: str, document_text: str, chunk_fn=chunk_text):
     """
     Chunk the document, get embeddings, and upsert to Pinecone.
+    `chunk_fn` defaults to the production fixed-window chunker; evals pass
+    an alternative chunking strategy (e.g. evals/eval_chunking_comparison.py)
+    to compare against it using this same indexing pipeline.
     """
-    logger.info(f"Starting custom RAG indexing for {agreement_id}")
-    
+    logger.info(f"Starting custom RAG indexing for {agreement_id} using {chunk_fn.__name__}")
+
     # 1. Chunk the document
-    chunks = chunk_text(document_text)
+    chunks = chunk_fn(document_text)
     logger.info(f"Split document into {len(chunks)} chunks.")
     
     if not chunks:
@@ -110,7 +119,8 @@ def index_document(agreement_id: str, document_text: str):
             "values": embedding,
             "metadata": {
                 "agreement_id": agreement_id,
-                "text": chunk
+                "text": chunk,
+                "embedding_model": EMBEDDING_MODEL_ID
             }
         })
         
