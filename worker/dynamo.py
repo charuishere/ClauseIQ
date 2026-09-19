@@ -62,46 +62,31 @@ def write_analysis_results(agreement_id: str, user_id: str, ai_data: dict):
             "summary": ai_data.get("summary", ""),
             "financial_terms": ai_data.get("financial_terms", []),
             "timeline": ai_data.get("timeline", []),
+            "is_legal_document": ai_data.get("is_legal_document", True),
             "completed_at": now
         }
     )
 
-def write_risks(agreement_id: str, risks: list):
+def _write_items(agreement_id: str, items: list, sk_prefix: str) -> None:
+    """Batch-writes a list of AI-extracted items (risks, clauses, checklist
+    entries, ...) as child rows under the agreement's PK, one per item with
+    a unique SK under the given prefix."""
     with table.batch_writer() as batch:
-        for risk in risks:
-            risk_item = {
+        for item in items:
+            batch.put_item(Item={
                 "PK": f"AGREEMENT#{agreement_id}",
-                "SK": f"RISK#{uuid.uuid4().hex}",
-                **risk
-            }
-            batch.put_item(Item=risk_item)
+                "SK": f"{sk_prefix}#{uuid.uuid4().hex}",
+                **item
+            })
 
-def write_ambiguous_clauses(agreement_id: str, ambiguous_clauses: list):
-    with table.batch_writer() as batch:
-        for clause in ambiguous_clauses:
-            clause_item = {
-                "PK": f"AGREEMENT#{agreement_id}",
-                "SK": f"AMBIGUOUS#{uuid.uuid4().hex}",
-                **clause
-            }
-            batch.put_item(Item=clause_item)
+def write_risks(agreement_id: str, risks: list) -> None:
+    _write_items(agreement_id, risks, "RISK")
 
-def write_discovered_clauses(agreement_id: str, discovered_clauses: list):
-    with table.batch_writer() as batch:
-        for clause in discovered_clauses:
-            clause_item = {
-                "PK": f"AGREEMENT#{agreement_id}",
-                "SK": f"DISCOVERED#{uuid.uuid4().hex}",
-                **clause
-            }
-            batch.put_item(Item=clause_item)
+def write_ambiguous_clauses(agreement_id: str, ambiguous_clauses: list) -> None:
+    _write_items(agreement_id, ambiguous_clauses, "AMBIGUOUS")
 
-def write_normalized_checklist(agreement_id: str, normalized_checklist: list):
-    with table.batch_writer() as batch:
-        for check in normalized_checklist:
-            check_item = {
-                "PK": f"AGREEMENT#{agreement_id}",
-                "SK": f"NORMALIZED#{uuid.uuid4().hex}",
-                **check
-            }
-            batch.put_item(Item=check_item)
+def write_discovered_clauses(agreement_id: str, discovered_clauses: list) -> None:
+    _write_items(agreement_id, discovered_clauses, "DISCOVERED")
+
+def write_normalized_checklist(agreement_id: str, normalized_checklist: list) -> None:
+    _write_items(agreement_id, normalized_checklist, "NORMALIZED")
